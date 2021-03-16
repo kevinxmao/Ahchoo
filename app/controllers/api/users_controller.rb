@@ -14,6 +14,7 @@ class Api::UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:email, :firstName, :lastName, :funds)
+        params.require(:user).transform_keys(&:underscore)
+            .permit(:email, :first_name, :last_name, :funds, :password)
     end
 end
