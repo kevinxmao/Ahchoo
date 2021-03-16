@@ -21,29 +21,33 @@ class SessionForm extends React.Component {
 
     render() {
         if (window.currentUser) this.props.history.push("/");
-        
+
         return (
-            <div id="login-form">
-                <p>Welcome back</p>
-                <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="login-email">Email or username</label>
+          <div id="login-form">
+            <p>Welcome back</p>
+            <form onSubmit={this.handleSubmit}>
+                <div className="input-container">
                     <input
                         id="login-email"
+                        className="input"
                         type="text"
                         value={this.state.email}
                         onChange={this.handleChange("email")}
                     />
-                    <label htmlFor="login-password">Password</label>
+                </div>
+                <div className="input-container">
                     <input
                         id="login-password"
+                        className="input"
                         type="password"
                         value={this.state.password}
                         onChange={this.handleChange("password")}
                     />
-                    <button type="submit">Sign In</button>
-                </form>
-                <FormError errors={this.props.errors} />
-            </div>
+                </div>
+                <button type="submit">Sign In</button>
+            </form>
+            <FormError errors={this.props.errors} />
+          </div>
         );
     }
 }
