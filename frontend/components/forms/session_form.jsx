@@ -30,36 +30,34 @@ class SessionForm extends React.Component {
               </header>
 
               <div className="signin-main">
-                <div className="input-title">
+                <label className="input-title" htmlFor="login-email">
                   <span className="input-field">Email or username</span>
-                </div>
-                <div className="input-container">
-                  <input
-                    id="login-email"
-                    className="input"
-                    type="text"
-                    value={this.state.email}
-                    onChange={this.handleChange("email")}
-                  />
-                </div>
-                <div className="input-title">
+                </label>
+                <input
+                  id="login-email"
+                  className="input"
+                  type="text"
+                  value={this.state.email}
+                  onChange={this.handleChange("email")}
+                />
+                <label className="input-title" htmlFor="login-password">
                   <span className="input-field">Password</span>
-                </div>
-                <div className="input-container">
-                  <input
-                    id="login-password"
-                    className="input"
-                    type="password"
-                    value={this.state.password}
-                    onChange={this.handleChange("password")}
-                  />
-                </div>
+                </label>
+                <input
+                id="login-password"
+                className="input"
+                type="password"
+                value={this.state.password}
+                onChange={this.handleChange("password")}
+                />
               </div>
 
               <footer className="signin-footer">
-                  <div className="signin-button-container">
-                    <button type="submit"><span>Sign In</span></button>
-                  </div>
+                <div className="signin-button-container">
+                  <button type="submit">
+                    <span>Sign In</span>
+                  </button>
+                </div>
               </footer>
             </form>
             <FormError errors={this.props.errors} />

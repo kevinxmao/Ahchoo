@@ -8,7 +8,7 @@
 }
 
 img.signin-image {
-    min-width: 100px;
+    min-width: 500px;
     height: 100%;
     flex-basis: 50%;
     flex-shrink: 1;
@@ -28,29 +28,31 @@ div.signin-form-container > div {
     flex-direction: column;
     justify-content: center;
     margin: 0 50px;
-    max-width: 500px;
+    max-width: 400px;
     height: 100%;
 }
 
-.input-container {
-    padding: 0 3px;
-    border: 1px solid gray;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.input {
+    padding: 0 12px;
     width: 100%;
-    height: 30px;
+    height: 34px;
+    border: 1px solid rgb(220, 220, 220);
+    border-radius: 4px;
 }
 
-.input {
-    border: none;
+.input:hover {
+    border-color: gray;
+    transition: border-color 200ms ease-in;
+}
+
+.input:focus {
     outline: none;
+    border: 1px solid rgb(0, 180, 5);
 }
 
 .signin-welcome-header {
     font-size: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .signin-main {
