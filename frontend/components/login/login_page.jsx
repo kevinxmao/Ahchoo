@@ -11,7 +11,7 @@ class LoginPage extends React.Component {
                 alt=""
               />
               
-            <div className="sigin-form-container">
+            <div className="signin-form-container">
               <div>
                 <LoginFormContainer />
               </div>

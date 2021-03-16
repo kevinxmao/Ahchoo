@@ -9,6 +9,7 @@
 
 img.signin-image {
     min-width: 100px;
+    height: 100%;
     flex-basis: 50%;
     flex-shrink: 1;
     flex-grow: 1;
@@ -16,17 +17,18 @@ img.signin-image {
     overflow: hidden;
 }
 
-div.signin-form-container {
+.signin-form-container {
     flex-basis: 50%;
     flex-grow: 1;
     flex-shrink: 1;
 }
 
-div.sigin-form-container > div {
+div.signin-form-container > div {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: 50px;
+    margin: 0 50px;
+    max-width: 500px;
     height: 100%;
 }
 
