@@ -1,7 +1,9 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import LoginForm from "./forms/login_form_container";
-import SignupForm from "./forms/signup_form_container";
+import LoginFormContainer from "./forms/login_form_container";
+import SignupFormContainer from "./forms/signup_form_container";
+import Splash from "./splash/splash";
+import { AuthRoute } from "../util/auth/routes_util";
 
 const App = () => (
     <div>
@@ -9,8 +11,9 @@ const App = () => (
             <h1>Ahchoo is Live!</h1>
         </header>
         <Switch>
-            <Route path='/login' component={LoginForm} />
-            <Route path='/signup' component={SignupForm} />
+            <Route exact path='/' component={Splash} />
+            <AuthRoute path='/login' component={LoginFormContainer} />
+            <AuthRoute path='/signup' component={SignupFormContainer} />
         </Switch>
 
     </div>

@@ -1,8 +1,15 @@
 import React from 'react';
+import SplashNav from './splash_nav';
 
 class Splash extends React.Component {
     render() {
-        return null;
+        return (
+            <div>
+                <SplashNav
+                    logout={this.props.logout}
+                />
+            </div>
+        );
     }
 }
 
