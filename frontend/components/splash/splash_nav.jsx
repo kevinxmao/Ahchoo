@@ -5,11 +5,6 @@ class SplashNav extends React.Component {
     constructor(props) {
         super(props);
     }
-
-    handleLogout(e) {
-        e.preventDefault();
-        this.props.logout().then( delete window.currentUser );
-    }
     
     render() {
         return (
