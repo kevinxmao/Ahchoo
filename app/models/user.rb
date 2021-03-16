@@ -13,11 +13,11 @@
 #  updated_at      :datetime         not null
 #
 class User < ApplicationRecord
-    validates :email, :session_token, :password_digest, presence: true
+    validates :email, :session_token, :password_digest, :funds, presence: true
     validates :email, :session_token, uniqueness: true
     validates :password, length: {minimum: 8, allow_nil: true}
 
-    after_initialize :ensure_session_token
+    after_initialize :ensure_session_token, :default_funds
 
     attr_reader :password
 
@@ -45,5 +45,9 @@ class User < ApplicationRecord
 
     def reset_session_token!
         self.session_token = User:: generate_session_token
+    end
+
+    def default_funds
+        self.funds ||= 0
     end
 end
