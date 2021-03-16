@@ -7,32 +7,35 @@ class SplashNav extends React.Component {
     
     render() {
         return (
-          <nav id="splash-nav">
-            <div id="splash-left">
-              <div id="splah-nav-logo">
-                <img src={window.textLogo} alt="logo" />
-              </div>
-              <ul id="splash-nav-list">
-                <li>Products</li>
-                <li>Learn</li>
-                <li>Support</li>
-                <li>About</li>
-              </ul>
+          <nav className="splash-nav">
+            <div className="splash-nav-left">
+                <img className="splash-nav-logo" src={window.textLogo} alt="logo" />
+                <div className="splash-nav-list-container">
+                    <ul className="splash-nav-list">
+                        <li>Products</li>
+                        <li>Learn</li>
+                        <li>Support</li>
+                        <li>About</li>
+                    </ul>
+                </div>
             </div>
-            <div id="splash-nav-session">
+
+            <div className="splash-nav-spacer"></div>
+            <div className="splash-nav-session">
               <NavLink
                 to="/login"
                 className="button-login"
                 activeClassName="selected"
               >
-                Log In
+                <span>Log In</span>
               </NavLink>
+              <div className="session-button-spacer"></div>
               <NavLink
                 to="/signup"
                 className="button-signup"
                 activeClassName="selected"
               >
-                Sign Up
+                <span>Sign Up</span>
               </NavLink>
             </div>
           </nav>
