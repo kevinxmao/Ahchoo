@@ -4,7 +4,7 @@ import SplashNav from './splash_nav';
 class Splash extends React.Component {
     render() {
         return (
-            <div>
+            <div id="splash">
                 <div className="splash-nav-container">
                     <SplashNav
                         logout={this.props.logout}
@@ -12,7 +12,10 @@ class Splash extends React.Component {
                 </div>
                 <div className="splash-main">
                     <header className="splash-header">
-
+                        <div className="splash-header-landing">
+                            <div className="splash-header-content"></div>
+                            <div className="splash-header-video"></div>
+                        </div>
                     </header>
                 </div>
 
