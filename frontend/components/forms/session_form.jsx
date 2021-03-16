@@ -1,4 +1,5 @@
 import React from "react";
+import FormError from "../errors/form_error";
 
 class SessionForm extends React.Component {
     constructor(props) {
@@ -13,7 +14,9 @@ class SessionForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.login(this.state);
+        this.props
+          .login(this.state)
+          .then(null, () => this.setState({ email: "", password: "" }));
     }
 
     render() {
@@ -37,6 +40,7 @@ class SessionForm extends React.Component {
                     />
                     <button type="submit">Sign In</button>
                 </form>
+                <FormError errors={this.props.errors} />
             </div>
         );
     }

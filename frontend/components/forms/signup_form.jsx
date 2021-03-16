@@ -1,4 +1,5 @@
 import React from "react";
+import FormError from "../errors/form_error";
 
 class SignupForm extends React.Component {
     constructor(props) {
@@ -56,6 +57,7 @@ class SignupForm extends React.Component {
                     <br/>
                     <button type="submit">Sign Up</button>
                 </form>
+                <FormError errors={this.props.errors}/>
             </div>
         );
     }
