@@ -20,6 +20,8 @@ class SessionForm extends React.Component {
     }
 
     render() {
+        if (window.currentUser) this.props.history.push("/");
+        
         return (
             <div id="login-form">
                 <p>Welcome back</p>

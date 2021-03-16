@@ -23,6 +23,8 @@ class SignupForm extends React.Component {
     }
 
     render() {
+        if (window.currentUser) this.props.history.push("/");
+        
         return (
             <div id="signup-form">
                 <p>Make it rain</p>
