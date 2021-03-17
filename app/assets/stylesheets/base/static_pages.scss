@@ -1,6 +1,22 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "./variables.scss";
+
 body {
   font-family: 'Capsule Sans', Fallback, sans-serif;
+  box-sizing: border-box;
+}
+
+a {
+  color: $primary_base;
+  text-decoration: none;
+}
+
+a:hover {
+  color: $primary_hover;
+}
+
+a:focus {
+  color: $primary_pressed;
 }

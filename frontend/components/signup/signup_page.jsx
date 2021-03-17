@@ -1,5 +1,6 @@
 import React from 'react';
 import SignupFormContainer from "../forms/signup_form_container";
+import { DemoLogin } from '../../util/auth/demo_user';
 
 class SignupPage extends React.Component {
     render() {
@@ -10,9 +11,9 @@ class SignupPage extends React.Component {
                         <div className="signup-logo">
                             <img className="splash-nav-logo" src={window.textLogo} alt="logo" />
                         </div>
+
                         <SignupFormContainer />
                         <div className="signup-disclaimer-container">
-                            <p>hshsjsjs</p>
                         </div>
                     </div>
                 </div>

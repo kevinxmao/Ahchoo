@@ -14,6 +14,31 @@
     flex-basis: 60%;
     flex-grow: 1;
     flex-shrink: 1;
+
+    .signup-left-content {
+        width: 60%;
+        margin: 0px 15%;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        flex-shrink: 1;
+        height: 100%;
+    }
+
+    .signup-logo {
+        position: absolute;
+        top: 40px;
+    }
+
+    #signup-form {
+        margin-bottom: 51px;
+        margin-top: 161px;
+    }
+
+    img.splash-nav-logo {
+        max-width: 130px;
+        height: auto;
+    }
 }
 
 .signup-right {
@@ -50,8 +75,16 @@
     .signup-form-1 {
         display: flex;
         justify-content: space-between;
-        :nth-child(1), :nth-child(2) {
-            width: 46%;
+        :nth-child(1), :nth-child(3) {
+            flex-basis: 45%;
+            flex-grow: 1;
+            flex-shrink: 1;
+        }
+
+        :nth-child(2) {
+            flex-basis: 10%;
+            flex-grow: 0.5;
+            flex-shrink: 0.5;
         }
     }
 
@@ -77,8 +110,14 @@
     }
 }
 
-.signup-button-container {
+.signup-footer {
     margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.signup-button-container {
     button {
         background-color: $primary_base;
         color: white;
@@ -99,5 +138,20 @@
 
     button:focus {
         background-color: $primary_pressed;
+    }
+}
+
+.signup-login-redirect {
+    margin-left: 20px;
+    display: block;
+    font-size: $textS_font_size;
+    font-weight: $textS_font_weight;
+
+    div {
+        margin-bottom: 10px;
+    }
+
+    a {
+        padding: 20px 0;
     }
 }

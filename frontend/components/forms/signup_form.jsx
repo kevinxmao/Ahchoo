@@ -1,5 +1,6 @@
 import React from "react";
 import FormError from "../errors/form_error";
+import { Link } from "react-router-dom";
 
 class SignupForm extends React.Component {
     constructor(props) {
@@ -40,6 +41,7 @@ class SignupForm extends React.Component {
                                 value={this.state.firstName}
                                 onChange={this.handleChange("firstName")}
                             />
+                            <div></div>
                             <input
                                 type="text"
                                 placeholder="Last name"
@@ -66,6 +68,12 @@ class SignupForm extends React.Component {
                             <button type="submit">
                                 <span>Sign Up</span>
                             </button>
+                        </div>
+                        <div className="signup-login-redirect" >
+                            <div>Already a user?</div>
+                            <Link to="/login">
+                                <span>Log in to trade now</span>
+                            </Link>
                         </div>
                     </footer>
                 </form>

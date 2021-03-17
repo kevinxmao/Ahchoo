@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 const Demo = props => (
-    <button className="demo-login" onClick={() => props.login({email: "demo@app.com", password="demouser"})}>
+    <button className="demo-login" onClick={() => props.login({email: "demo@app.com", password: "demouser"})}>
         <span>Demo Login</span>
     </button>
 )
