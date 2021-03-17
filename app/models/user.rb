@@ -48,6 +48,6 @@ class User < ApplicationRecord
     end
 
     def default_funds
-        self.funds ||= 0
+        self.funds ||= 10000
     end
 end
