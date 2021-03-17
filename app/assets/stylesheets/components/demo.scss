@@ -1,0 +1,22 @@
+@import "../base/variables.scss";
+
+.demo-login {
+    margin-top: 20px;
+    background-color: none;
+    border: none;
+    font-weight: bold;
+    border-radius: $primary_input_border_radius;
+    height: $primary_button_height;
+    width: $primary_button_width;
+
+}
+
+.demo-login:hover {
+    cursor: pointer;
+    color: $primary_hover;
+}
+
+.demo-login:focus {
+    color: $primary_pressed;
+    outline: none;
+}
