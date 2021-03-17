@@ -1,0 +1,80 @@
+@import "../base/variables.scss";
+
+
+.signup-form-header {
+    margin-bottom: 30px;
+
+    .signup-welcome-message {
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+    .signup-welcome-subtitle {
+        margin-top: 20px;
+        font-size: 15px;
+        font-weight: 400;
+    }
+
+}
+
+.signup-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    height: 180px;
+
+    .signup-form-1 {
+        display: flex;
+        justify-content: space-between;
+        :nth-child(1), :nth-child(2) {
+            width: 46%;
+        }
+    }
+
+
+    input {
+        padding: 0 12px;
+        width: 100%;
+        height: 34px;
+        border: none;
+        background-color: $neutral_base;
+        border: 1px solid $neutral_base;
+        border-radius: $primary_input_border_radius;
+    }
+
+    input:hover {
+        border-color: gray;
+        transition: border-color 200ms ease-in;
+    }
+
+    input:focus {
+        outline: none;
+        border: 1px solid rgb(0, 180, 5);
+    }
+}
+
+.signup-button-container {
+    margin-top: 50px;
+    button {
+        background-color: $primary_base;
+        color: white;
+        font-weight: bold;
+        height: 48px;
+        width: 140px;
+        border: none;
+        border-radius: $primary_input_border_radius;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    button:hover {
+        background-color: $primary_hover;
+        cursor: pointer;
+    }
+
+    button:focus {
+        background-color: $primary_pressed;
+    }
+}
