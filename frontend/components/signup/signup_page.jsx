@@ -1,8 +1,8 @@
 import React from 'react';
 import SignupFormContainer from "../forms/signup_form_container";
-import { DemoLogin } from '../../util/auth/demo_user';
 
 class SignupPage extends React.Component {
+
     render() {
         return (
             <div id="signup-page">
