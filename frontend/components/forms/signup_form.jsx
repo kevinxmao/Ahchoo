@@ -73,7 +73,7 @@ class SignupForm extends React.Component {
           <footer className="signup-footer">
             <div className="signup-button-container">
               <button type="submit">
-                <span>Sign Up</span>
+                <span>Continue</span>
               </button>
             </div>
             <div className="signup-login-redirect">
