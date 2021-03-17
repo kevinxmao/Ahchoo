@@ -18,7 +18,7 @@ const FormError = props => {
             <span className="form-error-message">{capitalize_Words(error)}</span>
           </div>
         ))
-      : "";
+      : null;
     return (
       <div className="form-errors-container">
         {errors}

@@ -11,7 +11,7 @@ import SignupPage from "./signup/signup_page";
 const App = () => (
     <div>
         <Switch>
-            <Route exact path='/' component={Splash} />
+            <AuthRoute exact path='/' component={Splash} />
             <AuthRoute path='/login' component={LoginPage} />
             <AuthRoute path='/signup' component={SignupPage} />
         </Switch>

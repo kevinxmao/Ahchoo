@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
     end
 
     def login!(user)
-        puts(user)
         session[:session_token] = user.ensure_session_token
     end
 
