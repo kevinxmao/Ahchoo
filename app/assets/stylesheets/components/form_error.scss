@@ -1,0 +1,11 @@
+@import "../base/variables.scss";
+
+.form-error {
+    padding: 10px 0;
+    font-size: $textS_font_size;
+    font-weight: $textS_font_weight;
+}
+
+.form-error-icon {
+    padding-right: 5px;
+}

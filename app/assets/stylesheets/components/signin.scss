@@ -89,5 +89,6 @@ div.signin-form-container > div {
 
     button:focus {
         background-color: $primary_pressed;
+        outline: none;
     }
 }

@@ -51,6 +51,8 @@ class SessionForm extends React.Component {
                 onChange={this.handleChange("password")}
                 />
               </div>
+            
+              <FormError errors={this.props.errors} />
 
               <footer className="signin-footer">
                 <div className="signin-button-container">
@@ -60,7 +62,6 @@ class SessionForm extends React.Component {
                 </div>
               </footer>
             </form>
-            <FormError errors={this.props.errors} />
           </div>
         );
     }
