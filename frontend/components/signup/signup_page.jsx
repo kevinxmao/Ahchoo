@@ -5,7 +5,20 @@ class SignupPage extends React.Component {
     render() {
         return (
             <div id="signup-page">
-                <SignupFormContainer />
+                <div className="signup-left">
+                    <div className="signup-left-content">
+                        <div className="signup-logo">
+                            <img className="splash-nav-logo" src={window.textLogo} alt="logo" />
+                        </div>
+                        <SignupFormContainer />
+                        <div className="signup-disclaimer-container">
+                            <p>hshsjsjs</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="signup-right">
+                    <div className="signup"></div>
+                </div>
             </div>
         )
     }
