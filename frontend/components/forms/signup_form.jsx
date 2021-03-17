@@ -63,6 +63,8 @@ class SignupForm extends React.Component {
                         />
                     </div>
 
+                    <FormError errors={this.props.errors}/>
+
                     <footer className="signup-footer">
                         <div className="signup-button-container">
                             <button type="submit">
@@ -77,7 +79,6 @@ class SignupForm extends React.Component {
                         </div>
                     </footer>
                 </form>
-                <FormError errors={this.props.errors}/>
             </div>
         );
     }

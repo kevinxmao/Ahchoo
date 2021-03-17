@@ -8,6 +8,10 @@ body {
   box-sizing: border-box;
 }
 
+button:focus {
+  outline: none;
+}
+
 a {
   color: $primary_base;
   text-decoration: none;
