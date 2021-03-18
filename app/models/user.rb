@@ -19,6 +19,10 @@ class User < ApplicationRecord
 
     after_initialize :ensure_session_token, :default_funds
 
+    has_many :holdings
+
+    has_many :owned_tickers, through: :holdings
+
     attr_reader :password
 
     def password=(password)
