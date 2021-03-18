@@ -13,5 +13,5 @@ class Ticker < ApplicationRecord
     
     has_many :holdings
 
-    has_many :holders, through: :holdings
+    has_many :holders, through: :holdings, source: :user
 end
