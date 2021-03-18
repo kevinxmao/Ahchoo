@@ -11,7 +11,7 @@ require 'csv'
 User.delete_all
 Ticker.delete_all
 
-User.create({email: 'demo@app.com', first_name: 'Demo', last_name: 'User', password: 'demouser'});
+demo = User.create({email: 'demo@app.com', first_name: 'Demo', last_name: 'User', password: 'demouser'});
 
 # Seed tickers table
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'listings.csv'))
@@ -25,3 +25,14 @@ csv.each do |row|
         puts "#{t.ticker}, #{t.company} saved"
     end
 end
+
+# Seed holdings
+holding1 = Ticker.find_by(ticker: "AAPL")
+holding2 = Ticker.find_by(ticker: "TSLA")
+holding3 = Ticker.find_by(ticker: "AA")
+holding4 = Ticker.find_by(ticker: "PTON")
+
+Holding.create({user: demo, ticker: holding1, quantity: 20})
+Holding.create({user: demo, ticker: holding2, quantity: 30})
+Holding.create({user: demo, ticker: holding3, quantity: 54})
+Holding.create({user: demo, ticker: holding4, quantity: 29})
