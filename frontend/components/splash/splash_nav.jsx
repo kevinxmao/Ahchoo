@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 class SplashNav extends React.Component {
     constructor(props) {
         super(props);
@@ -9,7 +9,9 @@ class SplashNav extends React.Component {
         return (
           <nav className="splash-nav">
             <div className="splash-nav-left">
+              <Link to="/">
                 <img className="splash-nav-logo" src={window.textLogo} alt="logo" />
+              </Link>
                 <div className="splash-nav-list-container">
                     <ul className="splash-nav-list">
                         <li>Products</li>

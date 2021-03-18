@@ -1,5 +1,6 @@
 import React from 'react';
 import SignupFormContainer from "../forms/signup_form_container";
+import { Link } from 'react-router-dom';
 
 class SignupPage extends React.Component {
 
@@ -9,7 +10,9 @@ class SignupPage extends React.Component {
                 <div className="signup-left">
                     <div className="signup-left-content">
                         <div className="signup-logo">
-                            <img className="splash-nav-logo" src={window.textLogo} alt="logo" />
+                            <Link to="/">
+                                <img className="splash-nav-logo" src={window.textLogo} alt="logo" />
+                            </Link>
                         </div>
 
                         <SignupFormContainer />
