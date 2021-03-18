@@ -68,7 +68,7 @@
 .signup-main {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
     height: 180px;
 
@@ -111,19 +111,20 @@
 }
 
 .signup-footer {
-    margin-top: 50px;
+    margin-top: 40px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
 }
 
-.signup-button-container {
+#signup-form {
     button {
+        margin-left: 20px;
         background-color: $primary_base;
         color: white;
         font-weight: bold;
-        height: 48px;
-        width: 140px;
+        height: $primary_button_height;
+        width: $primary_button_width;
         border: none;
         border-radius: $primary_input_border_radius;
         display: flex;
@@ -138,6 +139,27 @@
 
     button:focus {
         background-color: $primary_pressed;
+        outline: none;
+    }
+
+    button.secondary {
+        margin-left: 0;
+        background-color: $neutral_base;
+        color: black;
+        border: none;
+        font-weight: bold;
+        border-radius: $primary_input_border_radius;
+        height: $primary_button_height;
+        width: $primary_button_width;
+    }
+
+    button.secondary:hover {
+        cursor: pointer;
+        color: $primary_hover;
+    }
+
+    button.secondary:focus {
+        color: $primary_pressed;
         outline: none;
     }
 }
