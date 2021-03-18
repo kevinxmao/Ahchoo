@@ -20,7 +20,7 @@ window.receiveUser = receiveUser
 
 export const fetchUser = userId => dispatch => (
     UserAPIUtil.fetchUser(userId).then(
-        user => dispatch(receiveUser(user))
+        data => dispatch(receiveUser(data))
     )
 );
 

@@ -6,7 +6,7 @@ import ReactPlayer from 'react-player';
 const AuthTemp = (props) => (
   <div style={{ width: "800px", margin: "auto" }}>
     <button
-      style={{ "margin-bottom": "30px" }}
+      style={{ marginBottom: "30px" }}
       onClick={() =>
         props.logout().then(() => {
           delete window.currentUser;
@@ -17,7 +17,7 @@ const AuthTemp = (props) => (
       Log Out
     </button>
     <p>Coming soon...</p>
-    <p style={{ "margin-bottom": "30px" }}>
+    <p style={{ marginBottom: "30px" }}>
       In the mean time, enjoy this video of cat vibing to Polka
     </p>
     <ReactPlayer

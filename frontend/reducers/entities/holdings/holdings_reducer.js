@@ -5,6 +5,10 @@ const holdingsReducer = (state={}, action) => {
     const newState = Object.assign({}, state);
     switch(action.type) {
         case RECEIVE_USER:
-            return action.holdings
+            return action.payload.holdings;
+        default:
+            return newState;
     }
 }
+
+export default holdingsReducer;
