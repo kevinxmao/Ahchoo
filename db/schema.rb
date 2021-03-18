@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2021_03_18_144140) do
     t.integer "user_id", null: false
     t.integer "ticker_id", null: false
     t.float "quantity", null: false
+    t.float "avg_price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "ticker_id"], name: "index_holdings_on_user_id_and_ticker_id", unique: true

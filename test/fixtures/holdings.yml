@@ -8,6 +8,7 @@
 #  quantity   :float            not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  avg_price  :float
 #
 
 # This model initially had no columns defined. If you add columns to the

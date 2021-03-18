@@ -4,6 +4,7 @@ class CreateHoldings < ActiveRecord::Migration[5.2]
       t.integer :user_id, null: false
       t.integer :ticker_id, null: false
       t.float :quantity, null: false
+      t.float :avg_price, null: false
 
       t.timestamps
     end

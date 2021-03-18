@@ -8,6 +8,7 @@
 #  quantity   :float            not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  avg_price  :float
 #
 require 'test_helper'
 

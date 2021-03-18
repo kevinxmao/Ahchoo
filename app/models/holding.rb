@@ -8,9 +8,10 @@
 #  quantity   :float            not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  avg_price  :float
 #
 class Holding < ApplicationRecord
-    validates :user_id, :ticker_id, :quantity, presence: true
+    validates :user_id, :ticker_id, :quantity, :avg_price, presence: true
     validates :ticker_id, uniqueness: {scope: :user_id}
 
     belongs_to :user
