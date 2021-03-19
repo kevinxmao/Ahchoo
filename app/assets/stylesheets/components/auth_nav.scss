@@ -1,0 +1,37 @@
+@import "../base/variables.scss";
+
+.auth-nav-container {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    background-color: none;
+}
+
+.auth-nav {
+    height: 64px;
+    width: 1024px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    position: relative;
+}
+
+img.auth-nav-logo {
+    width: 35px;
+    height: 35px;
+    padding: 3px;
+}
+
+img.auth-nav-logo:hover {
+    fill: $primary_hover;
+}
+
+.auth-nav-left {
+    width: 700px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

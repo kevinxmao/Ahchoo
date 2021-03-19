@@ -3,6 +3,27 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "./variables.scss";
 
+@font-face {
+  font-family: 'Capsule Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: asset-url('fonts/capsule_sans.woff2') format('woff2')
+}
+
+@font-face {
+  font-family: 'Capsule Sans';
+  font-style: normal;
+  font-weight: bold;
+  src: asset-url('fonts/capsule_sans_bold.woff2') format('woff2')
+}
+
+@font-face {
+  font-family: 'Capsule Sans';
+  font-style: normal;
+  font-weight: medium;
+  src: asset-url('fonts/capsule_sans_medium.woff2') format('woff2')
+}
+
 body {
   font-family: 'Capsule Sans', Fallback, sans-serif;
   box-sizing: border-box;

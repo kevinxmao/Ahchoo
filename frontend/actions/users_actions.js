@@ -16,15 +16,11 @@ export const receiveUser = user => ({
     }
 })
 
-window.receiveUser = receiveUser
-
 export const fetchUser = userId => dispatch => (
     UserAPIUtil.fetchUser(userId).then(
         data => dispatch(receiveUser(data))
     )
 );
-
-window.fetchUser = fetchUser;
 
 export const createUser = user => dispatch => (
     UserAPIUtil.updateUser(user).then(
