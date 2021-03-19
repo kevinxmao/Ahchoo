@@ -26,7 +26,7 @@ export const fetchUser = userId => dispatch => (
 
 window.fetchUser = fetchUser;
 
-export const updateUser = user => dispatch => (
+export const createUser = user => dispatch => (
     UserAPIUtil.updateUser(user).then(
         user => dispatch(receiveUser(user))
     )
