@@ -9,7 +9,7 @@ export default (state = {}, action) => {
     switch (action.type) {
         case RECEIVE_CURRENT_USER:
             return Object.assign({}, state, {
-                [action.payload.user.id]: action.payload.user
+                [action.user.id]: action.user
             });
         case RECEIVE_USER:
             newState[action.payload.user.id] = action.payload.user;
