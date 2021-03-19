@@ -29,6 +29,14 @@ body {
   box-sizing: border-box;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
+input:focus {
+  outline: none;
+}
+
 button:focus {
   outline: none;
 }

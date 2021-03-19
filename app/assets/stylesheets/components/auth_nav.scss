@@ -13,6 +13,7 @@
 
 .auth-nav {
     max-width: 100%;
+    height: 100%;
     width: 1024px;
     margin: 0 auto;
     display: flex;
@@ -43,4 +44,22 @@ img.auth-nav-logo:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.search-area {
+    display: flex;
+
+    .search-icon {
+        color: rgb(111,120,126);
+        font-size: 24px;
+        font-weight: 400;
+    }
+
+    input {
+        border: none;
+        width: 100%;
+        background: none;
+        padding-left: 4px;
+        padding-right: 24px;
+    }
 }
