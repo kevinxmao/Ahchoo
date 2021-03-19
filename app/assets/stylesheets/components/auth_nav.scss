@@ -1,5 +1,9 @@
 @import "../base/variables.scss";
 
+#_auth {
+    height: 2000px;
+}
+
 .auth-nav-container {
     position: fixed;
     height: 64px;
@@ -18,7 +22,7 @@
     margin: 0 auto;
     display: flex;
     flex-direction:row;
-    // justify-content: space-between;
+    justify-content: space-between;
     align-items: center;
     font-size: 18px;
 }
@@ -30,8 +34,8 @@
 }
 
 img.auth-nav-logo {
-    width: 35px;
-    height: 35px;
+    width: 32px;
+    height: 32px;
     padding: 3px;
 }
 
@@ -46,8 +50,33 @@ img.auth-nav-logo:hover {
     align-items: center;
 }
 
+.auth-nav-search-container {
+    border: 1px solid rgb(227,233,237);
+    flex-basis: 480px;
+    height: 34px;
+    border-radius: $primary_input_border_radius;
+    position: relative;
+}
+
+.auth-nav-search-container > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.auth-nav-search-content {
+    padding-left: 24px;
+}
+
 .search-area {
     display: flex;
+    height: 32px;
+    align-items: center;
+
+    .search-icon-container {
+        margin-right: 4px;
+    }
 
     .search-icon {
         color: rgb(111,120,126);

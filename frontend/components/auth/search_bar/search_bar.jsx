@@ -14,7 +14,7 @@ class SearchBar extends React.Component {
     render() {
         return (
             <div className="search-area">
-                <div className="">
+                <div className="search-icon-container">
                     <span className="search-icon">
                         <FontAwesomeIcon icon={faSearch} />
                     </span>
