@@ -9,7 +9,7 @@ const AuthTemp = (props) => (
       style={{ marginBottom: "30px" }}
       onClick={() =>
         props.logout().then(() => {
-          delete window.currentUser;
+          // delete window.currentUser;
           <Redirect to="/" />;
         })
       }

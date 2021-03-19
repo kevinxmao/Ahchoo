@@ -2,21 +2,30 @@
 
 .auth-nav-container {
     position: fixed;
+    height: 64px;
+    top: 0;
     width: 100%;
     z-index: 1;
     background-color: none;
+    display: flex;
+    align-items: center;
 }
 
 .auth-nav {
-    height: 64px;
+    max-width: 100%;
     width: 1024px;
     margin: 0 auto;
     display: flex;
     flex-direction:row;
-    justify-content: space-between;
+    // justify-content: space-between;
     align-items: center;
     font-size: 18px;
-    position: relative;
+}
+
+.auth-logo-link {
+    position: absolute;
+    left: 48px;
+    margin-right: 0;
 }
 
 img.auth-nav-logo {
