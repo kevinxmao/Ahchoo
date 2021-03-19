@@ -10,7 +10,7 @@ class Api::HoldingsController < ApplicationController
     end
 
     def show
-        @holding = Holding.includes(:ticker).find_by(id: params[:id])
+        @holding = current_user.holdings.includes(:ticker).find_by(id: params[:id])
 
         if @holding
             render 'api/holdings/show'
@@ -29,7 +29,7 @@ class Api::HoldingsController < ApplicationController
         end
     end
 
-    def upate
+    def update
         @holding = current_user.holdings.find_by(id: params[:id])
         
         if @holding.update_attributes(holding_params)
@@ -53,6 +53,6 @@ class Api::HoldingsController < ApplicationController
     private
 
     def holding_params
-        params.require(:holding).permit(:user_id, :ticker_id, :quantity, :avgPrice)
+        params.require(:holding).transform_keys(&:underscore).permit(:user_id, :ticker_id, :quantity, :avg_price)
     end
 end

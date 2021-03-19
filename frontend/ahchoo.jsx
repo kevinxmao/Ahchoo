@@ -5,6 +5,7 @@ import configureStore from './store/store';
 
 // test import
 import { login, logout } from './actions/session_actions';
+import * as HoldingsActions from './actions/holdings_action';
 
 document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById("root");
@@ -25,8 +26,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // test
     window.store = store;
+    window.
     window.login = login;
     window.logout = logout;
+    window.fetchHoldings = HoldingsActions.fetchHoldings;
+    window.fetchHolding = HoldingsActions.fetchHolding;
+    window.createHolding = HoldingsActions.createHolding;
+    window.deleteHolding = HoldingsActions.deleteHolding;
+    window.updateHolding = HoldingsActions.updateHolding;
 
     ReactDOM.render(<Root store={store}/>, root);
 });

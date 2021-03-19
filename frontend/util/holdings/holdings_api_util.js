@@ -23,12 +23,12 @@ export const createHolding = holding => (
 export const updateHolding = holding => (
     $.ajax({
         method: 'PATCH',
-        url: `api/holdings/${holdingId}`,
+        url: `api/holdings/${holding.id}`,
         data: {holding}
     })
 )
 
-export const removeHolding = (holdingId) =>
+export const deleteHolding = (holdingId) =>
   $.ajax({
     method: "DELETE",
     url: `api/holdings/${holdingId}`,

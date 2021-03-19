@@ -37,8 +37,14 @@ export const createHolding = holding => dispatch => (
     )
 );
 
-export const removeHolding = holdingId => dispatch => (
-    HoldingsAPIUtil.removeHolding(holdingId).then(
+export const updateHolding = holding => dispatch => (
+    HoldingsAPIUtil.updateHolding(holding).then(
+        holding => dispatch(receiveHolding(holding))
+    )
+)
+
+export const deleteHolding = holdingId => dispatch => (
+    HoldingsAPIUtil.deleteHolding(holdingId).then(
         () => dispatch(removeHolding(holdingId))
     )
 );
