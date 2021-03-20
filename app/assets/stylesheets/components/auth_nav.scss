@@ -92,3 +92,34 @@ img.auth-nav-logo:hover {
         padding-right: 24px;
     }
 }
+
+.auth-nav-index {
+    position: absolute;
+    right: 48px;
+    padding: 0 4px 0 6px;
+    font-weight: bold;
+
+    .auth-links-container {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 100%;
+
+        a {
+            box-sizing: border-box;
+            border-bottom: 2px solid transparent;
+            padding: 6px 0px;
+            color: black;
+            display: inline-block;
+            font-size: $textS_font_size;
+        }
+
+        a:not(:first-child) {
+            margin-left: 33px;;
+        }
+
+        a:hover {
+            color: $primary_hover;
+        }
+    }
+ }

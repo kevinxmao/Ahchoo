@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchBarContainer from '../search_bar/search_bar_container';
+import NavLinks from '../../links/nav_links';
 
 class Navbar extends React.Component {
     constructor(props) {
@@ -27,8 +28,9 @@ class Navbar extends React.Component {
                 <div className="auth-nav-spacer">
                 </div>
                 <div className="auth-nav-index">
-                    <button onClick={this.props.logout}>Log Out</button>
+                    <NavLinks />
                 </div>
+                <button onClick={this.props.logout}>Log Out</button>
             </div>
         )
     }
