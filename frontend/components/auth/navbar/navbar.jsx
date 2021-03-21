@@ -6,6 +6,13 @@ import NavLinks from '../../links/nav_links';
 class Navbar extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            enlarged: false
+        }
+    }
+
+    toggleEnlarge() {
+        this.setState(prevState => ({ enlarged: !prevState.enlarged }));
     }
 
     render() {
@@ -23,6 +30,7 @@ class Navbar extends React.Component {
                         <div className="auth-nav-search-content">
                             <SearchBarContainer />
                         </div>
+                    <button onClick={this.props.logout}>Log Out</button>
                     </div>
                 </div>
                 <div className="auth-nav-spacer">
@@ -30,7 +38,6 @@ class Navbar extends React.Component {
                 <div className="auth-nav-index">
                     <NavLinks />
                 </div>
-                <button onClick={this.props.logout}>Log Out</button>
             </div>
         )
     }
