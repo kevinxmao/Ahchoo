@@ -98,10 +98,12 @@
 
     .button-signup:hover {
         background-color: $primary_hover;
+        color: black;
     }
 
     .button-signup:focus {
         background-color: $primary_pressed;
+        color: black;
     }
 }
 

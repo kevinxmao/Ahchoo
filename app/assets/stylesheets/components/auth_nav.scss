@@ -114,23 +114,24 @@ img.auth-nav-logo:hover {
         align-items: center;
         height: 100%;
 
-        a {
+        .nav-link {
             box-sizing: border-box;
             border-bottom: 2px solid transparent;
             padding: 6px 0px;
-            color: black;
             display: inline-block;
+            color: black;
             font-size: $textS_font_size;
         }
 
-        a:not(:first-child) {
+        .nav-link  {
             margin-left: 33px;;
         }
 
-        a:hover {
+        .nav-link:hover  {
             color: $primary_hover;
+            cursor: pointer;
         }
-
+        
         a.clicked {
             border-color: $primary_hover;
         }
