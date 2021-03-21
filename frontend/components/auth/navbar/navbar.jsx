@@ -30,14 +30,12 @@ class Navbar extends React.Component {
                         <div className="auth-nav-search-content">
                             <SearchBarContainer />
                         </div>
-                    <button onClick={this.props.logout}>Log Out</button>
                     </div>
                 </div>
                 <div className="auth-nav-spacer">
                 </div>
                 <div className="auth-nav-index">
-                    <NavLinks user={this.props.user}
-                    />
+                    <NavLinks user={this.props.user} logout={this.props.logout}/>
                 </div>
             </div>
         )

@@ -10,9 +10,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     logout: () => dispatch(logout()),
-    addDropdown: () => dispatch(addDropdown()),
-    removeDropdown: () => dispatch(removeDropdown()),
-    toggleDropdown: () => dispatch()
+    // addDropdown: () => dispatch(addDropdown()),
+    // removeDropdown: () => dispatch(removeDropdown()),
+    // toggleDropdown: () => dispatch()
 
 });
 
