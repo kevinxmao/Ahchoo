@@ -1,13 +1,9 @@
-export const fetchStockQuote = ticker => (
-    $.ajax({
-      method: "GET",
-      url: `https://cloud.iexapis.com/stable/stock/${ticker}/quote?token=sk_aa086829b4c14cc19b0def771aad8c1d`
-    })
-)
-
-export const fetchAllCompanies = () => (
+export default fetchSingleQuote = ticker => (
   $.ajax({
-    method: "GET",
-    url: `/api/tickers`
+    method: 'GET',
+    url: '',
+    headers: {
+      
+    }
   })
 )

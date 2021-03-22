@@ -1,5 +1,6 @@
 import React from 'react';
 import { formatNumber } from '../../../util/util_functions';
+import DashboardSidebar from './dashboard_sidebar';
 
 class PortfolioMain extends React.Component {
     constructor(props) {
@@ -47,7 +48,9 @@ class PortfolioMain extends React.Component {
               <div className="portfolio-chart-container"></div>
               <div className="buying-power-container"></div>
             </div>
-            <div className="portfolio-sidebar">Portfolio Sidebar</div>
+            <div className="dashboard-sidebar">
+              <DashboardSidebar holdings={this.props.holdings}/>
+            </div>
           </>
         );
     }

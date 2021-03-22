@@ -1,6 +1,6 @@
 import React from 'react';
 import NavbarContainer from './navbar/auth_nav_container';
-import PortfolioMainContainer from './portfolio/portfolio_main_container';
+import PortfolioMainContainer from './dashboard/portfolio_main_container';
 
 class AuthPage extends React.Component {
     render() {

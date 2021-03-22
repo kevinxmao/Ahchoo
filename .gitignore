@@ -30,3 +30,6 @@ bundle.js.map
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore API tokens
+secret.js
