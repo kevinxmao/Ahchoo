@@ -6,7 +6,7 @@ import configureStore from './store/store';
 // test import
 import { login, logout } from './actions/session_actions';
 import * as HoldingsActions from './actions/holdings_action';
-import {fetchStockQuote} from './util/companies/data_api_util'
+import { fetchSingleQuote } from "./util/companies/data_api_util";
 
 document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById("root");
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // window.createHolding = HoldingsActions.createHolding;
     // window.deleteHolding = HoldingsActions.deleteHolding;
     // window.updateHolding = HoldingsActions.updateHolding;
-    window.fetchStockQuote = fetchStockQuote;
+    window.fetchSingleQuote = fetchSingleQuote;
 
     ReactDOM.render(<Root store={store}/>, root);
 });

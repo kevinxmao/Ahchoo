@@ -1,33 +1,45 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { formatNumber } from "../../../util/util_functions";
+import { formatNumber, formatPercent } from "../../../util/util_functions";
+import { fetchSingleQuote } from "../../../util/companies/data_api_util";
 
 class PortfolioListItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: true,
-      last: undefined,
+      market: undefined,
       open: undefined,
     };
+    this.calcChange = this.calcChange.bind(this);
+    this.calcPercentChange = this.calcPercentChange.bind(this);
   }
 
   calcChange() {
-      const {last, open} = this.state;
-      return formatNumber(last-open);
+      const {market, open} = this.state;
+      return market - open;
   }
 
   calcPercentChange() {
-      const { last, open } = this.state;
+      const { market, open } = this.state;
+      let percentage = (this.calcChange()) / open * 100.0;
+      return percentage;
   }
 
   componentDidMount() {
-      
+      let ticker = this.props.holding.ticker;
+      fetchSingleQuote(ticker).then(
+          responseJSON => {
+              let res = responseJSON[ticker];
+              const {mark, openPrice} = res;
+              this.setState({loading: false, market: mark, open: openPrice})
+          }
+      );
   }
 
   render() {
     const { ticker, quantity } = this.props.holding;
-    return (
+    const toRender = this.state.loading ? null : (
       <Link to={`/tickers/${ticker}`}>
         <div className="holding-info">
           <div>
@@ -38,10 +50,17 @@ class PortfolioListItem extends React.Component {
           </div>
         </div>
         <div className="holding-price">
-          <span>{this.props.holding.avgPrice}</span>
+            <div className="list-current-price">
+                <span>{formatNumber(this.state.market)}</span>
+            </div>
+            <div className="list-percent-change">
+                <span>{formatPercent(this.calcPercentChange())}</span>
+            </div>
         </div>
       </Link>
     );
+
+    return toRender;
   }
 }
 
