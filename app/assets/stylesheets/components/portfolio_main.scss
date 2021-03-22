@@ -11,9 +11,37 @@
     padding-top: 36px;
     width: 1024px;
     margin: 0 auto;
-    background-color: blue;
+    background-color: white;
     display: flex;
     justify-content: space-between;
+}
+
+.portfolio-value-container {
+    width: 676px;
+    height: 350px;
+    margin-bottom: 44px;
+    position: relative;
+
+    header.portfolio-value {
+        height: 95px;
+        margin-bottom: 12px;
+        display: flex;
+        flex-direction: column;
+
+        .portfolio-change-container {
+            display: flex;
+            align-items: center;
+            
+            div:first-child {
+                margin-right: 12px;
+            }
+        }
+    }
+
+    .portfolio-number {
+        margin-bottom: 12px;
+        font-size: $textXL_font_size;
+    }
 }
 
 .portfolio-main {

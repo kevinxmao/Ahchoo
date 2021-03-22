@@ -1,0 +1,1 @@
+json.extract! ticker, :id, :ticker, :company
