@@ -1,4 +1,4 @@
-import { IEX_API_KEY } from "../../../secret";
+// import { IEX_API_KEY } from "../../../secret";
 
 let apiKey;
 let endpoint;
