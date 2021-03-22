@@ -7,8 +7,8 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
   apiKey = "Tpk_0f8b8964750d4e3bb1dd782eef66d578";
   endpoint = "sandbox";
 } else {
-  apiKey = process.env.IEX_API_KEY;
-  // apiKey = "pk_6211bc95be6541b18eebcc3f45e71000";
+  // apiKey = process.env.IEX_API_KEY;
+  apiKey = "pk_6211bc95be6541b18eebcc3f45e71000";
   endpoint = "cloud";
 }
 
