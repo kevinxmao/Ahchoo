@@ -8,6 +8,6 @@ export const fetchStockQuote = ticker => (
 export const fetchAllCompanies = () => (
   $.ajax({
     method: "GET",
-    url: `/api/`
+    url: `/api/tickers`
   })
 )
