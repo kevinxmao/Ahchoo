@@ -8,7 +8,7 @@ class SearchBar extends React.Component {
     }
 
     handleFocus(e) {
-
+        
     }
 
     render() {

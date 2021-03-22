@@ -10,7 +10,7 @@
     top: 0;
     width: 100%;
     z-index: 1;
-    background-color: none;
+    background-color: white;
     display: flex;
     align-items: center;
 }
@@ -176,7 +176,7 @@ img.auth-nav-logo:hover {
              align-items: center;
              margin-top: 12px;
 
-             div:first-child {
+             .dropdown-portfolio-value {
                  margin-right: 36px;
              }
 

@@ -6,6 +6,7 @@ import configureStore from './store/store';
 // test import
 import { login, logout } from './actions/session_actions';
 import * as HoldingsActions from './actions/holdings_action';
+import {fetchStockQuote} from './util/companies/finhub_api_util'
 
 document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById("root");
@@ -29,11 +30,12 @@ document.addEventListener("DOMContentLoaded", () => {
     window.
     window.login = login;
     window.logout = logout;
-    window.fetchHoldings = HoldingsActions.fetchHoldings;
-    window.fetchHolding = HoldingsActions.fetchHolding;
-    window.createHolding = HoldingsActions.createHolding;
-    window.deleteHolding = HoldingsActions.deleteHolding;
-    window.updateHolding = HoldingsActions.updateHolding;
+    // window.fetchHoldings = HoldingsActions.fetchHoldings;
+    // window.fetchHolding = HoldingsActions.fetchHolding;
+    // window.createHolding = HoldingsActions.createHolding;
+    // window.deleteHolding = HoldingsActions.deleteHolding;
+    // window.updateHolding = HoldingsActions.updateHolding;
+    window.fetchStockQuote = fetchStockQuote;
 
     ReactDOM.render(<Root store={store}/>, root);
 });

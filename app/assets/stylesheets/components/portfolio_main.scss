@@ -1,0 +1,27 @@
+@import "../base/variables.scss";
+
+.auth-main {
+    padding-top: 64px;
+    margin-bottom: 64px;
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio-container {
+    padding-top: 36px;
+    width: 1024px;
+    margin: 0 auto;
+    background-color: blue;
+    display: flex;
+    justify-content: space-between;
+}
+
+.portfolio-main {
+    flex: 0 0 66.7%;
+    padding: 0 6px;
+}
+
+.portfolio-sidebar {
+    flex: 0 0 27.8%;
+    padding: 0 6px;
+}
