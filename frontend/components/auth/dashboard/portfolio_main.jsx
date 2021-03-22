@@ -15,7 +15,8 @@ class PortfolioMain extends React.Component {
     }
 
     calculatePortfolioValue() {
-
+      let holdings = Object.values(this.props.holdings);
+      holdings.forEach()
     }
 
     calculateChange() {

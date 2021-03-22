@@ -10,29 +10,37 @@ class PortfolioListItem extends React.Component {
       loading: true,
       market: undefined,
       open: undefined,
+      change: undefined,
+      percentChange: undefined
     };
-    this.calcChange = this.calcChange.bind(this);
-    this.calcPercentChange = this.calcPercentChange.bind(this);
+    // this.calcChange = this.calcChange.bind(this);
+    // this.calcPercentChange = this.calcPercentChange.bind(this);
   }
 
-  calcChange() {
-      const {market, open} = this.state;
-      return market - open;
-  }
+//   calcChange() {
+//       const {market, open} = this.state;
+//       return market - open;
+//   }
 
-  calcPercentChange() {
-      const { market, open } = this.state;
-      let percentage = (this.calcChange()) / open * 100.0;
-      return percentage;
-  }
+//   calcPercentChange() {
+//       const { market, open } = this.state;
+//       let percentage = (this.calcChange()) / open * 100.0;
+//       return percentage;
+//   }
 
   componentDidMount() {
       let ticker = this.props.holding.ticker;
       fetchSingleQuote(ticker).then(
           responseJSON => {
-              let res = responseJSON[ticker];
-              const {mark, openPrice} = res;
-              this.setState({loading: false, market: mark, open: openPrice})
+              let res = responseJSON;
+              const { latestPrice, change, changePercent, iexOpen } = res;
+              this.setState({
+                loading: false,
+                market: latestPrice,
+                open: iexOpen,
+                change: change,
+                percentChange: changePercent,
+              });
           }
       );
   }
@@ -54,7 +62,7 @@ class PortfolioListItem extends React.Component {
                 <span>{formatNumber(this.state.market)}</span>
             </div>
             <div className="list-percent-change">
-                <span>{formatPercent(this.calcPercentChange())}</span>
+                <span>{formatPercent(this.state.percentChange)}</span>
             </div>
         </div>
       </Link>
