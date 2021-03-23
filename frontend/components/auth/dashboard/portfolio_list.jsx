@@ -6,11 +6,6 @@ class PortfolioList extends React.Component {
         super(props);
     }
 
-
-    componentDidMount() {
-
-    }
-
     render() {
         if (!this.props.holdings.length) return null;
         const list = this.props.holdings.map(

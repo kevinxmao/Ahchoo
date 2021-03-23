@@ -17,7 +17,7 @@ class PortfolioListItem extends React.Component {
 
   componentDidMount() {
     let marketPrice = this.props.datum.price;
-    let openPrice = this.props.datum["intraday-prices"][0].marketOpen;
+    let openPrice = this.props.datum["intraday-prices"][0].open || this.props.datum["intraday-prices"][0].marketOpen;
     let change = marketPrice - openPrice;
     let percentChange = change / openPrice;
     this.setState({
@@ -31,31 +31,36 @@ class PortfolioListItem extends React.Component {
 
   render() {
     const { ticker, quantity } = this.props.holding;
-    const {market, percentChange} = this.state;
+    const { market, percentChange } = this.state;
     if (this.state.loading) return null;
 
     return (
-      <Link to={`/auth/tickers/${ticker}`}>
-        <div className="holding-info">
-          <div>
-            <span>{ticker}</span>
+      <Link to={`/auth/tickers/${ticker}`} className="sidebar-list-item">
+        <div>
+          <div className="holding-info">
+            <div>
+              <span>{ticker}</span>
+            </div>
+            <div>
+              <span>{quantity >= 1 ? `${quantity} shares` : `1 share`}</span>
+            </div>
           </div>
-          <div>
-            <span>{quantity >= 1 ? `${quantity} shares` : `1 share`}</span>
+          <div className="list-item-chart">
+            
           </div>
-        </div>
-        <div className="holding-price">
-          <div className="list-current-price">
-            <span>
-              {`${formatNumber(market)}`}
-            </span>
-          </div>
-          <div className="list-percent-change">
-            <span>
-              {percentChange >= 0
-                ? `+${formatPercent(percentChange)}`
-                : `-${formatPercent(percentChange)}`}
-            </span>
+          <div className="holding-price">
+            <div className="list-current-price">
+              <span>
+                {`${formatNumber(market)}`}
+              </span>
+            </div>
+            <div className="list-percent-change">
+              <span>
+                {percentChange >= 0
+                  ? `+${formatPercent(percentChange)}`
+                  : `-${formatPercent(percentChange)}`}
+              </span>
+            </div>
           </div>
         </div>
       </Link>

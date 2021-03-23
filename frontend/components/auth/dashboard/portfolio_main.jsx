@@ -20,18 +20,19 @@ class PortfolioMain extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.props.holdings.length) {
-      this.setState({ loading: false, portfolioValue: this.props.user.funds }, window.localStorage.setItem("portfolioValue", `${this.props.user.funds}`));
-      return;
-    }
     this.props
       .fetchUser(this.props.user.id)
-      .then(() =>
+      .then(() => {
+        if (!this.props.holdings.length) {
+          this.setState({ loading: false, portfolioValue: this.props.user.funds }, window.localStorage.setItem("portfolioValue", `${this.props.user.funds}`));
+          return;
+        }
         fetchAllQuotes(this.props.holdings.map((holding) => holding.ticker))
+          .then((responseJSON) =>
+            this.setState({ data: responseJSON }, this.calculatePortfolioValue)
+          );
+      }
       )
-      .then((responseJSON) =>
-        this.setState({ data: responseJSON }, this.calculatePortfolioValue)
-      );
   }
 
   calculatePortfolioValue() {
@@ -48,7 +49,8 @@ class PortfolioMain extends React.Component {
     this.props.holdings.forEach((holding) => {
       openSum +=
         holding.quantity *
-        this.state.data[holding.ticker]["intraday-prices"][0].marketOpen;
+        this.state.data[holding.ticker]["intraday-prices"][0].open;
+        //marketOpen or open
     });
 
     this.setState({ change: this.state.portfolioValue - openSum }, () =>

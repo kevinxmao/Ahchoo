@@ -6,7 +6,8 @@ const holdingsReducer = (state={}, action) => {
     const newState = Object.assign({}, state);
     switch(action.type) {
         case RECEIVE_USER:
-            return action.payload.holdings;
+            if (action.payload.holdings) return action.payload.holdings;
+            return {};
         case RECEIVE_HOLDINGS:
             return action.holdings;
         case RECEIVE_HOLDING:
