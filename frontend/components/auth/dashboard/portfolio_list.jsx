@@ -2,6 +2,14 @@ import React from 'react';
 import PortfolioListItem from './portfolio_list_item';
 
 class PortfolioList extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+
+    componentDidMount() {
+
+    }
 
     render() {
         const list = this.props.holdings.map(

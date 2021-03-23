@@ -7,7 +7,6 @@ class PortfolioListItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
       market: undefined,
       open: undefined,
       change: undefined,
