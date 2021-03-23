@@ -54,9 +54,9 @@ class PortfolioMain extends React.Component {
     this.props.holdings.forEach((holding) => {
       openSum +=
         holding.quantity *
-        this.state.data[holding.ticker]["intraday-prices"][0].average;
-        //marketOpen or open
+        this.state.data[holding.ticker]["intraday-prices"][2].open;
     });
+    console.log(openSum);
 
     this.setState({ change: this.state.portfolioValue - openSum, referenceValue: openSum }, () =>
       this.calculatePercentChange(openSum)
@@ -82,7 +82,8 @@ class PortfolioMain extends React.Component {
       let price;
       datum["intraday-prices"].forEach( intraPrice => {
         const timeKey = [intraPrice.date, intraPrice.minute].join(" ");
-        price = intraPrice.average || price;
+        price = intraPrice.average ? intraPrice.average : price;
+        if (!price) console.log(price);
 
         if (!chartData[timeKey]) {
           chartData[timeKey] = {timeKey, value: (price * quantity + this.props.user.funds)};
@@ -142,7 +143,10 @@ class PortfolioMain extends React.Component {
               />
             </div>
           </div>
-          <div className="buying-power-container"></div>
+          <div className="chart-range-container"></div>
+          <div className="buying-power-container">
+            
+          </div>
         </div>
         <div className="dashboard-sidebar">
           <div>
