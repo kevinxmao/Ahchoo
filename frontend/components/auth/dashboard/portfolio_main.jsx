@@ -66,8 +66,15 @@ class PortfolioMain extends React.Component {
     this.setState({percentChange: percentage, loading: false});
   }
 
-  formatChartData(range='1d') {
+  formatIntradayData() {
+    const {data} = this.state;
     
+  }
+
+  formatChartData() {
+    const {data} = this.state;
+    const chartData = [];
+    this.props.holdings.forEach((holding))
   }
 
   render() {
