@@ -3,18 +3,20 @@ import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedinIn, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faSignOut, faEnvelope, faRocket, faUserCircle } from '@fortawesome/pro-regular-svg-icons';
+import { formatNumber } from '../../util/util_functions';
 
 class NavLinks extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            dropdownVisible: false
+            dropdownVisible: false,
+            portfolioValue: 0
         };
         this.globalClickListener = this.globalClickListener.bind(this);
         this.toggleDropdown = this.toggleDropdown.bind(this);
     }
 
-    componentWillUnmount() {
+    componentDidUpdate() {
         window.removeEventListener('click', this.globalClickListener);
     }
 
@@ -40,7 +42,6 @@ class NavLinks extends React.Component {
     }
 
     render() {
-        const portfolioValue = 120000.45;
 
         const dropdown = (
           <div className="account-dropdown" onClick={this.handleBodyclick}>
@@ -50,7 +51,7 @@ class NavLinks extends React.Component {
               </h3>
               <div className="account-info-container">
                 <div className="dropdown-portfolio-value">
-                  <div>{formatNumber(portfolioValue)}</div>
+                  <PortfolioValue />
                   <div style={{ height: "2px" }}></div>
                   <div className="portfolio-subtext">Portfolio Value</div>
                 </div>
@@ -127,10 +128,27 @@ class NavLinks extends React.Component {
     }
 }
 
-const formatNumber = (x) => {
-    let parts = x.toString().split(".");
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return `$ ${parts.join(".")}`;
+class PortfolioValue extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      portfolioValue: 0,
+    };
+  }
+
+  componentDidMount() {
+    if (window.localStorage.getItem("portfolioValue")) {
+      this.setState({
+        portfolioValue: parseFloat(
+          window.localStorage.getItem("portfolioValue")
+        ),
+      });
+    }
+  }
+
+  render() {
+    return <div>{formatNumber(this.state.portfolioValue)}</div>;
+  }
 }
 
 export default NavLinks;

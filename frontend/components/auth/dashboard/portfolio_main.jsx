@@ -36,6 +36,7 @@ class PortfolioMain extends React.Component {
       sum += holding.quantity * this.state.data[holding.ticker].price;
     });
     this.setState({ portfolioValue: sum }, this.calculateChange);
+    window.localStorage.setItem("portfolioValue", `${sum}`);
   }
 
   calculateChange() {
@@ -58,8 +59,8 @@ class PortfolioMain extends React.Component {
   }
 
   render() {
-    const {portfolioValue, change, percentChange, data} = this.state;
     if (this.state.loading) return null;
+    const {portfolioValue, change, percentChange, data} = this.state;
     return (
       <>
         <div className="portfolio-main">
@@ -90,7 +91,7 @@ class PortfolioMain extends React.Component {
           <div className="buying-power-container"></div>
         </div>
         <div className="dashboard-sidebar">
-          {/* <DashboardSidebar holdings={this.props.holdings}/> */}
+          <DashboardSidebar holdings={this.props.holdings} apiData={data}/>
         </div>
       </>
     );

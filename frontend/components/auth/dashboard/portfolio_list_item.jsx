@@ -10,44 +10,32 @@ class PortfolioListItem extends React.Component {
       market: undefined,
       open: undefined,
       change: undefined,
-      percentChange: undefined
+      percentChange: undefined,
+      loading: true,
     };
-    // this.calcChange = this.calcChange.bind(this);
-    // this.calcPercentChange = this.calcPercentChange.bind(this);
   }
 
-//   calcChange() {
-//       const {market, open} = this.state;
-//       return market - open;
-//   }
-
-//   calcPercentChange() {
-//       const { market, open } = this.state;
-//       let percentage = (this.calcChange()) / open * 100.0;
-//       return percentage;
-//   }
-
   componentDidMount() {
-      let ticker = this.props.holding.ticker;
-      fetchSingleQuote(ticker).then(
-          responseJSON => {
-              let res = responseJSON;
-              const { latestPrice, change, changePercent, iexOpen } = res;
-              this.setState({
-                loading: false,
-                market: latestPrice,
-                open: iexOpen,
-                change: change,
-                percentChange: changePercent,
-              });
-          }
-      );
+    let marketPrice = this.props.datum.price;
+    let openPrice = this.props.datum["intraday-prices"][0].marketOpen;
+    let change = marketPrice - openPrice;
+    let percentChange = change / openPrice;
+    this.setState({
+      market: marketPrice,
+      open: openPrice,
+      change: change,
+      percentChange: percentChange,
+      loading: false,
+    });
   }
 
   render() {
     const { ticker, quantity } = this.props.holding;
-    const toRender = this.state.loading ? null : (
-      <Link to={`/tickers/${ticker}`}>
+    const {market, percentChange} = this.state;
+    if (this.state.loading) return null;
+
+    return (
+      <Link to={`/auth/tickers/${ticker}`}>
         <div className="holding-info">
           <div>
             <span>{ticker}</span>
@@ -57,17 +45,21 @@ class PortfolioListItem extends React.Component {
           </div>
         </div>
         <div className="holding-price">
-            <div className="list-current-price">
-                <span>{formatNumber(this.state.market)}</span>
-            </div>
-            <div className="list-percent-change">
-                <span>{formatPercent(this.state.percentChange)}</span>
-            </div>
+          <div className="list-current-price">
+            <span>
+              {`${formatNumber(market)}`}
+            </span>
+          </div>
+          <div className="list-percent-change">
+            <span>
+              {percentChange >= 0
+                ? `+${formatPercent(percentChange)}`
+                : `-${formatPercent(percentChange)}`}
+            </span>
+          </div>
         </div>
       </Link>
     );
-
-    return toRender;
   }
 }
 

@@ -8,6 +8,7 @@ import { AuthRoute, ProtectedRoute } from "../util/auth/routes_util";
 import LoginPage from "./login/login_page";
 import SignupPage from "./signup/signup_page";
 import AuthPage from "./auth/auth_page";
+import AuthNavContainer from "./auth/navbar/auth_nav_container"
 
 const App = () => (
     <div>
@@ -16,7 +17,8 @@ const App = () => (
             <AuthRoute path='/login' component={LoginPage} />
             <AuthRoute path='/signup' component={SignupPage} />
         </Switch>
-        <ProtectedRoute path="/auth" component={AuthPage} />
+        <ProtectedRoute path="/auth" component={AuthNavContainer} />
+        <ProtectedRoute path="/auth/home" component={AuthPage} />
     </div>
 )
 

@@ -1,6 +1,6 @@
 
 import { RECEIVE_CURRENT_USER } from "../../../actions/session_actions";
-import { RECEIVE_USER } from "../../../actions/users_actions";
+import { RECEIVE_USER, RECEIVE_PORTFOLIO_VALUE } from "../../../actions/users_actions";
 
 // need to add update action
 export default (state = {}, action) => {
