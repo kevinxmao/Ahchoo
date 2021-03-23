@@ -13,7 +13,7 @@ export const receiveUser = user => ({
             lastName: user.lastName,
             funds: user.funds
         },
-        holdings: user.holdings
+        holdings: user.holdings || {}
     }
 })
 

@@ -1,0 +1,35 @@
+@import "../base//variables.scss";
+
+.dashboard-sidebar > div {
+    margin-bottom: 0;
+    height: calc(100% - 64px - 31px);
+    margin-top: -24px;
+    margin-left: -24px;
+    padding: 24px;
+    position: fixed;
+    overflow-y: auto;
+    top: calc(64px + 31px);
+    width: 324px;
+    box-sizing: border-box;
+    background-color: white;
+    
+    .sidebar-content {
+        border-radius: $primary_input_border_radius;
+        box-shadow: $box_shadow;
+        position: relative;
+        overflow: hidden, auto;
+        height: 100%;
+
+        .sidebar-title {
+            height: 52px;
+            width: 100%;
+            position: absolute;
+
+            header {
+                padding: 4px 24px 0 24px;
+                height: 100%;
+                
+            }
+        }
+    }
+}

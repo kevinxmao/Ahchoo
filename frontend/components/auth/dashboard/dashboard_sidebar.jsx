@@ -3,9 +3,8 @@ import PortfolioList from './portfolio_list';
 
 class DashboardSidebar extends React.Component {
     render() {
-        console.log(this.props.apiData)
         return (
-            <div>
+            <div className="sidebar-content">
                 <PortfolioList holdings={this.props.holdings} apiData={this.props.apiData}/>
             </div>
         );

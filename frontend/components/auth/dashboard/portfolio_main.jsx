@@ -9,8 +9,8 @@ class PortfolioMain extends React.Component {
     this.state = {
       loading: true,
       portfolioValue: 0,
-      change: null,
-      percentChange: null,
+      change: 0,
+      percentChange: 0,
       rangeData: null,
       data: null,
     };
@@ -20,6 +20,10 @@ class PortfolioMain extends React.Component {
   }
 
   componentDidMount() {
+    if (!this.props.holdings.length) {
+      this.setState({ loading: false, portfolioValue: this.props.user.funds }, window.localStorage.setItem("portfolioValue", `${this.props.user.funds}`));
+      return;
+    }
     this.props
       .fetchUser(this.props.user.id)
       .then(() =>
@@ -91,7 +95,9 @@ class PortfolioMain extends React.Component {
           <div className="buying-power-container"></div>
         </div>
         <div className="dashboard-sidebar">
-          <DashboardSidebar holdings={this.props.holdings} apiData={data}/>
+          <div>
+            <DashboardSidebar holdings={this.props.holdings} apiData={data} />
+          </div>
         </div>
       </>
     );

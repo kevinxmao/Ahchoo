@@ -12,6 +12,7 @@ class PortfolioList extends React.Component {
     }
 
     render() {
+        if (!this.props.holdings.length) return null;
         const list = this.props.holdings.map(
             holding => {
                 return <PortfolioListItem holding={holding} key={holding.id} datum={this.props.apiData[holding.ticker]}/>;
