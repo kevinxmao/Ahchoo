@@ -2,6 +2,7 @@ import React from 'react';
 import { formatNumber, formatPercent } from "../../../util/util_functions";
 import DashboardSidebar from './dashboard_sidebar';
 import { fetchAllQuotes } from '../../../util/companies/data_api_util';
+import DashboardChart from './dashboard_chart';
 
 class PortfolioMain extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class PortfolioMain extends React.Component {
       percentChange: 0,
       rangeData: null,
       data: null,
+      chartData: null,
     };
     this.calculatePortfolioValue = this.calculatePortfolioValue.bind(this);
     this.calculateChange = this.calculateChange.bind(this);
@@ -64,6 +66,10 @@ class PortfolioMain extends React.Component {
     this.setState({percentChange: percentage, loading: false});
   }
 
+  formatChartData(range='1d') {
+    
+  }
+
   render() {
     if (this.state.loading) return null;
     const {portfolioValue, change, percentChange, data} = this.state;
@@ -93,7 +99,9 @@ class PortfolioMain extends React.Component {
               </div>
             </header>
           </div>
-          <div className="portfolio-chart-container"></div>
+          <div className="dashboard-chart-container">
+            <DashboardChart />
+          </div>
           <div className="buying-power-container"></div>
         </div>
         <div className="dashboard-sidebar">

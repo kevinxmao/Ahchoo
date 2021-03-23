@@ -37,3 +37,38 @@ export const fetchAllQuotes = (tickerArr) =>
     method: "GET",
     url: `https://${endpoint}.iexapis.com/v1/stock/market/batch?&types=price,intraday-prices&symbols=${tickerArr.join(',')}&token=${apiKey}`,
   });
+
+export const fetchWeekQuotes = (tickerArr) => (
+  $.ajax({
+    method: "GET",
+    url: `https://${endpoint}.iexapis.com/v1/stock/market/batch?&types=chart&range=5d&symbols=${tickerArr.join(',')}&token=${apiKey}`,
+  })
+)
+
+export const fetchMonthQuotes = (tickerArr) => (
+  $.ajax({
+    method: "GET",
+    url: `https://${endpoint}.iexapis.com/v1/stock/market/batch?&types=chart&range=1mm&symbols=${tickerArr.join(',')}&token=${apiKey}`,
+  })
+)
+
+export const fetchThreeMonthsQuotes = (tickerArr) => (
+  $.ajax({
+    method: "GET",
+    url: `https://${endpoint}.iexapis.com/v1/stock/market/batch?&types=chart&range=3m&symbols=${tickerArr.join(',')}&token=${apiKey}`,
+  })
+)
+
+export const fetchOneYearQuotes = (tickerArr) => (
+  $.ajax({
+    method: "GET",
+    url: `https://${endpoint}.iexapis.com/v1/stock/market/batch?&types=chart&range=1y&symbols=${tickerArr.join(',')}&token=${apiKey}`,
+  })
+)
+
+export const fetchMaxQuotes = (tickerArr) => (
+  $.ajax({
+    method: "GET",
+    url: `https://${endpoint}.iexapis.com/v1/stock/market/batch?&types=chart&range=max&symbols=${tickerArr.join(',')}&token=${apiKey}`,
+  })
+)

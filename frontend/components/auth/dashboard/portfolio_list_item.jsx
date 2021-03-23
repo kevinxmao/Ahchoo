@@ -7,10 +7,10 @@ class PortfolioListItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      market: undefined,
-      open: undefined,
-      change: undefined,
-      percentChange: undefined,
+      market: null,
+      open: null,
+      change: null,
+      percentChange: null,
       loading: true,
     };
   }
@@ -46,7 +46,7 @@ class PortfolioListItem extends React.Component {
             </div>
           </div>
           <div className="list-item-chart">
-            
+
           </div>
           <div className="holding-price">
             <div className="list-current-price">
