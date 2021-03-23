@@ -128,8 +128,8 @@ class PortfolioMain extends React.Component {
                 <div className="portfolio-percent-change">
                   <span>
                     {percentChange >= 0
-                      ? `+${formatPercent(percentChange)}`
-                      : `-${formatPercent(percentChange)}`}
+                      ? `(+${formatPercent(percentChange)})`
+                      : `(-${formatPercent(percentChange)})`}
                   </span>
                 </div>
               </div>
@@ -145,7 +145,7 @@ class PortfolioMain extends React.Component {
           </div>
           <div className="chart-range-container"></div>
           <div className="buying-power-container">
-            
+
           </div>
         </div>
         <div className="dashboard-sidebar">

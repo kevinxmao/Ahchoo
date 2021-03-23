@@ -74,10 +74,25 @@
                     }
                 }
 
+                .list-item-chart {
+                    margin-right: 12px;
+                    margin-left: 12px;
+                    z-index: 100;
+
+                    *:hover {
+                        cursor: pointer;
+                    }
+                }
+
                 .holding-price {
                     margin-left: 12px;
                     flex: 0 1 50%;
                     line-height: 20px;
+
+                    div {
+                        display: flex;
+                        justify-content: flex-end;
+                    }
                 }
             }
         }

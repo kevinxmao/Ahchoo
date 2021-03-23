@@ -1,5 +1,5 @@
 import React from 'react';
-import PortfolioList from './portfolio_list';
+import PortfolioList from './holdings_index/portfolio_list';
 
 class DashboardSidebar extends React.Component {
     render() {

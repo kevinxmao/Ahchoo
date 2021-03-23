@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { formatNumber, formatPercent } from "../../../util/util_functions";
-import { fetchSingleQuote } from "../../../util/companies/data_api_util";
+import { formatNumber, formatPercent } from "../../../../util/util_functions";
+import ItemChart from "./item_chart";
 
 class PortfolioListItem extends React.Component {
   constructor(props) {
@@ -12,7 +12,9 @@ class PortfolioListItem extends React.Component {
       change: null,
       percentChange: null,
       loading: true,
+      chartData: null
     };
+    this.formatChartData = this.formatChartData.bind(this);
   }
 
   componentDidMount() {
@@ -25,14 +27,30 @@ class PortfolioListItem extends React.Component {
       open: openPrice,
       change: change,
       percentChange: percentChange,
-      loading: false,
+    }, this.formatChartData);
+  }
+
+  formatChartData() {
+    const chartData = {};
+    let price;
+    this.props.datum["intraday-prices"].forEach((intraPrice) => {
+      const timeKey = [intraPrice.date, intraPrice.minute].join(" ");
+      price = intraPrice.average ? intraPrice.average : price;
+      chartData[timeKey] = {timeKey, price};
     });
+
+    let dataArr = [];
+    for (let i = 0; i < Object.values(chartData).length; i += 10) {
+      dataArr.push(Object.values(chartData)[i]);
+    }
+
+    this.setState({ chartData: dataArr, loading: false});
   }
 
   render() {
-    const { ticker, quantity } = this.props.holding;
-    const { market, percentChange } = this.state;
     if (this.state.loading) return null;
+    const { ticker, quantity } = this.props.holding;
+    const { market, percentChange, chartData, open, change } = this.state;
 
     return (
       <Link to={`/auth/tickers/${ticker}`} className="sidebar-list-item">
@@ -46,7 +64,7 @@ class PortfolioListItem extends React.Component {
             </div>
           </div>
           <div className="list-item-chart">
-
+            <ItemChart referenceValue={open} data={chartData} change={change}/>
           </div>
           <div className="holding-price">
             <div className="list-current-price">

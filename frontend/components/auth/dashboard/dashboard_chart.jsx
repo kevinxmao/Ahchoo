@@ -22,8 +22,10 @@ const DashboardChart = ({data, change, portfolioValue, referenceValue}) => {
         />
         <ReferenceLine
           y={referenceValue}
-          stroke="#e3e9ed"
-          strokeDasharray="3 3"
+          stroke="#b3b5b5"
+          strokeDasharray="2 5"
+          isFront={false}
+          strokeWidth={2}
         />
         <Tooltip />
       </LineChart>
