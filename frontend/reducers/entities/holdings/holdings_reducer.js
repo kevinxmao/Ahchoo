@@ -11,7 +11,7 @@ const holdingsReducer = (state={}, action) => {
         case RECEIVE_HOLDINGS:
             return action.holdings;
         case RECEIVE_HOLDING:
-            return Object.assign({}, newState, {[action.holding.id]: action.holding})
+            return Object.assign({}, newState, {[action.holding.ticker]: action.holding})
         case REMOVE_HOLDING:
             delete newState[action.holdingId];
             return newState;

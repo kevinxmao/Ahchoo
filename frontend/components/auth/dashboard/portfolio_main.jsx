@@ -15,10 +15,13 @@ class PortfolioMain extends React.Component {
       rangeData: null,
       data: null,
       chartData: null,
+      referenceValue: null,
     };
     this.calculatePortfolioValue = this.calculatePortfolioValue.bind(this);
     this.calculateChange = this.calculateChange.bind(this);
     this.calculatePercentChange = this.calculatePercentChange.bind(this);
+    this.formatIntradayData = this.formatIntradayData.bind(this);
+    this.formatChartData = this.formatChartData.bind(this);
   }
 
   componentDidMount() {
@@ -31,7 +34,7 @@ class PortfolioMain extends React.Component {
         }
         fetchAllQuotes(this.props.holdings.map((holding) => holding.ticker))
           .then((responseJSON) =>
-            this.setState({ data: responseJSON }, this.calculatePortfolioValue)
+            this.setState({ data: responseJSON }, this.formatIntradayData)
           );
       }
       )
@@ -51,11 +54,11 @@ class PortfolioMain extends React.Component {
     this.props.holdings.forEach((holding) => {
       openSum +=
         holding.quantity *
-        this.state.data[holding.ticker]["intraday-prices"][0].open;
+        this.state.data[holding.ticker]["intraday-prices"][0].average;
         //marketOpen or open
     });
 
-    this.setState({ change: this.state.portfolioValue - openSum }, () =>
+    this.setState({ change: this.state.portfolioValue - openSum, referenceValue: openSum }, () =>
       this.calculatePercentChange(openSum)
     );
   }
@@ -67,19 +70,44 @@ class PortfolioMain extends React.Component {
   }
 
   formatIntradayData() {
-    const {data} = this.state;
-    
+    const chartData = {};
+    const holdings = {};
+    this.props.holdings.forEach(
+      item => holdings[item.ticker] = item
+    )
+
+    for (const [ticker, datum] of Object.entries(this.state.data)) {
+      const {quantity} = holdings[ticker];
+
+      let price;
+      datum["intraday-prices"].forEach( intraPrice => {
+        const timeKey = [intraPrice.date, intraPrice.minute].join(" ");
+        price = intraPrice.average || price;
+
+        if (!chartData[timeKey]) {
+          chartData[timeKey] = {timeKey, value: (price * quantity + this.props.user.funds)};
+        } else {
+          chartData[timeKey].value += price * quantity;
+        }
+      })
+    }
+
+    let dataArr = [];
+    for (let i = 0; i < Object.values(chartData).length; i += 5) {
+      dataArr.push(Object.values(chartData)[i]);
+    }
+
+    this.setState({ chartData: dataArr}, this.calculatePortfolioValue);
   }
 
   formatChartData() {
     const {data} = this.state;
-    const chartData = [];
-    this.props.holdings.forEach((holding))
+    const chartData = {};
   }
 
   render() {
     if (this.state.loading) return null;
-    const {portfolioValue, change, percentChange, data} = this.state;
+    const {portfolioValue, change, percentChange, data, chartData, referenceValue} = this.state;
     return (
       <>
         <div className="portfolio-main">
@@ -105,9 +133,14 @@ class PortfolioMain extends React.Component {
                 </div>
               </div>
             </header>
-          </div>
-          <div className="dashboard-chart-container">
-            <DashboardChart />
+            <div className="dashboard-chart-container">
+              <DashboardChart
+                data={chartData}
+                change={change}
+                portfolioValue={portfolioValue}
+                referenceValue={referenceValue}
+              />
+            </div>
           </div>
           <div className="buying-power-container"></div>
         </div>

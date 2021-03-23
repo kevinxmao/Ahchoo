@@ -17,7 +17,7 @@
         border-radius: $primary_input_border_radius;
         box-shadow: $box_shadow;
         position: relative;
-        overflow: hidden scroll;
+        overflow: hidden auto;
         height: 100%;
 
         .sidebar-title {
@@ -82,4 +82,8 @@
             }
         }
     }
+}
+
+.dashboard-sidebar > div::-webkit-scrollbar {
+    display: none;
 }
