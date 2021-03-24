@@ -25,12 +25,13 @@ class BuyingPowerButton extends React.Component {
                   <tbody>
                     <tr>
                       <td>Fund Available</td>
+                      <td></td>
                       <td>{`${formatNumber(user.funds)}`}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <button>Deposit Funds</button>
+              <button className="deposit-button">Deposit Funds</button>
             </div>
             <div className="form-info">
               <div>
@@ -42,6 +43,7 @@ class BuyingPowerButton extends React.Component {
             </div>
           </div>
         );
+
         return (
           <div className={this.state.expand ? "buying-power-container expanded" : "buying-power-container"}>
             <div className="buying-power-content">

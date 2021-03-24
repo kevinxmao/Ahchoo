@@ -53,11 +53,14 @@ class PortfolioMain extends React.Component {
   calculateChange() {
     let openSum = this.props.user.funds;
     this.props.holdings.forEach((holding) => {
+      let openPrice =
+        this.state.data[holding.ticker]["intraday-prices"][0].average ||
+        this.state.data[holding.ticker]["intraday-prices"][4].open;
       openSum +=
         holding.quantity *
-        this.state.data[holding.ticker]["intraday-prices"][2].open;
+        openPrice;
     });
-
+    console.log(openSum);
     this.setState({ change: this.state.portfolioValue - openSum, referenceValue: openSum }, () =>
       this.calculatePercentChange(openSum)
     );
@@ -93,7 +96,7 @@ class PortfolioMain extends React.Component {
     }
 
     let dataArr = [];
-    for (let i = 0; i < Object.values(chartData).length; i += 5) {
+    for (let i = 0; i < Object.values(chartData).length; i += 1) {
       dataArr.push(Object.values(chartData)[i]);
     }
 
