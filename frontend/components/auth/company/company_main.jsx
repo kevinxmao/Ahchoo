@@ -1,6 +1,7 @@
 import React from "react";
 import { fetchSingleQuote } from "../../../util/companies/data_api_util";
-import { formatCompanyName } from "../../../util/util_functions";
+import { formatCompanyName, formatNumber, formatPercent } from "../../../util/util_functions";
+import CompanyChart from "./company_chart";
 
 class CompanyMain extends React.Component {
   constructor(props) {
@@ -75,18 +76,65 @@ class CompanyMain extends React.Component {
     if (this.state.loading) return null;
     const {price, companyInfo, change, percentChange, chartData, referenceValue} = this.state;
     return (
-        <>
-            <div className="company-main">
-                <div className="company-price-container">
-                    <header className="company-price">
-                        <div className="company-name">
-                            <h1>{formatCompanyName(companyInfo.companyName)}</h1>
-                        </div>
-                    </header>
-                </div>
+      <>
+        <div className="company-main">
+          <div className="company-price-container">
+            <div className="company-name">
+              <h1>{formatCompanyName(companyInfo.companyName)}</h1>
             </div>
-        </>
-    )
+            <header className="company-price">
+              <div className="price-value">
+                <h1>{`${formatNumber(price)}`}</h1>
+              </div>
+              <div className="price-change-container">
+                <div className="price-change">
+                  <span>
+                    {change >= 0
+                      ? `+${formatPercent(change)}`
+                      : `-${formatNumber(change)}`}
+                  </span>
+                </div>
+                <div className="price-percent-change">
+                  <span>
+                    {percentChange >= 0
+                      ? `(+${formatPercent(percentChange)})`
+                      : `(-${formatPercent(percentChange)})`}
+                  </span>
+                </div>
+              </div>
+            </header>
+            <div className="company-chart-container">
+              <CompanyChart
+                data={chartData}
+                change={change}
+                referenceValue={referenceValue}
+              />
+            </div>
+          </div>
+          <div className="chart-range-container"></div>
+          <section className="company-basic-info">
+            <header className="about-header">
+              <div>
+                <h2>About</h2>
+                <button>
+                  <span>Show More</span>
+                </button>
+              </div>
+            </header>
+            <div className="company-description">
+              <p>
+                {companyInfo.description}{" "}
+                <button>
+                  <div class="read-more">
+                    <span>Read More</span>
+                  </div>
+                </button>
+              </p>
+            </div>
+          </section>
+        </div>
+      </>
+    );
   }
 }
 

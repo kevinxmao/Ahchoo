@@ -5,7 +5,7 @@ class CompanyPage extends React.Component {
   render() {
     return (
       <div id="_company">
-        <div className="company-main">
+        <div className="auth-main">
           <div className="company-main-content">
             <div className="company-container">
               <CompanyMainContainer ticker={this.props.match.params.id}/>

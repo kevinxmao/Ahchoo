@@ -1,0 +1,111 @@
+@import "../base/variables.scss";
+
+
+.company-container {
+    padding-top: 36px;
+    width: 1024px;
+    margin: 0 auto;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.company-price-container {
+    width: 676px;
+    height: 350px;
+    margin-bottom: 44px;
+    position: relative;
+
+    .company-name {
+        margin-bottom: 12px;
+        font-size: $textXL_font_size;
+        h1 {
+            font-weight: 400;
+        }
+    }
+
+    header.company-price {
+        height: 95px;
+        margin-bottom: 12px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .price-change-container {
+        display: flex;
+        align-items: center;
+        font-size: $textS_font_size;
+        
+        div:first-child {
+            margin-right: 6px;
+        }
+    }
+
+    .price-value {
+        margin-bottom: 12px;
+        font-size: $textXL_font_size;
+        h1 {
+            font-weight: 400;
+        }
+    }
+}
+
+.company-main {
+    flex: 0 0 66.66667%;
+    padding: 0 6px;
+}
+
+.company-sidebar {
+    flex: 0 0 27.77778%;
+    padding: 0 6px;
+    margin-right: 0;
+}
+
+.company-basic-info {
+    margin-bottom: 60px;
+    width: 100%;
+    line-height: 20px;
+
+    button {
+        cursor: pointer;
+        border: none;
+        background: none;
+        padding: 0;
+        margin-left: 2px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    header.about-header {
+        margin-bottom: 24px;
+        border-bottom: 1px solid $neutral_dark;
+    }
+
+    .about-header > div {
+        padding-bottom: 16px;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+
+        h2 {
+            font-size: $displayM_font_size;
+            font-weight: 400;
+            line-height: 28px;
+        }
+    }
+
+    .company-description {
+        margin-bottom: 15px;
+
+        p {
+            font-size: $textM_font_size;
+        }
+
+        .read-more {
+            display: flex;
+            align-items: center;
+            position: relative;
+            font-size: $textM_font_size;
+        }
+    }
+}
