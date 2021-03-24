@@ -14,11 +14,11 @@ const DashboardChart = ({data, change, portfolioValue, referenceValue}) => {
           stroke={color}
           strokeWidth={2}
         />
-        <XAxis hide="true" dataKey="" />
+        <XAxis hide="true" dataKey="" domain={[0, 400]}/>
         <YAxis
           hide="true"
           type="number"
-          domain={["dataMin * 0.95", "dataMax"]}
+          domain={["dataMin * 0.95", "dataMax * 1.05"]}
         />
         <ReferenceLine
           y={referenceValue}
@@ -27,7 +27,7 @@ const DashboardChart = ({data, change, portfolioValue, referenceValue}) => {
           isFront={false}
           strokeWidth={2}
         />
-        <Tooltip />
+        <Tooltip separator="-" position={{y: -25}}/>
       </LineChart>
     );
 }

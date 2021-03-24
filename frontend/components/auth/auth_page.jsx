@@ -6,13 +6,12 @@ class AuthPage extends React.Component {
     render() {
         return (
             <div id="_auth">
-                    <NavbarContainer />
                 <div className="auth-main">
                     <div className="auth-main-content">
                         <div className="portfolio-container">
                             <PortfolioMainContainer />
                         </div>
-                        <div className="auth-main-sidebar"></div>
+                        {/* <div className="auth-main-sidebar"></div> */}
                     </div>
                 </div>
             </div>

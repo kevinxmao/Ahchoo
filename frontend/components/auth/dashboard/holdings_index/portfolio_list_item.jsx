@@ -49,7 +49,7 @@ class PortfolioListItem extends React.Component {
 
   render() {
     if (this.state.loading) return null;
-    const { ticker, quantity } = this.props.holding;
+    const { ticker, tickerId, quantity } = this.props.holding;
     const { market, percentChange, chartData, open, change } = this.state;
 
     const color = change >= 0 ? "#00c807" : "#ff5000";
@@ -66,16 +66,14 @@ class PortfolioListItem extends React.Component {
             </div>
           </div>
           <div className="list-item-chart">
-            <ItemChart referenceValue={open} data={chartData} change={change}/>
+            <ItemChart referenceValue={open} data={chartData} change={change} />
           </div>
           <div className="holding-price">
             <div className="list-current-price">
-              <span>
-                {`${formatNumber(market)}`}
-              </span>
+              <span>{`${formatNumber(market)}`}</span>
             </div>
             <div className="list-percent-change">
-              <span style={{color: `${color}`}}>
+              <span style={{ color: `${color}` }}>
                 {percentChange >= 0
                   ? `+${formatPercent(percentChange)}`
                   : `-${formatPercent(percentChange)}`}

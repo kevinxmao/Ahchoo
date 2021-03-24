@@ -12,3 +12,7 @@ export const formatPercent = (x) => {
   return `${parts.join(".")}%`;
 }
 
+export const formatCompanyName = name => {
+  const regex = /( Inc.*)/;
+  return name.replace(regex, "")
+}

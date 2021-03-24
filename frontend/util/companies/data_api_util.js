@@ -28,8 +28,7 @@ endpoint = "sandbox";
 export const fetchSingleQuote = (ticker) =>
   $.ajax({
     method: "GET",
-    url:
-      `https://${endpoint}.iexapis.com/stable/stock/${ticker}/quote?token=${apiKey}`,
+    url: `https://${endpoint}.iexapis.com/v1/stock/${ticker}/batch?&types=price,company,stats,intraday-prices&token=${apiKey}`,
   });
   
 export const fetchAllQuotes = (tickerArr) =>

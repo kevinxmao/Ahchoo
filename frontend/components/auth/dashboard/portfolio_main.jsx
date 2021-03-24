@@ -84,7 +84,8 @@ class PortfolioMain extends React.Component {
 
       let price;
       datum["intraday-prices"].forEach( intraPrice => {
-        const timeKey = [intraPrice.date, intraPrice.minute].join(" ");
+        // const timeKey = [intraPrice.date, intraPrice.label].join(" ");
+        const timeKey = intraPrice.label;
         price = intraPrice.average ? intraPrice.average : price;
 
         if (!chartData[timeKey]) {

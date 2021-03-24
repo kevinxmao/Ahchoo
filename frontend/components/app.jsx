@@ -9,6 +9,7 @@ import LoginPage from "./login/login_page";
 import SignupPage from "./signup/signup_page";
 import AuthPage from "./auth/auth_page";
 import AuthNavContainer from "./auth/navbar/auth_nav_container"
+import CompanyPage from "./auth/company/company_page";
 
 const App = () => (
     <div>
@@ -19,6 +20,7 @@ const App = () => (
         </Switch>
         <ProtectedRoute path="/auth" component={AuthNavContainer} />
         <ProtectedRoute path="/auth/home" component={AuthPage} />
+        <ProtectedRoute path="/auth/tickers/:id" component={CompanyPage} />
     </div>
 )
 
