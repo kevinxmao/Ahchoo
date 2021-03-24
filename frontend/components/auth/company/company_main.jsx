@@ -2,6 +2,7 @@ import React from "react";
 import { fetchSingleQuote } from "../../../util/companies/data_api_util";
 import { formatCompanyName, formatNumber, formatPercent } from "../../../util/util_functions";
 import CompanyChart from "./company_chart";
+import CompanySidebar from "./company_sidebar";
 
 class CompanyMain extends React.Component {
   constructor(props) {
@@ -75,6 +76,7 @@ class CompanyMain extends React.Component {
   render() {
     if (this.state.loading) return null;
     const {price, companyInfo, change, percentChange, chartData, referenceValue} = this.state;
+    const {holdings, createHolding, removeHolding, updateHolding} = this.props;
     return (
       <>
         <div className="company-main">
@@ -132,6 +134,16 @@ class CompanyMain extends React.Component {
               </p>
             </div>
           </section>
+        </div>
+        <div className="company-sidebar">
+          <div>
+            <CompanySidebar
+              holdings={holdings}
+              createHolding={createHolding}
+              updateHolding={updateHolding}
+              removeHolding={removeHolding}
+            />
+          </div>
         </div>
       </>
     );
