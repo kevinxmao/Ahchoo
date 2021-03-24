@@ -16,3 +16,7 @@ export const formatCompanyName = name => {
   const regex = /( Inc.*)/;
   return name.replace(regex, "")
 }
+
+export const ownShare = (holdings, ticker) => {
+    return holdings.some(holding => holding.ticker === ticker);
+}

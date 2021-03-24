@@ -1,0 +1,36 @@
+@import "../base//variables.scss";
+
+.order-form {
+    header {
+        height: 52px;
+        padding: 4px 24px 0px 24px;
+        border-bottom: 1px solid $neutral_dark;
+        box-sizing: border-box;
+    }
+
+    .trade-type-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+
+        .trade-type {
+            cursor: pointer;
+            height: 100%;
+            line-height: 24px;
+            display: flex;
+            align-items: center;
+            font-size: $textM_font_size;
+            font-weight: bold;
+            border-bottom: 2px solid transparent;
+        }
+
+        .trade-typeh.active {
+            border-bottom: 2px solid black;
+        }
+
+        .trade-type:first-child {
+            margin-right: 12px;
+        }
+    }
+}

@@ -28,10 +28,17 @@ class CompanyMain extends React.Component {
   }
 
   componentDidMount() {
-    const ticker = this.props.ticker;
-    fetchSingleQuote(ticker).then((responseJSON) =>
+    this.props
+      .fetchUser(this.props.user.id)
+      .then(() => {
+        if (!this.props.holdings.length) {
+          this.setState({ loading: false, portfolioValue: this.props.user.funds }, window.localStorage.setItem("portfolioValue", `${this.props.user.funds}`));
+          return;
+        }
+    fetchSingleQuote(this.props.ticker).then((responseJSON) =>
       this.setState({ data: responseJSON }, this.formatCompanyInfo)
     );
+      })
   }
 
   formatCompanyInfo() {
@@ -53,7 +60,7 @@ class CompanyMain extends React.Component {
     });
 
     let dataArr = [];
-    for (let i = 0; i < Object.values(chartData).length; i += 10) {
+    for (let i = 0; i < Object.values(chartData).length; i += 2) {
       dataArr.push(Object.values(chartData)[i]);
     }
 
@@ -76,7 +83,7 @@ class CompanyMain extends React.Component {
   render() {
     if (this.state.loading) return null;
     const {price, companyInfo, change, percentChange, chartData, referenceValue} = this.state;
-    const {holdings, createHolding, removeHolding, updateHolding} = this.props;
+    const {ticker, holdings, createHolding, removeHolding, updateHolding} = this.props;
     return (
       <>
         <div className="company-main">
@@ -127,7 +134,7 @@ class CompanyMain extends React.Component {
               <p>
                 {companyInfo.description}{" "}
                 <button>
-                  <div class="read-more">
+                  <div className="read-more">
                     <span>Read More</span>
                   </div>
                 </button>
@@ -138,6 +145,7 @@ class CompanyMain extends React.Component {
         <div className="company-sidebar">
           <div>
             <CompanySidebar
+                ticker={ticker}
               holdings={holdings}
               createHolding={createHolding}
               updateHolding={updateHolding}
