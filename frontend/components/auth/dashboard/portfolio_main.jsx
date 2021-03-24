@@ -3,6 +3,7 @@ import { formatNumber, formatPercent } from "../../../util/util_functions";
 import DashboardSidebar from './dashboard_sidebar';
 import { fetchAllQuotes } from '../../../util/companies/data_api_util';
 import DashboardChart from './dashboard_chart';
+import BuyingPowerButton from './buying_power';
 
 class PortfolioMain extends React.Component {
   constructor(props) {
@@ -56,7 +57,6 @@ class PortfolioMain extends React.Component {
         holding.quantity *
         this.state.data[holding.ticker]["intraday-prices"][2].open;
     });
-    console.log(openSum);
 
     this.setState({ change: this.state.portfolioValue - openSum, referenceValue: openSum }, () =>
       this.calculatePercentChange(openSum)
@@ -83,7 +83,6 @@ class PortfolioMain extends React.Component {
       datum["intraday-prices"].forEach( intraPrice => {
         const timeKey = [intraPrice.date, intraPrice.minute].join(" ");
         price = intraPrice.average ? intraPrice.average : price;
-        if (!price) console.log(price);
 
         if (!chartData[timeKey]) {
           chartData[timeKey] = {timeKey, value: (price * quantity + this.props.user.funds)};
@@ -109,6 +108,7 @@ class PortfolioMain extends React.Component {
   render() {
     if (this.state.loading) return null;
     const {portfolioValue, change, percentChange, data, chartData, referenceValue} = this.state;
+    const { user, holdings, updateUser } = this.props;
     return (
       <>
         <div className="portfolio-main">
@@ -144,9 +144,7 @@ class PortfolioMain extends React.Component {
             </div>
           </div>
           <div className="chart-range-container"></div>
-          <div className="buying-power-container">
-
-          </div>
+          <BuyingPowerButton user={user} updateUser={updateUser}/>
         </div>
         <div className="dashboard-sidebar">
           <div>
