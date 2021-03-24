@@ -52,6 +52,8 @@ class PortfolioListItem extends React.Component {
     const { ticker, quantity } = this.props.holding;
     const { market, percentChange, chartData, open, change } = this.state;
 
+    const color = change >= 0 ? "#00c807" : "#ff5000";
+
     return (
       <Link to={`/auth/tickers/${ticker}`} className="sidebar-list-item">
         <div>
@@ -73,7 +75,7 @@ class PortfolioListItem extends React.Component {
               </span>
             </div>
             <div className="list-percent-change">
-              <span>
+              <span style={{color: `${color}`}}>
                 {percentChange >= 0
                   ? `+${formatPercent(percentChange)}`
                   : `-${formatPercent(percentChange)}`}

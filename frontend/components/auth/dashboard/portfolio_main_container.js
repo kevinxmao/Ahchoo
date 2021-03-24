@@ -1,4 +1,4 @@
-import { fetchUser } from "../../../actions/users_actions";
+import { fetchUser, updateUser } from "../../../actions/users_actions";
 import { connect } from "react-redux";
 import PortfolioMain from "./portfolio_main";
 
@@ -10,6 +10,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchUser: userId => dispatch(fetchUser(userId)),
+  updateUser: user => dispatch(updateUser(user))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PortfolioMain);
