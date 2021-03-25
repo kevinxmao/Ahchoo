@@ -23,7 +23,6 @@ class OrderForm extends React.Component {
     componentDidUpdate(prevProps, prevState) {
       const { holdings, ticker, user } = this.props;
       const isHolding = holdings.some(holding => holding.ticker === ticker);
-      debugger
 
       if (isHolding !== prevState.isHolding && prevProps.user.funds !== user.funds) {
         this.setState({isHolding: isHolding, mode: "buy", type: "shares"})
@@ -37,7 +36,6 @@ class OrderForm extends React.Component {
     selectMode(mode) {
       if (this.state.mode !== mode) {
         this.setState({mode: mode});
-        console.log(mode)
       }
     }
 

@@ -23,7 +23,6 @@ class SignupForm extends React.Component {
 
   handleChange(event) {
     const { name, value } = event.target;
-    console.log(name);
     this.setState({
       [name]: value,
     });

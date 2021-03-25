@@ -9,7 +9,6 @@ import {
 } from "recharts";
 
 const ItemChart = ({ data, change, referenceValue }) => {
-    console.log(data);
   data[0].price = data[0].price || referenceValue;
   const color = change >= 0 ? "#00c807" : "#ff5000";
   return (

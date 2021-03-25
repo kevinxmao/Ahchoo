@@ -65,7 +65,6 @@ class PortfolioMain extends React.Component {
         holding.quantity *
         openPrice;
     });
-    console.log(openSum);
     this.setState({ change: this.state.portfolioValue - openSum, referenceValue: openSum }, () =>
       this.calculatePercentChange(openSum)
     );

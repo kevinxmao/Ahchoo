@@ -11,10 +11,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     logout: () => dispatch(logout()),
-    // addDropdown: () => dispatch(addDropdown()),
-    // removeDropdown: () => dispatch(removeDropdown()),
-    // toggleDropdown: () => dispatch()
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

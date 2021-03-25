@@ -13,8 +13,8 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
 }
 
 // remove before deploying
-apiKey = "Tpk_0f8b8964750d4e3bb1dd782eef66d578";
-endpoint = "sandbox";
+// apiKey = "Tpk_0f8b8964750d4e3bb1dd782eef66d578";
+// endpoint = "sandbox";
 
 // export const fetchSingleQuote = (ticker) =>
 //   $.ajax({
@@ -72,9 +72,9 @@ export const fetchMaxQuotes = (tickerArr) => (
   })
 )
 
-export const searchTicker = str => {
+export const searchTicker = str => (
   $.ajax({
     method: 'GET',
-    url: `https://${endpoint}.iexapis.com/stable/search/${str}?token=${apiKey}`,
+    url: `https://${endpoint}.iexapis.com/v1/search/${str}?token=${apiKey}`,
   })
-}
+)

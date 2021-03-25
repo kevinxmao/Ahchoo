@@ -43,7 +43,6 @@ class BuySharesForm extends React.Component {
             this.setState({ erroMsg: "Not Enough Buy Power" });
         } else if (!isHolding) {
             let order = {user_id: user.id, ticker: ticker, quantity: shares, avgPrice: price};
-            console.log("here")
             createHolding(order);
         } else {
             let order = Object.assign({}, holding, { quantity: shares, avgPrice: price });

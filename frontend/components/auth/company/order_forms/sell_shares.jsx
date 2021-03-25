@@ -39,7 +39,6 @@ class SellSharesForm extends React.Component {
         const { user, ticker, updateHolding, deleteHolding } = this.props;
         let holding = this.state.holdings.find(holding => holding.ticker === this.state.ticker);
         const sharesOwned = this.calcSharesOwned();
-        debugger;
 
         if (shares > sharesOwned) {
             this.setState({erroMsg: "Not Enough Shares"});

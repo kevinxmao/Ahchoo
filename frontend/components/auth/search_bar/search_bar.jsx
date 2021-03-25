@@ -1,7 +1,8 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/pro-regular-svg-icons";
-import { fetchAllCompanies } from "../../../util/companies/data_api_util";
+import { searchTicker } from "../../../util/companies/data_api_util";
+import SearchResultsList from "./search_result_index";
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -15,31 +16,26 @@ class SearchBar extends React.Component {
     // this.loadData = this.loadData.bind(this);
     this.globalClickListener = this.globalClickListener.bind(this);
     this.expandDropdown = this.expandDropdown.bind(this);
+    this.search = this.search.bind(this);
   }
 
-  //   loadData() {
-  //       let tickers;
-  //       fetchAllCompanies().then(
-  //             res => {
-  //                 tickers = Object.values(res).map((ticker) => [ticker.ticker, ticker.company]);
-  //                 this.setState({tickers: tickers});
-  //             }
-  //         );
-  //   }
+  formatResults(res) {
+    return res.filter(result => result.securityType === 'CS' || (result.exchange === 'NYS' || result.exchange === 'NAS'));
+  }
 
   componentWillUnmount() {
     window.removeEventListener("click", this.globalClickListener);
   }
 
   globalClickListener(nativeEvent) {
-      console.log("global click");
+      // console.log("global click");
     this.setState({ dropdownVisible: false }, () => {
       window.removeEventListener("click", this.globalClickListener);
     });
   }
 
   expandDropdown(syntheticEvent) {
-    console.log("expand dropdown");
+    // console.log("expand dropdown");
     syntheticEvent.stopPropagation();
     this.setState(
     //   (prevState) => ({ dropdownVisible: !prevState.dropdownVisible }),
@@ -56,11 +52,17 @@ class SearchBar extends React.Component {
     syntheticEvent.stopPropagation();
   }
 
+  search() {
+    searchTicker(this.state.searchTerm).then(responseJSON => {
+      this.setState({tickers: this.formatResults(responseJSON)})
+    });
+  }
+
   handleChange(e) {
     const { name, value } = event.target;
     this.setState({
       [name]: value,
-    });
+    }, this.search);
   }
 
   render() {
@@ -80,6 +82,7 @@ class SearchBar extends React.Component {
           onChange={this.handleChange}
           onClick={this.expandDropdown}
         />
+        { this.state.dropdownVisible && <SearchResultsList results={this.state.tickers} />}
       </div>
     );
   }
