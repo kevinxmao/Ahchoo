@@ -16,6 +16,7 @@ class SellSharesForm extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.calcSharesOwned = this.calcSharesOwned.bind(this);
+        this._isMounted = false;
     }
 
     handleChange(e) {
@@ -25,6 +26,10 @@ class SellSharesForm extends React.Component {
         } else {
             this.setState({ shares: parseFloat(input), estimatedCredit: (parseFloat(input) * this.state.price)})
         }
+    }
+
+    componentDidMount() {
+        this._isMounted = true;
     }
 
     componentDidUpdate(prevProps) {
@@ -50,12 +55,11 @@ class SellSharesForm extends React.Component {
         if (shares > sharesOwned) {
             this.setState({erroMsg: "Not Enough Shares"});
         } else if (shares === sharesOwned) {
-            deleteHolding(holding.id);
+            deleteHolding(holding.id).then(() => this.setState({ shares: '' }));
         } else {
             let order = Object.assign({}, holding, {quantity: (shares * -1.0), avgPrice: price});
-            updateHolding(order)
+            updateHolding(order).then(() => this.setState({ shares: '' }));
         }
-        this.setState({ shares: '' });
     }
 
     calcSharesOwned() {

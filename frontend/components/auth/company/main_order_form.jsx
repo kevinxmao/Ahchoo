@@ -25,12 +25,16 @@ class OrderForm extends React.Component {
       const isHolding = holdings.some(holding => holding.ticker === ticker);
       console.log(isHolding)
 
-      if (isHolding !== prevState.isHolding && prevProps.user.funds !== user.funds) {
+      if (isHolding !== prevState.isHolding || prevProps.user.funds !== user.funds) {
         debugger
         this.props.fetchUser(user.id).then(
-          () => this.setState({ isHolding: isHolding, mode: "buy", type: "shares" })
+          () => this.setState({ isHolding: isHolding, mode: "buy", type: "shares" }, console.log(this.state))
         )
       }
+    }
+
+    componentWillUnmount() {
+      console.log("unmounted")
     }
 
     handleChange(e) {
