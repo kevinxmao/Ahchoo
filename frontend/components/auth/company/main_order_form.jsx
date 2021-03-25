@@ -26,10 +26,7 @@ class OrderForm extends React.Component {
       console.log(isHolding)
 
       if (isHolding !== prevState.isHolding || prevProps.user.funds !== user.funds) {
-        debugger
-        this.props.fetchUser(user.id).then(
-          () => this.setState({ isHolding: isHolding, mode: "buy", type: "shares" }, console.log(this.state))
-        )
+        this.props.fetchUser(user.id).then(this.setState({ isHolding: isHolding, mode: "buy", type: "shares" }))
       }
     }
 
