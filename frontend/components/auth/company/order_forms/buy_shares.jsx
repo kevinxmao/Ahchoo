@@ -48,6 +48,7 @@ class BuySharesForm extends React.Component {
             let order = Object.assign({}, holding, { quantity: shares, avgPrice: price });
             updateHolding(order)
         }
+        this.setState({shares: ''});
     }
 
     render() {

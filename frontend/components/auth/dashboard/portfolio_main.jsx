@@ -30,7 +30,7 @@ class PortfolioMain extends React.Component {
       .fetchUser(this.props.user.id)
       .then(() => {
         if (!this.props.holdings.length) {
-          this.setState({ loading: false, portfolioValue: this.props.user.funds }, window.localStorage.setItem("portfolioValue", `${this.props.user.funds}`));
+          this.setState({ loading: false, portfolioValue: this.props.user.funds }, this.calculatePortfolioValue);
           return;
         }
         fetchAllQuotes(this.props.holdings.map((holding) => holding.ticker))
@@ -47,9 +47,11 @@ class PortfolioMain extends React.Component {
 
   calculatePortfolioValue() {
     let sum = this.props.user.funds;
-    this.props.holdings.forEach((holding) => {
-      sum += holding.quantity * this.state.data[holding.ticker].price;
-    });
+    if (this.props.holdings.length) {
+      this.props.holdings.forEach((holding) => {
+        sum += holding.quantity * this.state.data[holding.ticker].price;
+      });
+    }
     this.setState({ portfolioValue: sum }, this.calculateChange);
     this.props.receivePortfolioValue(sum);
     window.localStorage.setItem("portfolioValue", `${sum}`);

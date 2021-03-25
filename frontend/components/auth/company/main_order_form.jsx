@@ -23,9 +23,11 @@ class OrderForm extends React.Component {
     componentDidUpdate(prevProps, prevState) {
       const { holdings, ticker, user } = this.props;
       const isHolding = holdings.some(holding => holding.ticker === ticker);
+      console.log(isHolding)
 
       if (isHolding !== prevState.isHolding && prevProps.user.funds !== user.funds) {
-        fetchUser.then(
+        debugger
+        this.props.fetchUser(user.id).then(
           () => this.setState({ isHolding: isHolding, mode: "buy", type: "shares" })
         )
       }
@@ -74,7 +76,7 @@ class OrderForm extends React.Component {
                 </div>
               </div>
               
-              {(mode === "sell" && type === "shares") && <SellSharesForm user={user} holdings={holdings} ticker={ticker} price={price} updateHolding={updateHolding} deleteHolding={deleteHolding} />}
+              {(isHolding && (mode === "sell" && type === "shares")) && <SellSharesForm user={user} holdings={holdings} ticker={ticker} price={price} updateHolding={updateHolding} deleteHolding={deleteHolding} />}
               {(mode === "buy" && type === "shares") && <BuySharesForm user={user} holdings={holdings} isHolding={isHolding} ticker={ticker} price={price} updateHolding={updateHolding} createHolding={createHolding} />}
             </div>
           </div>

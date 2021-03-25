@@ -28,9 +28,16 @@ class SellSharesForm extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
+        if (!this._isMounted) {
+            return;
+        }
         if (prevProps.user.funds !== this.props.user.funds) {
             this.setState({holdings: this.props.holdings});
         }
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     handleSubmit(e) {
@@ -48,6 +55,7 @@ class SellSharesForm extends React.Component {
             let order = Object.assign({}, holding, {quantity: (shares * -1.0), avgPrice: price});
             updateHolding(order)
         }
+        this.setState({ shares: '' });
     }
 
     calcSharesOwned() {

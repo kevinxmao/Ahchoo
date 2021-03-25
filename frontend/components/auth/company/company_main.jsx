@@ -32,10 +32,6 @@ class CompanyMain extends React.Component {
     this.props
       .fetchUser(this.props.user.id)
       .then(() => {
-        if (!this.props.holdings.length) {
-          this.setState({ loading: false, portfolioValue: this.props.user.funds }, window.localStorage.setItem("portfolioValue", `${this.props.user.funds}`));
-          return;
-        }
     fetchSingleQuote(this.props.ticker).then((responseJSON) =>
       this.setState({ data: responseJSON }, this.formatCompanyInfo)
     );

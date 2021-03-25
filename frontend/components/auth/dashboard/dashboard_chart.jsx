@@ -2,6 +2,7 @@ import React from 'react';
 import {LineChart, Line, XAxis, YAxis, ReferenceLine, Tooltip} from 'recharts';
 
 const DashboardChart = ({data, change, portfolioValue, referenceValue}) => {
+    if (!data) return <div className="initial-chart"></div>
     data[0].value = data[0].value || referenceValue;
     const color = change >= 0 ? "#00c807" : "#ff5000";
     return (
