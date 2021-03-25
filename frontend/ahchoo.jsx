@@ -32,9 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
     window.logout = logout;
     // window.fetchHoldings = HoldingsActions.fetchHoldings;
     // window.fetchHolding = HoldingsActions.fetchHolding;
-    // window.createHolding = HoldingsActions.createHolding;
-    // window.deleteHolding = HoldingsActions.deleteHolding;
-    // window.updateHolding = HoldingsActions.updateHolding;
+    window.createHolding = HoldingsActions.createHolding;
+    window.deleteHolding = HoldingsActions.deleteHolding;
+    window.updateHolding = HoldingsActions.updateHolding;
     window.fetchSingleQuote = fetchSingleQuote;
     window.fetchAllQuotes = fetchAllQuotes;
 

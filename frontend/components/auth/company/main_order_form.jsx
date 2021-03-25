@@ -1,30 +1,37 @@
 import React from 'react';
 import { ownShare } from '../../../util/util_functions';
+import SellSharesForm from './order_forms/sell_shares';
+import BuySharesForm from './order_forms/buy_shares';
 
 class OrderForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             loading: true,
-            shares: "",
             isHolding: false,
             inWishLists: false,
-            mode: "buy"
+            mode: "buy",
+            type: "shares"
         }
     }
 
     componentDidMount() {
-      console.log(this.props)
         const {holdings, ticker} = this.props;
         this.setState({isHolding: ownShare(holdings, ticker), loading: false});
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps, prevState) {
+      const { holdings, ticker, user } = this.props;
+      const isHolding = holdings.some(holding => holding.ticker === ticker);
+      debugger
 
+      if (isHolding !== prevState.isHolding && prevProps.user.funds !== user.funds) {
+        this.setState({isHolding: isHolding, mode: "buy", type: "shares"})
+      }
     }
 
     handleChange(e) {
-
+      this.setState({})
     }
 
     selectMode(mode) {
@@ -36,9 +43,10 @@ class OrderForm extends React.Component {
 
     render() {
         if (this.state.loading) return null;
-        const {isHolding, loading, mode} = this.state;
+        const {user, holdings, ticker, price, createHolding, updateHolding, deleteHolding} = this.props;
+        const {isHolding, loading, mode, type} = this.state;
         return (
-          <form action="">
+          <div>
             <header>
               <div className="trade-type-container">
                 <div className={(isHolding && mode === "buy") ? 'trade-type active' : 'trade-type'} onClick={() => this.selectMode("buy")}>
@@ -56,25 +64,20 @@ class OrderForm extends React.Component {
               </div>
               <p>{this.state.isHolding ? "yes" : "no"}</p>
             </header>
-            <div className="input-main">
               <div className="invest-type">
                 <label className="input-label" htmlFor="type">Invest In</label>
                 <div>
-                  <select name="type" id="type">
-                    <option value="dollar">Dollars</option>
-                    <option value="dollar">Shares</option>
+                  <select name="type" id="type" onChange={this.handleChange}>
+                    <option value="shares">Shares</option>
+                    <option value="dollars" disabled>Dollars</option>
                   </select>
                 </div>
               </div>
-              <div className="invest-shares"></div>
-              <div className="market-price"></div>
-              <div className="calc-cost"></div>
+              <div className="input-main">
+              {(mode === "sell" && type === "shares") && <SellSharesForm user={user} holdings={holdings} ticker={ticker} price={price} updateHolding={updateHolding} deleteHolding={deleteHolding} />}
+              {(mode === "buy" && type === "shares") && <BuySharesForm user={user} holdings={holdings} isHolding={isHolding} ticker={ticker} price={price} updateHolding={updateHolding} createHolding={createHolding} />}
+              </div>
             </div>
-            <div className="order-form-submit">
-              <button>Execute Order</button>
-            </div>
-            <footer className="order-note"></footer>
-          </form>
         );
     }
 }

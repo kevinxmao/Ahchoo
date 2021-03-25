@@ -5,21 +5,27 @@ class CompanySidebar extends React.Component {
 
     render() {
         const {
+          user,
             ticker,
           holdings,
+          price,
           updateHolding,
           createHolding,
-          removeHolding,
+          deleteHolding,
+          fetchUser
         } = this.props;
         return (
           <div className="sidebar-content">
             <div className="order-form">
               <OrderForm
+                user= {user}
                 ticker={ticker}
                 holdings={holdings}
+                price={price}
                 updateHolding={updateHolding}
                 createHolding={createHolding}
-                removeHolding={removeHolding}
+                deleteHolding={deleteHolding}
+                fetchUser={fetchUser}
               />
             </div>
             <div className="wishlist-form">

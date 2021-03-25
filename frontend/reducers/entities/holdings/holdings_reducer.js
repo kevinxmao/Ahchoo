@@ -9,7 +9,8 @@ const holdingsReducer = (state={}, action) => {
             if (action.payload.holdings) return action.payload.holdings;
             return {};
         case RECEIVE_HOLDINGS:
-            return action.holdings;
+            if (action.payload.holdings) return action.payload.holdings;
+            return {};
         case RECEIVE_HOLDING:
             return Object.assign({}, newState, {[action.holding.ticker]: action.holding})
         case REMOVE_HOLDING:

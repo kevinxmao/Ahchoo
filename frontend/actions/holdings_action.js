@@ -9,9 +9,18 @@ export const receiveHolding = holding => ({
     holding
 })
 
-export const receiveHoldings = holdings => ({
+export const receiveHoldings = user => ({
     type: RECEIVE_HOLDINGS,
-    holdings
+    payload: {
+        user: {
+            id: user.id,
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            funds: user.funds
+        },
+        holdings: user.holdings
+    }
 })
 
 export const removeHolding = holdingId => ({
@@ -34,20 +43,20 @@ export const fetchHolding = holdingId => dispatch => (
 // returns a payload containing info of holding and updated user
 export const createHolding = holding => dispatch => (
     HoldingsAPIUtil.createHolding(holding).then(
-        holding => dispatch(receiveHolding(holding))
+        user => dispatch(receiveHoldings(user))
     )
 );
 
 // returns a payload containing info of holding and updated user
 export const updateHolding = holding => dispatch => (
     HoldingsAPIUtil.updateHolding(holding).then(
-        holding => dispatch(receiveHolding(holding))
+        user => dispatch(receiveHoldings(user))
     )
 )
 
 // returns a payload containing info of holding and updated user
 export const deleteHolding = holdingId => dispatch => (
     HoldingsAPIUtil.deleteHolding(holdingId).then(
-        () => dispatch(removeHolding(holdingId))
+        (user) => dispatch(receiveHoldings(user))
     )
 );

@@ -84,7 +84,7 @@ class CompanyMain extends React.Component {
   render() {
     if (this.state.loading) return null;
     const {price, companyInfo, change, percentChange, chartData, referenceValue} = this.state;
-    const {ticker, holdings, createHolding, removeHolding, updateHolding} = this.props;
+    const {user, ticker, holdings, createHolding, deleteHolding, updateHolding, fetchUser} = this.props;
     return (
       <>
         <div className="company-main">
@@ -152,10 +152,13 @@ class CompanyMain extends React.Component {
           <div>
             <CompanySidebar
                 ticker={ticker}
+                user={user}
               holdings={holdings}
+              price={price}
               createHolding={createHolding}
               updateHolding={updateHolding}
-              removeHolding={removeHolding}
+              deleteHolding={deleteHolding}
+              fetchUser={fetchUser}
             />
           </div>
         </div>

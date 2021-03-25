@@ -54,4 +54,19 @@ class User < ApplicationRecord
     def default_funds
         self.funds ||= 100000.00
     end
+
+    def receive_order(order)
+        new_funds = self.funds - order[:quantity].to_f * order[:avg_price].to_f
+        self.update_attribute(:funds, new_funds)
+    end
+
+    def sell_all(order)
+        new_funds = self.funds + order[:quantity].to_f * order[:avg_price].to_f
+        self.update_attribute(:funds, new_funds)
+    end
+
+    def buy_new(order)
+        new_funds = self.funds - order[:quantity].to_f * order[:avg_price].to_f
+        self.update_attribute(:funds, new_funds)
+    end
 end

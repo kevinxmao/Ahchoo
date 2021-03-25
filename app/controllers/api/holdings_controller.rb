@@ -20,10 +20,16 @@ class Api::HoldingsController < ApplicationController
     end
     
     def create
-        @holding = Holding.create(holding_params)
-
+        if !params[:holding][:ticker_id]
+            @ticker = Ticker.find_by(ticker: params[:holding][:ticker])
+            @holding = Holding.create(holding_params.merge(ticker_id: @ticker.id))
+        else
+            @holding = Holding.create(holding_params)
+        end
+    
         if @holding.save
-            render 'api/holdings/show'
+            current_user.buy_new(holding_params)
+            render 'api/users/show'
         else
             render json: @holding.full_messages, status: 401
         end
@@ -32,8 +38,8 @@ class Api::HoldingsController < ApplicationController
     def update
         @holding = current_user.holdings.find_by(id: params[:id])
         
-        if @holding.update_attributes(holding_params)
-            render 'api/holdings/show'
+        if @holding.edit_holding(holding_params) && current_user.receive_order(holding_params)
+            render 'api/users/show'
         else
             render json: @holding.full_messages, status: 401
         end
@@ -43,7 +49,10 @@ class Api::HoldingsController < ApplicationController
         holding = Holding.find_by(id: params[:id])
 
         if holding
+            order = {quantity: holding.quantity, avg_price: holding.avg_price}
+            current_user.sell_all(order)
             holding.destroy
+            render 'api/users/show'
         else
              render json: holding.full_messages, status: 404
         end
@@ -53,6 +62,6 @@ class Api::HoldingsController < ApplicationController
     private
 
     def holding_params
-        params.require(:holding).transform_keys(&:underscore).permit(:user_id, :ticker_id, :quantity, :avg_price)
+        params.require(:holding).transform_keys(&:underscore).permit(:id, :user_id, :ticker_id, :quantity, :avg_price)
     end
 end
