@@ -28,7 +28,7 @@ class BuySharesForm extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.user.funds !== this.props.user.funds) {
+        if (prevProps.user.funds !== this.props.user.funds || prevProps.user.ticker !== this.props.user.ticker) {
             this.setState({ holdings: this.props.holdings });
         }
     }
@@ -51,7 +51,8 @@ class BuySharesForm extends React.Component {
     }
 
     render() {
-        const { ticker, price, shares, estimatedCost, errorMsg } = this.state;
+        const { ticker, shares, estimatedCost, errorMsg } = this.state;
+        const {price} = this.props
         return (
             <form onSubmit={this.handleSubmit} className="buy-shares-form">
                 <div className="amount-input">

@@ -1,12 +1,21 @@
 import React from 'react';
+import SearchResultItem from './search_result_item';
 
-const SearchResultsList = props => {
-    if (!props.tickers) return null;
-    return (
-        <div className="search-dropdown">
-            {props.tickers.slice(0, 5).map(ticker => <p>Just an item</p>)}
-        </div>
-    )
+class SearchResultsList extends React.Component {
+
+    render() {
+        if (!this.props.results || !this.props.results.length) return null;
+        const items = this.props.results.slice(0, 5).map(result => {
+            const { symbol, securityName } = result;
+            return <SearchResultItem symbol={symbol} securityName={securityName} />
+        })
+        return (
+            <div className="search-dropdown">
+                <p>Stocks</p>
+                {items}
+            </div>
+        )
+    }
 }
 
 export default SearchResultsList;

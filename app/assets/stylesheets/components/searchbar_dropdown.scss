@@ -1,0 +1,22 @@
+@import "../base/variables.scss";
+
+.search-dropdown {
+    top: 34px;
+    padding: 12px 6px 0 6px;
+    margin-top: 34px;
+    width: 100%;
+    z-index: 100;
+    position: absolute;
+    color: black;
+    overflow-y: auto;
+    background-color: white;
+
+    .search-result-item > a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        font-size: $textS_font_size;
+    }
+}

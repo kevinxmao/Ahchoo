@@ -6,7 +6,7 @@ import { fetchUser } from "../../../actions/users_actions"
 const mapStateToProps = (state, ownProps) => ({
     user: Object.values(state.entities.users)[0],
     holdings: Object.values(state.entities.holdings),
-    ticker: ownProps.ticker
+    ticker: ownProps.match.params.id
 })
 
 const mapDispatchToProps = dispatch => ({

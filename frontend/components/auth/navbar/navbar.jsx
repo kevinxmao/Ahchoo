@@ -33,11 +33,7 @@ class Navbar extends React.Component {
                 />
               </a>
               <div className="auth-nav-search-container">
-                <div>
-                  <div className="auth-nav-search-content">
-                    <SearchBarContainer />
-                  </div>
-                </div>
+                  <SearchBarContainer />
               </div>
               <div className="auth-nav-spacer"></div>
               <div className="auth-nav-index">

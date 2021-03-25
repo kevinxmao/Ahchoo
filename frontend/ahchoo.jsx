@@ -26,17 +26,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // test
-    window.store = store;
-    window.
-    window.login = login;
-    window.logout = logout;
-    // window.fetchHoldings = HoldingsActions.fetchHoldings;
-    // window.fetchHolding = HoldingsActions.fetchHolding;
-    window.createHolding = HoldingsActions.createHolding;
-    window.deleteHolding = HoldingsActions.deleteHolding;
-    window.updateHolding = HoldingsActions.updateHolding;
-    window.fetchSingleQuote = fetchSingleQuote;
-    window.fetchAllQuotes = fetchAllQuotes;
+    // window.store = store;
+    // window.
+    // window.login = login;
+    // window.logout = logout;
+    // // window.fetchHoldings = HoldingsActions.fetchHoldings;
+    // // window.fetchHolding = HoldingsActions.fetchHolding;
+    // window.createHolding = HoldingsActions.createHolding;
+    // window.deleteHolding = HoldingsActions.deleteHolding;
+    // window.updateHolding = HoldingsActions.updateHolding;
+    // window.fetchSingleQuote = fetchSingleQuote;
+    // window.fetchAllQuotes = fetchAllQuotes;
 
     ReactDOM.render(<Root store={store}/>, root);
 });

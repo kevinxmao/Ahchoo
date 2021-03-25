@@ -24,6 +24,7 @@ class SearchBar extends React.Component {
   }
 
   componentWillUnmount() {
+    this.setState({searchTerm: ""});
     window.removeEventListener("click", this.globalClickListener);
   }
 
@@ -53,9 +54,15 @@ class SearchBar extends React.Component {
   }
 
   search() {
-    searchTicker(this.state.searchTerm).then(responseJSON => {
-      this.setState({tickers: this.formatResults(responseJSON)})
-    });
+    if (this.state.searchTerm !== "") {
+      searchTicker(this.state.searchTerm).then(responseJSON => {
+        this.setState({ tickers: this.formatResults(responseJSON) })
+      });
+    }
+  }
+
+  componentDidUpdate() {
+    console.log(this.state.tickers);
   }
 
   handleChange(e) {
@@ -68,22 +75,26 @@ class SearchBar extends React.Component {
   render() {
     const { searchTerm, tickers } = this.state;
     return (
-      <div className="search-area">
-        <div className="search-icon-container">
-          <span className="search-icon">
-            <FontAwesomeIcon icon={faSearch} />
-          </span>
+      <>
+        <div className="auth-nav-search-content">
+          <div className="search-area">
+            <div className="search-icon-container">
+              <span className="search-icon">
+                <FontAwesomeIcon icon={faSearch} />
+              </span>
+            </div>
+            <input
+              type="text"
+              placeholder="Search"
+              name="searchTerm"
+              value={searchTerm}
+              onChange={this.handleChange}
+              onClick={this.expandDropdown}
+            />
+          </div>
         </div>
-        <input
-          type="text"
-          placeholder="Search"
-          name="searchTerm"
-          value={searchTerm}
-          onChange={this.handleChange}
-          onClick={this.expandDropdown}
-        />
-        { this.state.dropdownVisible && <SearchResultsList results={this.state.tickers} />}
-      </div>
+        {(this.state.dropdownVisible && this.state.tickers.length > 0) && <SearchResultsList results={this.state.tickers} />}
+      </>
     );
   }
 }

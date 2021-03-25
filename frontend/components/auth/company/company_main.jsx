@@ -42,6 +42,14 @@ class CompanyMain extends React.Component {
       })
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.id !== this.props.match.params.id) {
+      fetchSingleQuote(this.props.ticker).then((responseJSON) =>
+        this.setState({ data: responseJSON }, this.formatCompanyInfo)
+      );
+    }
+  }
+
   formatCompanyInfo() {
       const {data} = this.state;
       this.setState({
