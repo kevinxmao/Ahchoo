@@ -71,3 +71,10 @@ export const fetchMaxQuotes = (tickerArr) => (
     url: `https://${endpoint}.iexapis.com/v1/stock/market/batch?&types=chart&range=max&symbols=${tickerArr.join(',')}&token=${apiKey}`,
   })
 )
+
+export const searchTicker = str => {
+  $.ajax({
+    method: 'GET',
+    url: `https://${endpoint}.iexapis.com/stable/search/${str}?token=${apiKey}`,
+  })
+}
