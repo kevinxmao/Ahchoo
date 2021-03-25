@@ -41,12 +41,17 @@ class PortfolioMain extends React.Component {
       )
   }
 
+  componentDidUpdate() {
+    window.localStorage.setItem("portfolioValue", `${this.state.portfolioValue}`);
+  }
+
   calculatePortfolioValue() {
     let sum = this.props.user.funds;
     this.props.holdings.forEach((holding) => {
       sum += holding.quantity * this.state.data[holding.ticker].price;
     });
     this.setState({ portfolioValue: sum }, this.calculateChange);
+    this.props.receivePortfolioValue(sum);
     window.localStorage.setItem("portfolioValue", `${sum}`);
   }
 

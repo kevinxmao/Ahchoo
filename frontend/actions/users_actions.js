@@ -17,11 +17,6 @@ export const receiveUser = user => ({
     }
 })
 
-export const receivePortfolioValue = (portfolioValue) => ({
-  type: RECEIVE_PORTFOLIO_VALUE,
-  portfolioValue
-});
-
 export const fetchUser = userId => dispatch => (
     UserAPIUtil.fetchUser(userId).then(
         data => dispatch(receiveUser(data))

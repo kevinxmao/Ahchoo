@@ -31,18 +31,21 @@ export const fetchHolding = holdingId => dispatch => (
     )
 );
 
+// returns a payload containing info of holding and updated user
 export const createHolding = holding => dispatch => (
     HoldingsAPIUtil.createHolding(holding).then(
         holding => dispatch(receiveHolding(holding))
     )
 );
 
+// returns a payload containing info of holding and updated user
 export const updateHolding = holding => dispatch => (
     HoldingsAPIUtil.updateHolding(holding).then(
         holding => dispatch(receiveHolding(holding))
     )
 )
 
+// returns a payload containing info of holding and updated user
 export const deleteHolding = holdingId => dispatch => (
     HoldingsAPIUtil.deleteHolding(holdingId).then(
         () => dispatch(removeHolding(holdingId))

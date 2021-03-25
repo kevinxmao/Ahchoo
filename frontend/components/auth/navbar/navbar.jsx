@@ -41,7 +41,7 @@ class Navbar extends React.Component {
               </div>
               <div className="auth-nav-spacer"></div>
               <div className="auth-nav-index">
-                <NavLinks user={this.props.user} logout={this.props.logout} />
+                <NavLinks user={this.props.user} logout={this.props.logout} portfolioValue={this.props.portfolioValue}/>
               </div>
             </div>
           </div>

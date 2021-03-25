@@ -51,7 +51,8 @@ class NavLinks extends React.Component {
               </h3>
               <div className="account-info-container">
                 <div className="dropdown-portfolio-value">
-                  <PortfolioValue />
+                  {/* <PortfolioValue /> */}
+                  <div>{formatNumber(this.props.portfolioValue)}</div>
                   <div style={{ height: "2px" }}></div>
                   <div className="portfolio-subtext">Portfolio Value</div>
                 </div>
@@ -128,27 +129,27 @@ class NavLinks extends React.Component {
     }
 }
 
-class PortfolioValue extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      portfolioValue: 0,
-    };
-  }
+// class PortfolioValue extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       portfolioValue: 0,
+//     };
+//   }
 
-  componentDidMount() {
-    if (window.localStorage.getItem("portfolioValue")) {
-      this.setState({
-        portfolioValue: parseFloat(
-          window.localStorage.getItem("portfolioValue")
-        ),
-      });
-    }
-  }
+//   componentDidMount() {
+//     if (window.localStorage.getItem("portfolioValue")) {
+//       this.setState({
+//         portfolioValue: parseFloat(
+//           window.localStorage.getItem("portfolioValue")
+//         ),
+//       });
+//     }
+//   }
 
-  render() {
-    return <div>{formatNumber(this.state.portfolioValue)}</div>;
-  }
-}
+//   render() {
+//     return <div>{formatNumber(this.state.portfolioValue)}</div>;
+//   }
+// }
 
 export default NavLinks;

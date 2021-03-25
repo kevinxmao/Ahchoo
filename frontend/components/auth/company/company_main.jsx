@@ -20,6 +20,7 @@ class CompanyMain extends React.Component {
       referenceValue: null,
       showMore: false,
       readMore: false,
+      isHolding: false,
     };
     this.formatCompanyInfo = this.formatCompanyInfo.bind(this);
     this.formatIntradayData = this.formatIntradayData.bind(this);
@@ -121,6 +122,11 @@ class CompanyMain extends React.Component {
             </div>
           </div>
           <div className="chart-range-container"></div>
+          <section className="ownership-info">
+              <div>
+                  <p>You own the stock</p>
+              </div>
+          </section>
           <section className="company-basic-info">
             <header className="about-header">
               <div>
@@ -157,5 +163,9 @@ class CompanyMain extends React.Component {
     );
   }
 }
+
+// class Ownership extends React.Componet {
+
+// }
 
 export default CompanyMain;

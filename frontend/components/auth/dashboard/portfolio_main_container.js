@@ -1,6 +1,7 @@
 import { fetchUser, updateUser } from "../../../actions/users_actions";
 import { connect } from "react-redux";
 import PortfolioMain from "./portfolio_main";
+import { receivePortfolioValue } from "../../../actions/session_actions";
 
 
 const mapStateToProps = (state) => ({
@@ -10,7 +11,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchUser: userId => dispatch(fetchUser(userId)),
-  updateUser: user => dispatch(updateUser(user))
+  updateUser: user => dispatch(updateUser(user)),
+  receivePortfolioValue: value => dispatch(receivePortfolioValue(value))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PortfolioMain);

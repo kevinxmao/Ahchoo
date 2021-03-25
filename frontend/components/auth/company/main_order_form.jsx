@@ -9,6 +9,7 @@ class OrderForm extends React.Component {
             shares: "",
             isHolding: false,
             inWishLists: false,
+            mode: "buy"
         }
     }
 
@@ -26,19 +27,27 @@ class OrderForm extends React.Component {
 
     }
 
+    selectMode(mode) {
+      if (this.state.mode !== mode) {
+        this.setState({mode: mode});
+        console.log(mode)
+      }
+    }
+
     render() {
         if (this.state.loading) return null;
+        const {isHolding, loading, mode} = this.state;
         return (
           <form action="">
             <header>
               <div className="trade-type-container">
-                <div className="trade-type">
+                <div className={(isHolding && mode === "buy") ? 'trade-type active' : 'trade-type'} onClick={() => this.selectMode("buy")}>
                   <span>
                     {"Buy"} {this.props.ticker}
                   </span>
                 </div>
-                {this.state.isHolding && (
-                  <div className="trade-type">
+                {isHolding && (
+                  <div className={(mode === "sell") ? 'trade-type active' : 'trade-type'} onClick={() => this.selectMode("sell")}>
                     <span>
                       {"Sell"} {this.props.ticker}
                     </span>
@@ -48,7 +57,15 @@ class OrderForm extends React.Component {
               <p>{this.state.isHolding ? "yes" : "no"}</p>
             </header>
             <div className="input-main">
-              <div className="invest-type"></div>
+              <div className="invest-type">
+                <label className="input-label" htmlFor="type">Invest In</label>
+                <div>
+                  <select name="type" id="type">
+                    <option value="dollar">Dollars</option>
+                    <option value="dollar">Shares</option>
+                  </select>
+                </div>
+              </div>
               <div className="invest-shares"></div>
               <div className="market-price"></div>
               <div className="calc-cost"></div>
