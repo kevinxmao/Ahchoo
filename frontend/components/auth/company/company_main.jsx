@@ -123,9 +123,6 @@ class CompanyMain extends React.Component {
           </div>
           <div className="chart-range-container"></div>
           <section className="ownership-info">
-              <div>
-                  <p>You own the stock</p>
-              </div>
           </section>
           <section className="company-basic-info">
             <header className="about-header">

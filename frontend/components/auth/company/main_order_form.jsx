@@ -46,22 +46,22 @@ class OrderForm extends React.Component {
         return (
           <div>
             <header>
-              <div className="trade-type-container">
-                <div className={(isHolding && mode === "buy") ? 'trade-type active' : 'trade-type'} onClick={() => this.selectMode("buy")}>
+              <div className="trade-mode-container">
+                <div className={(isHolding && mode === "buy") ? 'trade-mode active' : 'trade-mode'} onClick={() => this.selectMode("buy")}>
                   <span>
                     {"Buy"} {this.props.ticker}
                   </span>
                 </div>
                 {isHolding && (
-                  <div className={(mode === "sell") ? 'trade-type active' : 'trade-type'} onClick={() => this.selectMode("sell")}>
+                  <div className={(mode === "sell") ? 'trade-mode active' : 'trade-mode'} onClick={() => this.selectMode("sell")}>
                     <span>
                       {"Sell"} {this.props.ticker}
                     </span>
                   </div>
                 )}
               </div>
-              <p>{this.state.isHolding ? "yes" : "no"}</p>
             </header>
+            <div className="input-main">
               <div className="invest-type">
                 <label className="input-label" htmlFor="type">Invest In</label>
                 <div>
@@ -71,11 +71,11 @@ class OrderForm extends React.Component {
                   </select>
                 </div>
               </div>
-              <div className="input-main">
+              
               {(mode === "sell" && type === "shares") && <SellSharesForm user={user} holdings={holdings} ticker={ticker} price={price} updateHolding={updateHolding} deleteHolding={deleteHolding} />}
               {(mode === "buy" && type === "shares") && <BuySharesForm user={user} holdings={holdings} isHolding={isHolding} ticker={ticker} price={price} updateHolding={updateHolding} createHolding={createHolding} />}
-              </div>
             </div>
+          </div>
         );
     }
 }
