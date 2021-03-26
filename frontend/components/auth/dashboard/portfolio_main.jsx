@@ -153,6 +153,7 @@ class PortfolioMain extends React.Component {
                 referenceValue={referenceValue}
               />
             </div>
+            {(!data) && <div className="initial-chart"><div></div></div>}
           </div>
           <div className="chart-range-container"></div>
           <BuyingPowerButton user={user} updateUser={updateUser}/>

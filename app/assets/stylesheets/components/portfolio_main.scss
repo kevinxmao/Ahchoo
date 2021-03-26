@@ -18,7 +18,7 @@
 
 .portfolio-value-container {
     width: 676px;
-    height: 350px;
+    // height: 350px;
     margin-bottom: 44px;
     position: relative;
 
@@ -59,9 +59,15 @@
 }
 
 .initial-chart {
-    background-image: url("https://cdn.robinhood.com/assets/generated_assets/6da8e43c2ce2585fa5f4384a506a5eda.svg") left bottom / contain no-repeat;
-    flex: 1 0 auto;
-    height: 676px;
-    width: 196px;
-    display: block;
+    margin-bottom: 50px;
+
+    div {
+        background-image: url("https://cdn.robinhood.com/assets/generated_assets/6da8e43c2ce2585fa5f4384a506a5eda.svg");
+        background-position: left bottom;
+        background-size: contain;
+        background-repeat: no-repeat;
+        height: 300px;
+        width: 670px;
+        display: block;
+    }
 }
