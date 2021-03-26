@@ -29,7 +29,6 @@ class CompanySidebar extends React.Component {
               />
             </div>
             <div className="wishlist-form">
-              <p>Wishlist buttons</p>
             </div>
           </div>
         );

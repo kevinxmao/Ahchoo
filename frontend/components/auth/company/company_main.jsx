@@ -105,7 +105,7 @@ class CompanyMain extends React.Component {
                 <div className="price-change">
                   <span>
                     {change >= 0
-                      ? `+${formatPercent(change)}`
+                      ? `+${formatNumber(change)}`
                       : `-${formatNumber(change)}`}
                   </span>
                 </div>
@@ -127,8 +127,7 @@ class CompanyMain extends React.Component {
             </div>
           </div>
           <div className="chart-range-container"></div>
-          <section className="ownership-info">
-          </section>
+          <section className="ownership-info"></section>
           <section className="company-basic-info">
             <header className="about-header">
               <div>
@@ -153,8 +152,8 @@ class CompanyMain extends React.Component {
         <div className="company-sidebar">
           <div>
             <CompanySidebar
-                ticker={ticker}
-                user={user}
+              ticker={ticker}
+              user={user}
               holdings={holdings}
               price={price}
               createHolding={createHolding}
