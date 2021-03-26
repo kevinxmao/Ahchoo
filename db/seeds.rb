@@ -17,13 +17,14 @@ demo = User.create({email: 'demo@app.com', first_name: 'Demo', last_name: 'User'
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'listings.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
-    if row['Company'].include?('Common Stock')
+    # if row['Company'].include?('Common Stock')
         t = Ticker.new
         t.ticker = row['Ticker']
-        t.company = row['Company'].gsub(/ Common Stock/, "")
+        # t.company = row['Company'].gsub(/ Common Stock/, "")
+        t.company = row['Company']
         t.save
         puts "#{t.ticker}, #{t.company} saved"
-    end
+    # end
 end
 
 # Seed holdings
