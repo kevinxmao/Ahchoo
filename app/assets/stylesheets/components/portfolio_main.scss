@@ -60,6 +60,8 @@
 
 .initial-chart {
     background-image: url("https://cdn.robinhood.com/assets/generated_assets/6da8e43c2ce2585fa5f4384a506a5eda.svg") left bottom / contain no-repeat;
+    flex: 1 0 auto;
     height: 676px;
     width: 196px;
+    display: block;
 }

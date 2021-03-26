@@ -28,7 +28,7 @@ const DashboardChart = ({data, change, portfolioValue, referenceValue}) => {
           isFront={false}
           strokeWidth={2}
         />
-        <Tooltip separator="-" position={{y: -25}}/>
+        <Tooltip separator="-" position={{y: -20}} />
       </LineChart>
     );
 }
