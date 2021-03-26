@@ -20,3 +20,17 @@ export const formatCompanyName = name => {
 export const ownShare = (holdings, ticker) => {
     return holdings.some(holding => holding.ticker === ticker);
 }
+
+export const debounce = (fcn, wait) => {
+  let timeout;
+
+  return function debouncedFcn(...args) {
+    const later = () => {
+      timeout = null;
+      fcn(...args);
+    }
+
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait)
+  };
+}

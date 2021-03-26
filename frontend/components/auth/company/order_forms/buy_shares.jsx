@@ -29,7 +29,7 @@ class BuySharesForm extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.user.funds !== this.props.user.funds || prevProps.user.ticker !== this.props.user.ticker) {
-            this.setState({ holdings: this.props.holdings });
+            this.setState({ holdings: this.props.holdings, estimatedCost: 0.00 });
         }
     }
 

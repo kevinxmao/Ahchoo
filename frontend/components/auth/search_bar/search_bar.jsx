@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/pro-regular-svg-icons";
 import { searchTicker } from "../../../util/companies/data_api_util";
 import SearchResultsList from "./search_result_index";
+import { debounce } from "../../../util/util_functions";
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class SearchBar extends React.Component {
     // this.loadData = this.loadData.bind(this);
     this.globalClickListener = this.globalClickListener.bind(this);
     this.expandDropdown = this.expandDropdown.bind(this);
+    this.search = debounce(this.search.bind(this), 150);
     this.search = this.search.bind(this);
   }
 
@@ -61,8 +63,10 @@ class SearchBar extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    console.log(this.state.tickers);
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.location.pathname !== this.props.location.pathname) {
+      this.setState({searchTerm: ""})
+    }
   }
 
   handleChange(e) {

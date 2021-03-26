@@ -3,6 +3,7 @@ import { fetchSingleQuote } from "../../../util/companies/data_api_util";
 import { formatCompanyName, formatNumber, formatPercent } from "../../../util/util_functions";
 import CompanyChart from "./company_chart";
 import CompanySidebar from "./company_sidebar";
+import LoadingPage from "../../loading_page";
 
 class CompanyMain extends React.Component {
   constructor(props) {
@@ -86,7 +87,7 @@ class CompanyMain extends React.Component {
   }
 
   render() {
-    if (this.state.loading) return null;
+    if (this.state.loading) return <LoadingPage />;
     const {price, companyInfo, change, percentChange, chartData, referenceValue} = this.state;
     const {user, ticker, holdings, createHolding, deleteHolding, updateHolding, fetchUser} = this.props;
     return (

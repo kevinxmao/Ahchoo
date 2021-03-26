@@ -4,6 +4,7 @@ import DashboardSidebar from './dashboard_sidebar';
 import { fetchAllQuotes } from '../../../util/companies/data_api_util';
 import DashboardChart from './dashboard_chart';
 import BuyingPowerButton from './buying_power';
+import LoadingPage from '../../loading_page';
 
 class PortfolioMain extends React.Component {
   constructor(props) {
@@ -116,7 +117,7 @@ class PortfolioMain extends React.Component {
   }
 
   render() {
-    if (this.state.loading) return null;
+    if (this.state.loading) return <LoadingPage />;
     const {portfolioValue, change, percentChange, data, chartData, referenceValue} = this.state;
     const { user, holdings, updateUser } = this.props;
     return (
