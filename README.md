@@ -1,5 +1,5 @@
 # Ahchoo 
-[Link to live site](http://ahchoo.herokuapp.com)
+[Link to live site](https://ahchoo.herokuapp.com)
 
 ## Intro
 Ahchoo is a clone of the popular Robinhood trading webapp. Ahchoo allows users to simulate buying and selling assets listed on NYSE and NASDAQ using live data prpvided by a third-party API. Users can sign up, log in, add funds, search and trade on Ahchoo.
