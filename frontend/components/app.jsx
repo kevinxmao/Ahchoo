@@ -11,9 +11,11 @@ import AuthPage from "./auth/auth_page";
 import AuthNavContainer from "./auth/navbar/auth_nav_container"
 import CompanyMainContainer from './auth/company/company_main_container';
 import CompanyPage from "./auth/company/company_page";
+import Modal from './modal/modal';
 
 const App = () => (
     <div>
+        <Modal />
         <Switch>
             <AuthRoute exact path='/' component={Splash} />
             <AuthRoute path='/login' component={LoginPage} />

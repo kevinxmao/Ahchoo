@@ -2,6 +2,8 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import { openModal } from '../../actions/modal_actions';
+import { connect } from 'react-redux';
 class SplashNav extends React.Component {
     constructor(props) {
         super(props);
@@ -22,7 +24,7 @@ class SplashNav extends React.Component {
                   <li><a href="https://github.com/kevinxmao" target="_blank" rel="noopener noreferrer"><span className="splash-icon">
                     <FontAwesomeIcon icon={faGithub} />
                   </span> Github</a></li>
-                        <li><a href="https://kevinxmao.com" target="_blank" rel="noopener noreferrer">About Me</a></li>
+                  <li><a onClick={() => this.props.openModal("aboutMe")}>About Me</a></li>
                     </ul>
                 </div>
             </div>
@@ -50,4 +52,8 @@ class SplashNav extends React.Component {
     }
 }
 
-export default SplashNav;
+const mDTP = dispatch => ({
+  openModal: modal => dispatch(openModal(modal))
+})
+
+export default connect(null, mDTP)(SplashNav);

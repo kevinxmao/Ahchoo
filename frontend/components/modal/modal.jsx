@@ -1,12 +1,14 @@
 import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
+import AboutMe from '../splash/about_me';
 
-const Modal = ({modal, closeModal}) => {
+function Modal({modal, closeModal}) {
     if (!modal) return null;
     let component;
     switch (modal) {
         case "aboutMe":
+            component = <AboutMe />;
             break;
         default:
             return null;
