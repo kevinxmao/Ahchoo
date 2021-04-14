@@ -297,8 +297,13 @@ footer {
     justify-content: space-between;
     color: white;
     padding: 20px 72px;
+    line-height: 20px;
 
     a {
         color: white;
+    }
+
+    .footer-right {
+        text-align: right;
     }
 }

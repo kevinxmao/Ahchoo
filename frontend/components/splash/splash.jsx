@@ -61,7 +61,7 @@ class Splash extends React.Component {
         </div>
         <div className="tech-stack-container">
           <div className="tech-stack">
-            <div className='stack-title'><span>Built with </span></div>
+            <div className='stack-title'><span>Built With</span></div>
             <div className="stack-techs">
               <div className="tech">
                 <img className="tech-logo" src={window.ruby} alt=""/>
@@ -89,13 +89,15 @@ class Splash extends React.Component {
         </div>
         <footer>
           <div className="footer-content">
-            <div className="splash-left">
+            <div className="footer-left">
               <div><span>Kevin Mao</span></div>
               <div><span>Built in New York, NY</span></div>
               <div><a href="mailto:kevinmao3016@gmail.com" rel="noopener noreferrer">kevinmao3016@gmail.com</a></div>
             </div>
-            <div className="splash-right">
+            <div className="footer-right">
+              <div className='date'>April, 2021</div>
               <div><a href="https://github.com/kevinxmao/Ahchoo" target="_blank" rel="noopener noreferrer">How it's Built</a></div>
+              <div><a href="https://kevinxmao.com" target="_blank" rel="noopener noreferrer">Personal Site</a></div>
             </div>
           </div>
         </footer>

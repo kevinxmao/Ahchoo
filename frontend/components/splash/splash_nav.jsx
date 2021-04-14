@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 class SplashNav extends React.Component {
     constructor(props) {
         super(props);
@@ -14,8 +16,12 @@ class SplashNav extends React.Component {
               </Link>
                 <div className="splash-nav-list-container">
                     <ul className="splash-nav-list">
-                        <li><a href="https://www.linkedin.com/in/kevinxmao/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-                        <li><a href="https://github.com/kevinxmao" target="_blank" rel="noopener noreferrer">Github</a></li>
+                  <li><a href="https://www.linkedin.com/in/kevinxmao/" target="_blank" rel="noopener noreferrer"><span className="splash-icon">
+                    <FontAwesomeIcon icon={faLinkedinIn} />
+                  </span> LinkedIn</a></li>
+                  <li><a href="https://github.com/kevinxmao" target="_blank" rel="noopener noreferrer"><span className="splash-icon">
+                    <FontAwesomeIcon icon={faGithub} />
+                  </span> Github</a></li>
                         <li><a href="https://kevinxmao.com" target="_blank" rel="noopener noreferrer">About Me</a></li>
                     </ul>
                 </div>
