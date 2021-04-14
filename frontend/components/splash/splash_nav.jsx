@@ -14,10 +14,9 @@ class SplashNav extends React.Component {
               </Link>
                 <div className="splash-nav-list-container">
                     <ul className="splash-nav-list">
-                        <li>Products</li>
-                        <li>Learn</li>
-                        <li>Support</li>
-                        <li>About</li>
+                        <li><a href="https://www.linkedin.com/in/kevinxmao/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                        <li><a href="https://github.com/kevinxmao" target="_blank" rel="noopener noreferrer">Github</a></li>
+                        <li><a href="https://kevinxmao.com" target="_blank" rel="noopener noreferrer">About Me</a></li>
                     </ul>
                 </div>
             </div>

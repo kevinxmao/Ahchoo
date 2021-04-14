@@ -86,13 +86,13 @@ class NavLinks extends React.Component {
               </a>
             </div>
             <div className="dropdown-misc">
-              <a href="">
+              <a href="https://kevinxmao.com" target="_blank">
                 <span className="icon">
                   <FontAwesomeIcon icon={faRocket} />
                 </span>
                 <span>Personal Site</span>
               </a>
-              <a href="">
+              <a href="mailto:kevinmao3016@gmail.com" rel="noopener noreferrer">
                 <span className="icon">
                   <FontAwesomeIcon icon={faEnvelope} />
                 </span>
