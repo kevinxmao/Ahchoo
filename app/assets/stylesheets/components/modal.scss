@@ -11,10 +11,71 @@
 }
 
 .modal-form-div {
-    position: absolute;
+    position: relative;
+    height: 408px;
+    width: 408px;
+    border-radius: $primary_input_border_radius;
+    background-color: white;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 5px;
     border: 5px solid var(--brown);
+}
+
+.about-me {
+    width: 100%;
+    padding: 36px 0;
+    line-height: 20px;
+
+    .modal-title {
+        margin-bottom: 12px;
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-left: auto;
+
+        button {
+            background: none;
+            border: 0px;
+            padding: 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+            margin-top: -8px;
+            margin-right: -8px;
+            font-size: 24px;
+            color: $neutral_fg3;
+        }
+    }
+    
+    .avatar-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            height: 80px;
+            border-radius: 50%;
+        }
+    }
+
+    .developer {
+        margin-top: 24px;
+        padding: 0 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $neutral_fg2;
+    }
+
+    .description {
+        margin-top: 36px;
+        padding: 0 36px;
+        text-align: justify;
+    }
 }
