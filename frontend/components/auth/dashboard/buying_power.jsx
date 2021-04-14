@@ -1,5 +1,7 @@
 import React from 'react';
 import { formatNumber } from '../../../util/util_functions';
+import { closeModal, openModal } from '../../../actions/modal_actions';
+import { connect } from 'react-redux';
 
 class BuyingPowerButton extends React.Component {
     constructor(props) {
@@ -31,7 +33,7 @@ class BuyingPowerButton extends React.Component {
                   </tbody>
                 </table>
               </div>
-              <button className="deposit-button">Deposit Funds</button>
+              <button className="deposit-button" onClick={() => this.props.openModal('deposit')}>Deposit Funds</button>
             </div>
             <div className="form-info">
               <div>
@@ -66,4 +68,9 @@ class BuyingPowerButton extends React.Component {
     }
 }
 
-export default BuyingPowerButton;
+const mDTP = dispatch => ({
+  openModal: (modal) => dispatch(openModal(modal)),
+  closeModal: () => dispatch(closeModal())
+})
+
+export default connect(null, mDTP)(BuyingPowerButton);

@@ -59,7 +59,7 @@
             flex: 1 1 0%;
             margin-top: -18px;
 
-            .deposit-button {
+            button.deposit-button {
                 margin-bottom: 8px;
                 margin-top: 18px;
                 text-align: center;
@@ -67,6 +67,17 @@
                 height: 48px;
                 border: none;
                 border-radius: $primary_input_border_radius;
+                background-color: $primary_base;
+                color: white;
+                font-weight: 700;
+            }
+
+            button.deposit-button:hover {
+                background-color: $primary_hover;
+            }
+
+            button.deposit-button:focus {
+                background-color: $primary_pressed;
             }
 
             .table {

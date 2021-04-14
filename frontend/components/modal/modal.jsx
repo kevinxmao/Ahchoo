@@ -2,6 +2,7 @@ import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import AboutMe from '../splash/about_me';
+import DepositForm from '../auth/dashboard/deposit_form';
 
 function Modal({modal, closeModal}) {
     if (!modal) return null;
@@ -9,6 +10,9 @@ function Modal({modal, closeModal}) {
     switch (modal) {
         case "aboutMe":
             component = <AboutMe />;
+            break;
+        case "deposit":
+            component = <DepositForm />
             break;
         default:
             return null;
