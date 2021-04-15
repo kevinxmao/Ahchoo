@@ -61,7 +61,7 @@ class Splash extends React.Component {
         </div>
         <div className="tech-stack-container">
           <div className="tech-stack">
-            <div className='stack-title'><span>Built With</span></div>
+            <div className='stack-title'><span>Built With Following Technologies</span></div>
             <div className="stack-techs">
               <div className="tech">
                 <img className="tech-logo" src={window.ruby} alt=""/>
@@ -85,20 +85,27 @@ class Splash extends React.Component {
               </div>
             </div>
           </div>
-
         </div>
-        <footer>
+        {/* <div className="features-container">
+          <div className="features">
+            <header className="features-header">
+              <span>Features At a Glance</span>
+              <span>More features to be added, use demo login for a full experience</span>
+            </header>
+          </div>
+        </div> */}
+        <footer className="splash-footer">
           <div className="footer-content">
-            <div className="footer-left">
-              <div><span>Kevin Mao</span></div>
-              <div><span>Built in New York, NY</span></div>
-              <div><a href="mailto:kevinmao3016@gmail.com" rel="noopener noreferrer">kevinmao3016@gmail.com</a></div>
-            </div>
-            <div className="footer-right">
-              <div className='date'>April, 2021</div>
-              <div><a href="https://github.com/kevinxmao/Ahchoo" target="_blank" rel="noopener noreferrer">How it's Built</a></div>
-              <div><a href="https://kevinxmao.com" target="_blank" rel="noopener noreferrer">Personal Site</a></div>
-            </div>
+            <ul className="footer-left">
+              <li><span>Kevin Mao</span></li>
+              <li><span>Built in New York, NY</span></li>
+              <li><a href="mailto:kevinmao3016@gmail.com" rel="noopener noreferrer">kevinmao3016@gmail.com</a></li>
+            </ul>
+            <ul className="footer-right">
+              <li className='date'>April, 2021</li>
+              <li><a href="https://github.com/kevinxmao/Ahchoo" target="_blank" rel="noopener noreferrer">How it's Built</a></li>
+              <li><a href="https://kevinxmao.com" target="_blank" rel="noopener noreferrer">Personal Site</a></li>
+            </ul>
           </div>
         </footer>
       </div>

@@ -91,79 +91,85 @@ class CompanyMain extends React.Component {
     const {price, companyInfo, change, percentChange, chartData, referenceValue} = this.state;
     const {user, ticker, holdings, createHolding, deleteHolding, updateHolding, fetchUser} = this.props;
     return (
-      <>
-        <div className="company-main">
-          <div className="company-price-container">
-            <div className="company-name">
-              <h1>{formatCompanyName(companyInfo.companyName)}</h1>
-            </div>
-            <header className="company-price">
-              <div className="price-value">
-                <h1>{`${formatNumber(price)}`}</h1>
-              </div>
-              <div className="price-change-container">
-                <div className="price-change">
-                  <span>
-                    {change >= 0
-                      ? `+${formatNumber(change)}`
-                      : `-${formatNumber(change)}`}
-                  </span>
-                </div>
-                <div className="price-percent-change">
-                  <span>
-                    {percentChange >= 0
-                      ? `(+${formatPercent(percentChange)})`
-                      : `(-${formatPercent(percentChange)})`}
-                  </span>
-                </div>
-              </div>
-            </header>
-            <div className="company-chart-container">
-              <CompanyChart
-                data={chartData}
-                change={change}
-                referenceValue={referenceValue}
-              />
-            </div>
-          </div>
-          <div className="chart-range-container"></div>
-          <section className="ownership-info"></section>
-          <section className="company-basic-info">
-            <header className="about-header">
-              <div>
-                <h2>About</h2>
-                <button>
-                  <span>Show More</span>
-                </button>
-              </div>
-            </header>
-            <div className="company-description">
-              <p>
-                {companyInfo.description}{" "}
-                <button>
-                  <div className="read-more">
-                    <span>Read More</span>
+      <div id="_company">
+        <div className="auth-main">
+          <div className="company-main-content">
+            <div className="company-container">
+              <div className="company-main">
+                <div className="company-price-container">
+                  <div className="company-name">
+                    <h1>{formatCompanyName(companyInfo.companyName)}</h1>
                   </div>
-                </button>
-              </p>
+                  <header className="company-price">
+                    <div className="price-value">
+                      <h1>{`${formatNumber(price)}`}</h1>
+                    </div>
+                    <div className="price-change-container">
+                      <div className="price-change">
+                        <span>
+                          {change >= 0
+                            ? `+${formatNumber(change)}`
+                            : `-${formatNumber(change)}`}
+                        </span>
+                      </div>
+                      <div className="price-percent-change">
+                        <span>
+                          {percentChange >= 0
+                            ? `(+${formatPercent(percentChange)})`
+                            : `(-${formatPercent(percentChange)})`}
+                        </span>
+                      </div>
+                    </div>
+                  </header>
+                  <div className="company-chart-container">
+                    <CompanyChart
+                      data={chartData}
+                      change={change}
+                      referenceValue={referenceValue}
+                    />
+                  </div>
+                </div>
+                <div className="chart-range-container"></div>
+                <section className="ownership-info"></section>
+                <section className="company-basic-info">
+                  <header className="about-header">
+                    <div>
+                      <h2>About</h2>
+                      <button>
+                        <span>Show More</span>
+                      </button>
+                    </div>
+                  </header>
+                  <div className="company-description">
+                    <p>
+                      {companyInfo.description}{" "}
+                      <button>
+                        <div className="read-more">
+                          <span>Read More</span>
+                        </div>
+                      </button>
+                    </p>
+                  </div>
+                </section>
+              </div>
+              <div className="company-sidebar">
+                <div>
+                  <CompanySidebar
+                    ticker={ticker}
+                    user={user}
+                    holdings={holdings}
+                    price={price}
+                    createHolding={createHolding}
+                    updateHolding={updateHolding}
+                    deleteHolding={deleteHolding}
+                    fetchUser={fetchUser}
+                  />
+                </div>
+              </div>
             </div>
-          </section>
-        </div>
-        <div className="company-sidebar">
-          <div>
-            <CompanySidebar
-              ticker={ticker}
-              user={user}
-              holdings={holdings}
-              price={price}
-              createHolding={createHolding}
-              updateHolding={updateHolding}
-              deleteHolding={deleteHolding}
-              fetchUser={fetchUser}
-            />
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }

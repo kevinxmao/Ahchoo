@@ -252,12 +252,17 @@
     line-height: 40px;
 }
 
-.tech-stack{
+.tech-stack-container {
+    border-bottom: 1px solid black;
+}
+
+.tech-stack {
     width: 1280px;
     margin: 50px auto;
     padding-left: 37px;
     padding-right: 37px;
     padding-bottom: 20px;
+    text-align: center;
 
     .stack-techs {
         display: flex;
@@ -279,12 +284,11 @@
 
     .tech-logo {
         width: 65px;
-        height: 65px;
         margin-bottom: 20px;
     }
 }
 
-footer {
+footer.splash-footer {
     background-color: black;
 }
 
@@ -298,12 +302,32 @@ footer {
     color: white;
     padding: 20px 72px;
     line-height: 20px;
+    font-size: 18px;
+    font-weight: 700;
+
+    .footer-left, .footer-right {
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        margin-left: 9px;
+        margin-right: 9px;
+        width: 186px;
+
+        li {
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+    }
+
+    .footer-left {
+        align-items: flex-start;
+    }
 
     a {
         color: white;
     }
 
     .footer-right {
-        text-align: right;
+        align-items: flex-end;
     }
 }

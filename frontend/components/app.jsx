@@ -23,15 +23,7 @@ const App = () => (
         </Switch>
         <ProtectedRoute path="/auth" component={AuthNavContainer} />
         <ProtectedRoute path="/auth/home" component={AuthPage} />
-        <div id="_company">
-            <div className="auth-main">
-                <div className="company-main-content">
-                    <div className="company-container">
-                        <ProtectedRoute path="/auth/tickers/:id" component={CompanyMainContainer} />
-                    </div>
-                </div>
-            </div>
-        </div>
+        <ProtectedRoute path="/auth/tickers/:id" component={CompanyMainContainer} />
     </div>
 )
 
