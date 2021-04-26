@@ -39,22 +39,33 @@ function DepositForm(props) {
     }
 
     return (
-        <div className="deposit-form">
-            <header className="modal-title">
-                <div>
-                    <span>Deposit Funds</span>
-                </div>
-                <button onClick={() => props.closeModal()}>
-                    <span><FontAwesomeIcon icon={faTimes} /></span>
-                </button>
-            </header>
-            <form >
-                <label>Amount
-                    <input type="text" required autoComplete="off" step="1" onChange={e => handleAmount(e.target.value)} value={funds} placeholder="$0.00"/>
-                </label>
-                <button onClick={handleSubmit}>Submit</button>
-            </form>
-        </div>
+        <>
+            <button onClick={() => props.closeModal()} className="close-btn">
+                <span><FontAwesomeIcon icon={faTimes} /></span>
+            </button>
+            <div className="deposit-form">
+                <header className="modal-title">
+                    <div>
+                        <span>Deposit Funds</span>
+                    </div>
+                </header>
+                <form >
+                    <label>From
+                        <div>
+                            <select name="bank" disabled className="deposit-input">
+                                <option value="imgBank">Imaginary Bank</option>
+                            </select>
+                        </div>
+                    </label>
+                    <label>Amount
+                        <div>
+                            <input className="deposit-input" type="text" required autoComplete="off" step="1" onChange={e => handleAmount(e.target.value)} value={funds} placeholder="$0.00" />
+                        </div>
+                    </label>
+                    <button onClick={handleSubmit}><span>Submit</span></button>
+                </form>
+            </div>
+        </>
     )
 }
 
