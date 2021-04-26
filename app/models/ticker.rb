@@ -14,4 +14,8 @@ class Ticker < ApplicationRecord
     has_many :holdings
 
     has_many :holders, through: :holdings, source: :user
+
+    has_many :watchlist_joins
+
+    has_many :watchlists, through: :watchlist_joins, source: :watchlist
 end

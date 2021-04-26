@@ -6,9 +6,9 @@
 #  user_id    :integer          not null
 #  ticker_id  :integer          not null
 #  quantity   :float            not null
+#  avg_price  :float            not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  avg_price  :float
 #
 class Holding < ApplicationRecord
     validates :user_id, :ticker_id, :quantity, :avg_price, presence: true

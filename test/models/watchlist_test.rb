@@ -1,18 +1,16 @@
 # == Schema Information
 #
-# Table name: holdings
+# Table name: watchlists
 #
 #  id         :bigint           not null, primary key
-#  user_id    :integer          not null
-#  ticker_id  :integer          not null
-#  quantity   :float            not null
-#  avg_price  :float            not null
+#  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :integer          not null
 #
 require 'test_helper'
 
-class HoldingTest < ActiveSupport::TestCase
+class WatchlistTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

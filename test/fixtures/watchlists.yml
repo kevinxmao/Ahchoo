@@ -1,14 +1,12 @@
 # == Schema Information
 #
-# Table name: holdings
+# Table name: watchlists
 #
 #  id         :bigint           not null, primary key
-#  user_id    :integer          not null
-#  ticker_id  :integer          not null
-#  quantity   :float            not null
-#  avg_price  :float            not null
+#  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :integer          not null
 #
 
 # This model initially had no columns defined. If you add columns to the
