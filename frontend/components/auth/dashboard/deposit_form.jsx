@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/pro-regular-svg-icons';
-import { formatNumber } from '../../../util/util_functions';
+// import { formatNumber } from '../../../util/util_functions';
 import { closeModal } from '../../../actions/modal_actions';
 import { connect } from 'react-redux';
+import { updateUser } from '../../../actions/users_actions';
 
 function DepositForm(props) {
     const [funds, setFunds] = useState("");
@@ -26,11 +27,17 @@ function DepositForm(props) {
         setFunds(str);
     }
 
+    function handleSubmit() {
+        const newFunds = props.user.funds + parseFloat(funds.split('$')[1]);
+        const newUser = Object.assign({}, props.user, {funds: newFunds});
+        props.updateUser(newUser).then(props.closeModal());
+    }
+
     return (
         <div className="deposit-form">
             <header className="modal-title">
                 <div>
-                    <span>Despoit Funds</span>
+                    <span>Deposit Funds</span>
                 </div>
                 <button onClick={() => props.closeModal()}>
                     <span><FontAwesomeIcon icon={faTimes} /></span>
@@ -40,13 +47,19 @@ function DepositForm(props) {
                 <label>Amount
                     <input type="text" required autoComplete="off" step="1" onChange={e => handleAmount(e.target.value)} value={funds} placeholder="$0.00"/>
                 </label>
+                <button onClick={handleSubmit}>Submit</button>
             </form>
         </div>
     )
 }
 
-const mDTP = dispatch => ({
-    closeModal: () => dispatch(closeModal())
+const mSTP = state => ({
+    user: Object.values(state.entities.users)[0],
 })
 
-export default connect(null, mDTP)(DepositForm);
+const mDTP = dispatch => ({
+    closeModal: () => dispatch(closeModal()),
+    updateUser: (user) => dispatch(updateUser(user))
+})
+
+export default connect(mSTP, mDTP)(DepositForm);

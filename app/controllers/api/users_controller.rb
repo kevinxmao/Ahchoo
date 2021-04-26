@@ -21,10 +21,10 @@ class Api::UsersController < ApplicationController
     end
 
     def update
-        @usee =  find_by(id: params[:id])
+        @user =  User.find_by(id: params[:id])
 
         if @user.update(user_params)
-            render :show
+            render 'api/users/show'
         else
             render json: @user.errors.full_messages, status: 422
         end
@@ -34,6 +34,6 @@ class Api::UsersController < ApplicationController
 
     def user_params
         params.require(:user).transform_keys(&:underscore)
-            .permit(:email, :first_name, :last_name, :funds, :password)
+            .permit(:id, :email, :first_name, :last_name, :funds, :password)
     end
 end
