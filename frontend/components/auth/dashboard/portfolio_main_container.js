@@ -7,6 +7,7 @@ import { receivePortfolioValue } from "../../../actions/session_actions";
 const mapStateToProps = (state) => ({
   user: Object.values(state.entities.users)[0],
   holdings: Object.values(state.entities.holdings),
+  portfolioValue: state.session.portfolioValue
 });
 
 const mapDispatchToProps = (dispatch) => ({

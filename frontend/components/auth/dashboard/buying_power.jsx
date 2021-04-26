@@ -68,6 +68,10 @@ class BuyingPowerButton extends React.Component {
     }
 }
 
+const mSTP = state => ({
+  modalStatus: state.ui.modal
+})
+
 const mDTP = dispatch => ({
   openModal: (modal) => dispatch(openModal(modal)),
   closeModal: () => dispatch(closeModal())

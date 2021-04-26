@@ -27,6 +27,7 @@ class PortfolioMain extends React.Component {
   }
 
   componentDidMount() {
+    this.setState({ portfolioValue: this.props.portfolioValue });
     this.props
       .fetchUser(this.props.user.id)
       .then(() => {
@@ -42,8 +43,9 @@ class PortfolioMain extends React.Component {
       )
   }
 
-  componentDidUpdate() {
-    window.localStorage.setItem("portfolioValue", `${this.state.portfolioValue}`);
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.portfolioValue !== this.props.portfolioValue) this.setState({portfolioValue: this.props.portfolioValue});
+    // window.localStorage.setItem("portfolioValue", `${this.state.portfolioValue}`);
   }
 
   calculatePortfolioValue() {
@@ -55,7 +57,7 @@ class PortfolioMain extends React.Component {
     }
     this.setState({ portfolioValue: sum }, this.calculateChange);
     this.props.receivePortfolioValue(sum);
-    window.localStorage.setItem("portfolioValue", `${sum}`);
+    // window.localStorage.setItem("portfolioValue", `${sum}`);
   }
 
   calculateChange() {
