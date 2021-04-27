@@ -1,4 +1,4 @@
-import * as HoldingsAPIUtil from '../util/holdings/holdings_api_util'
+import * as HoldingsAPIUtil from '../util/holdings/holdings_api_util';
 
 export const RECEIVE_HOLDINGS = 'RECEIVE_HOLDINGS';
 export const RECEIVE_HOLDING = 'RECEIVE_HOLDING';
