@@ -51,7 +51,7 @@ class Api::WatchlistsController < ApplicationController
             
             render 'api/watchlists/show'
         else
-
+            render json: @watchlist.errors.full_messages, status: 404
         end
 
     end
