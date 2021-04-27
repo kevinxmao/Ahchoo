@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :create, :update]
     resources :holdings, only: [:index, :show, :create, :update, :destroy]
     resources :tickers, only: [:index, :show]
+    resources :watchlists, only: [:index, :show, :create, :update, :destroy]
   end
 end
