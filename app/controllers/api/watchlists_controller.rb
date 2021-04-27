@@ -1,6 +1,6 @@
 class Api::WatchlistsController < ApplicationController
     def index
-        @watchlists = Watchlist.includes(:ticker).where(user_id: current_user.id)
+        @watchlists = Watchlist.includes(:tickers).where(user_id: current_user.id)
 
         if @watchlists
             render 'api/watchlists/index'
@@ -10,7 +10,7 @@ class Api::WatchlistsController < ApplicationController
     end
 
     def show
-        @watchlist = current_user.watchlists.includes(:ticker).find_by(id: params[:id])
+        @watchlist = current_user.watchlists.includes(:tickers).find_by(id: params[:id])
 
         if @watchlist
             render 'api/watchlists/show'
@@ -25,12 +25,15 @@ class Api::WatchlistsController < ApplicationController
         if @watchlist.save
             render 'api/watchlists/show'
         else
-            render json: @watchlist.full_messages, status: 401
+            render json: @watchlist.errors.full_messages, status: 401
         end
     end
 
     def update
-        
+        @watchlist = current_user.watchlists.includes(:ticker).find_by(id: params[:id])
+        if @watchlist.update(watchlist_params)
+            
+        end
     end
 
     def destroy
