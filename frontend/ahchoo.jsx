@@ -38,11 +38,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // window.updateHolding = HoldingsActions.updateHolding;
     // window.fetchSingleQuote = fetchSingleQuote;
     // window.fetchAllQuotes = fetchAllQuotes;
-    window.fetchWatchlist = fetchWatchlist;
-    window.fetchWatchlists = fetchWatchlists;
-    window.createWatchlist = createWatchlist;
-    window.updateWatchlist = updateWatchlist;
-    window.deleteWatchlist = deleteWatchlist;
+    // window.fetchWatchlist = fetchWatchlist;
+    // window.fetchWatchlists = fetchWatchlists;
+    // window.createWatchlist = createWatchlist;
+    // window.updateWatchlist = updateWatchlist;
+    // window.deleteWatchlist = deleteWatchlist;
 
     ReactDOM.render(<Root store={store}/>, root);
 });
