@@ -10,6 +10,8 @@ require 'csv'
 
 User.delete_all
 Ticker.delete_all
+Watchlist.delete_all
+WatchlistJoin.delete_all
 
 demo = User.create({email: 'demo@app.com', first_name: 'Demo', last_name: 'User', password: 'demouser'});
 
