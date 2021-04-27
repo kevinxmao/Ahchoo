@@ -32,24 +32,27 @@ class Api::WatchlistsController < ApplicationController
     def update
         @watchlist = current_user.watchlists.includes(:tickers).find_by(id: params[:id])
         if @watchlist.update(watchlist_params)
+            params[:watchlist][:tickers] ||= [];
+
             if @watchlist.tickers.length < params[:watchlist][:tickers].length
                 prev_tickers = @watchlist.tickers.map{|ticker| ticker[:id].to_i}
-                new_tickers = params[:watchlist][:tickers].map{|ticker| ticker[:id].to_i}
+                new_tickers = params[:watchlist][:tickers].map{|ticker| JSON.parse(ticker)['id'].to_i}
 
                 ticker_id_to_add = (new_tickers - prev_tickers).first
                 
                 WatchlistJoin.create(watchlist_id: params[:id], ticker_id: ticker_id_to_add)
+                # render 'api/watchlists/show'
 
             elsif @watchlist.tickers.length > params[:watchlist][:tickers].length
                 prev_tickers = @watchlist.tickers.map{|ticker| ticker[:id].to_i}
-                new_tickers = params[:watchlist][:tickers].map{|ticker| ticker[:id].to_i}
+                new_tickers = params[:watchlist][:tickers].map{|ticker| JSON.parse(ticker)['id'].to_i}
 
                 ticker_id_to_destroy = (prev_tickers - new_tickers).first
                 ticker_to_destroy = @watchlist.watchlist_joins.find_by(ticker_id: ticker_id_to_destroy)
                 ticker_to_destroy.destroy
+                # render 'api/watchlists/show'
             end
             
-            render 'api/watchlists/show'
         else
             render json: @watchlist.errors.full_messages, status: 404
         end
