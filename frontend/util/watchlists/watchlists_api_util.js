@@ -1,3 +1,10 @@
+export const fetchWatchlists = () => (
+    $.ajax({
+        method: 'GET',
+        url: 'api/watchlists'
+    })
+)
+
 export const fetchWatchlist = watchlistId => (
     $.ajax({
         method: 'GET',

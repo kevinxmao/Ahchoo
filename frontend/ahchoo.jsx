@@ -7,7 +7,7 @@ import configureStore from './store/store';
 import { login, logout } from './actions/session_actions';
 import * as HoldingsActions from './actions/holdings_action';
 import { fetchSingleQuote, fetchAllQuotes } from "./util/companies/data_api_util";
-import { fetchWatchlist, createWatchlist, updateWatchlist, deleteWatchlist } from './util/watchlists/watchlists_api_util';
+import { fetchWatchlist, createWatchlist, updateWatchlist, deleteWatchlist, fetchWatchlists } from './util/watchlists/watchlists_api_util';
 
 document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById("root");
@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // window.fetchSingleQuote = fetchSingleQuote;
     // window.fetchAllQuotes = fetchAllQuotes;
     window.fetchWatchlist = fetchWatchlist;
+    window.fetchWatchlists = fetchWatchlists;
     window.createWatchlist = createWatchlist;
     window.updateWatchlist = updateWatchlist;
     window.deleteWatchlist = deleteWatchlist;
