@@ -21,6 +21,8 @@ class User < ApplicationRecord
 
     has_many :holdings, dependent: :destroy
 
+    has_many :watchlists, dependent: :destroy
+
     has_many :owned_tickers, through: :holdings, source: :ticker
 
     attr_reader :password
