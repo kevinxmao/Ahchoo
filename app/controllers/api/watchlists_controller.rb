@@ -20,7 +20,7 @@ class Api::WatchlistsController < ApplicationController
     end
 
     def create
-        @watchlist = Watchlist.create(watchlist_params)
+        @watchlist = Watchlist.new(watchlist_params)
 
         if @watchlist.save
             render 'api/watchlists/show'
@@ -30,10 +30,30 @@ class Api::WatchlistsController < ApplicationController
     end
 
     def update
-        @watchlist = current_user.watchlists.includes(:ticker).find_by(id: params[:id])
+        @watchlist = current_user.watchlists.includes(:tickers).find_by(id: params[:id])
         if @watchlist.update(watchlist_params)
+            if @watchlist.tickers.length < params[:watchlist][:tickers].length
+                prev_tickers = @watchlist.tickers.map{|ticker| ticker[:id].to_i}
+                new_tickers = params[:watchlist][:tickers].map{|ticker| ticker[:id].to_i}
+
+                ticker_id_to_add = (new_tickers - prev_tickers).first
+                
+                WatchlistJoin.create(watchlist_id: params[:id], ticker_id: ticker_id_to_add)
+
+            elsif @watchlist.tickers.length > params[:watchlist][:tickers].length
+                prev_tickers = @watchlist.tickers.map{|ticker| ticker[:id].to_i}
+                new_tickers = params[:watchlist][:tickers].map{|ticker| ticker[:id].to_i}
+
+                ticker_id_to_destroy = (prev_tickers - new_tickers).first
+                ticker_to_destroy = @watchlist.watchlist_joins.find_by(ticker_id: ticker_id_to_destroy)
+                ticker_to_destroy.destroy
+            end
             
+            render 'api/watchlists/show'
+        else
+
         end
+
     end
 
     def destroy
