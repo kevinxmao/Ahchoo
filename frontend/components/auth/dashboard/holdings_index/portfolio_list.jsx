@@ -20,9 +20,9 @@ class PortfolioList extends React.Component {
                 <header>
                     <span>Stocks</span>
                 </header>
-                <div className="list-items">
-                    {list}
-                </div>
+            </div>
+            <div className="list-items">
+                {list}
             </div>
           </div>
         );

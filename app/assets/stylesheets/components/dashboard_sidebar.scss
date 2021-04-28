@@ -20,22 +20,6 @@
         overflow: hidden auto;
         height: 100%;
 
-        .sidebar-title {
-            height: 52px;
-            width: 100%;
-            position: absolute;
-            font-weight: bold;
-
-            header {
-                padding: 4px 24px 0 24px;
-                height: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                border-bottom: 1px solid $neutral_border_color;
-            }
-        }
-
         .list-items:not(:first-child) {
             height: auto;
             display: block;
@@ -98,5 +82,21 @@
                 }
             }
         }
+    }
+}
+
+.sidebar-title {
+    height: 52px;
+    width: 100%;
+    position: absolute;
+    font-weight: bold;
+
+    header {
+        padding: 4px 24px 0 24px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid $neutral_border_color;
     }
 }
