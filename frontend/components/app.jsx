@@ -24,6 +24,8 @@ const App = () => (
         <ProtectedRoute path="/auth" component={AuthNavContainer} />
         <ProtectedRoute path="/auth/home" component={AuthPage} />
         <ProtectedRoute path="/auth/tickers/:id" component={CompanyMainContainer} />
+        {/* wishlists */}
+        <ProtectedRoute path="/auth/wishlists/:id" />
     </div>
 )
 
