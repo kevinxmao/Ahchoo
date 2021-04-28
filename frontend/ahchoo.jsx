@@ -4,10 +4,12 @@ import Root from './components/root';
 import configureStore from './store/store';
 
 // test import
-import { login, logout } from './actions/session_actions';
-import * as HoldingsActions from './actions/holdings_action';
-import { fetchSingleQuote, fetchAllQuotes } from "./util/companies/data_api_util";
-import { fetchWatchlist, createWatchlist, updateWatchlist, deleteWatchlist, fetchWatchlists } from './util/watchlists/watchlists_api_util';
+// import { login, logout } from './actions/session_actions';
+// import * as HoldingsActions from './actions/holdings_action';
+// import { fetchSingleQuote, fetchAllQuotes } from "./util/companies/data_api_util";
+// import * as WatchlistsActions from './actions/watchlists_actions';
+// import { fetchWatchlist, createWatchlist, updateWatchlist, deleteWatchlist, fetchWatchlists } from './util/watchlists/watchlists_api_util';
+// import { clearErrors } from './actions/session_actions';
 
 document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById("root");
@@ -38,11 +40,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // window.updateHolding = HoldingsActions.updateHolding;
     // window.fetchSingleQuote = fetchSingleQuote;
     // window.fetchAllQuotes = fetchAllQuotes;
-    window.fetchWatchlist = fetchWatchlist;
-    window.fetchWatchlists = fetchWatchlists;
-    window.createWatchlist = createWatchlist;
-    window.updateWatchlist = updateWatchlist;
-    window.deleteWatchlist = deleteWatchlist;
+    // window.clearErrors = clearErrors;
+
+    // window.fetchWatchlist = WatchlistsActions.fetchWatchlist;
+    // window.fetchWatchlists = WatchlistsActions.fetchWatchlists;
+    // window.createWatchlist = WatchlistsActions.createWatchlist;
+    // window.updateWatchlist = WatchlistsActions.updateWatchlist;
+    // window.deleteWatchlist = WatchlistsActions.deleteWatchlist;
 
     ReactDOM.render(<Root store={store}/>, root);
 });

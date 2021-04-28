@@ -11,7 +11,7 @@ export const receiveWatchlists = watchlists => ({
 })
 
 export const receiveWatchlist = watchlist => ({
-    type: REMOVE_WATCHLIST,
+    type: RECEIVE_WATCHLIST,
     watchlist
 })
 
@@ -25,15 +25,15 @@ export const receiveWatchlistErrors = (errors) => ({
     watchlist: errors
 })
 
-export const fetchWatchlists = () => (
+export const fetchWatchlists = () => dispatch => (
     WatchlistsAPIUtil.fetchWatchlists().then(
-        watchlists => dispatchEvent(receiveWatchlists(watchlists))
+        watchlists => dispatch(receiveWatchlists(watchlists))
     )
 )
 
-export const fetchWatchlist = (id) => (
+export const fetchWatchlist = (id) => dispatch => (
     WatchlistsAPIUtil.fetchWatchlist(id).then(
-        watchlist => dispatchEvent(receiveWatchlist(watchlist))
+        watchlist => dispatch(receiveWatchlist(watchlist))
     )
 )
 
@@ -51,7 +51,7 @@ export const updateWatchlist = watchlist => dispatch => (
     )
 )
 
-export const removeWatchlist = watchlistId => dispatch => (
+export const deleteWatchlist = watchlistId => dispatch => (
     WatchlistsAPIUtil.deleteWatchlist(watchlistId).then(
         () => dispatch(removeWatchlist(watchlistId))
     )

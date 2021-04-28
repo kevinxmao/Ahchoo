@@ -7,7 +7,7 @@ const watchlistsReducer = (state={}, action) => {
         case RECEIVE_WATCHLISTS:
             if (action.watchlists) return action.watchlists;
         case RECEIVE_WATCHLIST:
-            return Object.assign({}, newState, {[ation.watchlist.id]: action.watchlist});
+            return Object.assign({}, newState, {[action.watchlist.id]: action.watchlist});
         case REMOVE_WATCHLIST:
             delete newState[action.watchlistId];
             return newState;
