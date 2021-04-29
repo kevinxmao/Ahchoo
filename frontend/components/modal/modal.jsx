@@ -14,6 +14,9 @@ function Modal({modal, closeModal}) {
         case "deposit":
             component = <DepositForm />
             break;
+        case 'watchlistName':
+            console.log('change name');
+            break;
         default:
             return null;
     }
