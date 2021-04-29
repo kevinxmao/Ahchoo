@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from '@fortawesome/pro-regular-svg-icons';
 
-function WatchlistIndex(props) {
+export default function WatchlistIndex(props) {
     useEffect(() => {
-        
-    })
+        props.fetchWatchlists().then(console.log(props.watchlists))
+    }, [])
 
 
     return (
@@ -19,5 +19,3 @@ function WatchlistIndex(props) {
         </div>
     )
 }
-
-export default WatchlistIndex;

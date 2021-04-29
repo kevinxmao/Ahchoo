@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import WatchlistIndex from "./watchlist_index"
 
 const mSTP = state => ({
-    watchlists = state.entities.watchlists
+    watchlists: Object.values(state.entities.watchlists)
 })
 
 const mDTP = dispatch => ({
