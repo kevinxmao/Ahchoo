@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from '@fortawesome/pro-regular-svg-icons';
 
 function WatchlistIndex(props) {
+    useEffect(() => {
+        
+    })
+
+
     return (
         <div className="watchlists-index">
             <div className="sidebar-title">
