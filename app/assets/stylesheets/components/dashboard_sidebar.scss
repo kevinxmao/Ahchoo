@@ -100,3 +100,53 @@ a.sidebar-list-item > div {
         }
     }
 }
+
+// watchlists sidebar
+
+.watchlist-title {
+    height: 60px;
+    width: 100%;
+    cursor: pointer;
+
+    header {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    header:hover {
+        background-color: #f5f8fa;
+    }
+}
+
+.watchlist {
+    position: relative;
+}
+
+.watchlist-name-button {
+    margin: 8px 16px;
+    padding: 4px 8px;
+}
+
+.watchlist-title-nav {
+    display: flex;
+    align-items: center;
+}
+
+.list-overflow {
+    display: none;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.watchlist-title:hover .list-overflow {
+    display: block;
+}
+
+.list-expand {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    font-size: 20px;
+}

@@ -20,9 +20,11 @@ export default function Watchlist(props) {
         <div className="watchlist">
             <div className="watchlist-title">
                 <header>
-                    <button onClick={props.openModal('watchlistName')}>{props.watchlist.name}</button>
-                    <button className="list-overflow">{ellipsis}</button>
-                    <button className="list-expand">{downArrow}</button>
+                    <button className="watchlist-name-button" onClick={() => props.openModal('watchlistName')}>{props.watchlist.name}</button>
+                    <div className="watchlist-title-nav">
+                        <button className="list-overflow">{ellipsis}</button>
+                        <button className="list-expand">{downArrow}</button>
+                    </div>
                 </header>
             </div>
         </div>
