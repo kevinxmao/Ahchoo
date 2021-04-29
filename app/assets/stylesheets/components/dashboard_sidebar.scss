@@ -156,10 +156,18 @@ a.sidebar-list-item > div {
     font-size: 20px;
 }
 
+.list-expand:hover {
+    color: yellow;
+}
+
 .ticker-symbol {
     flex: 0 1 50%;
     margin-right: 12px;
     min-width: 0;
     line-height: 20px;
     font-weight: bold;
+}
+
+.ticker-symbol:hover {
+    color: yellow;
 }
