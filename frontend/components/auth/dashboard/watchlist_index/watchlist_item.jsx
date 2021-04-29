@@ -4,7 +4,7 @@ import ItemChart from "../holdings_index/item_chart";
 import { formatNumber, formatPercent } from "../../../../util/util_functions";
 
 export default function WatchlistItem(props) {
-    const color = change >= 0 ? "#00c807" : "#ff5000";
+    const [color, setColor] = useState(null);
     const [change, setChange] = useState(null);
     const [percentChange, setPercentChange] = useState(null);
     const [open, setOpen] = useState(null);
@@ -14,10 +14,15 @@ export default function WatchlistItem(props) {
     useEffect(() => {
         let marketPrice = props.datum.price;
         let openPrice = props.datum["intraday-prices"][0].open || props.datum["intraday-prices"][0].marketOpen;
+        let priceChange = marketPrice - openPrice;
         setOpen(openPrice);
         setMarket(marketPrice);
-        setChange(marketPrice - openPrice);
-        setPercentChange(change / open);
+        setChange(priceChange);
+        setPercentChange(priceChange / openPrice);
+
+        const textColor = priceChange >= 0 ? "#00c807" : "#ff5000";
+        setColor(textColor);
+
         setChartData(formatChartData(props.datum));
     }, [props.datum])
 
@@ -40,7 +45,6 @@ export default function WatchlistItem(props) {
 
     if (!chartData) return null;
 
-    debugger
     return (
         <Link to={`/auth/tickers/${props.ticker}`} className="sidebar-list-item">
             <div>
