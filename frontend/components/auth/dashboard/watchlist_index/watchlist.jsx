@@ -61,7 +61,7 @@ export default function Watchlist(props) {
                         <span>{props.watchlist.name}</span>
                     </Link>
                     <div className="watchlist-title-nav">
-                        <button className="list-overflow" onClick={(e) => handleOverflowClick(e)}>{ellipsis}</button>
+                        <button className={dropdown ? "list-overflow active" : "list-overflow"} onClick={(e) => handleOverflowClick(e)}>{ellipsis}</button>
                         <button className="list-expand" onClick={(e) => handleExpandClick(e)}>{expand ? upArrow : downArrow}</button>
                     </div>
                 </header>
