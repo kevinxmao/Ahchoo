@@ -22,7 +22,7 @@ export default function WatchlistIndex(props) {
             <div className="sidebar-title">
                 <header>
                     <span>Lists</span>
-                    <button><FontAwesomeIcon icon={faPlus} /></button>
+                    <button className="btn new-watchlist" onClick={() => props.openModal('watchlist')}><FontAwesomeIcon icon={faPlus} /></button>
                 </header>
             </div>
             <div className="watchlists">

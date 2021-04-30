@@ -107,6 +107,14 @@ a.sidebar-list-item > div {
 
 // watchlists sidebar
 
+.btn.new-watchlist {
+    font-size: 16px;
+}
+
+.btn.new-watchlist:hover {
+    color: blue;
+}
+
 .watchlist-title {
     height: 60px;
     width: 100%;
