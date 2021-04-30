@@ -36,7 +36,7 @@ export default function Watchlist(props) {
 
     useEffect(() => {
         const tickers = props.watchlist.tickers.map(item => item.ticker);
-        fetchAllQuotes(tickers).then(quotes => setData(quotes));
+        if (tickers.length) fetchAllQuotes(tickers).then(quotes => setData(quotes));
     }, [])
     
     return (

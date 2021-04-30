@@ -8,16 +8,15 @@ export default function NewWatchlistForm(props) {
     const userId = useSelector(state => state.session.id);
     const errors = useSelector(state => state.errors.watchlist)
 
-    function submitForm(e) {
-        const watchlist = { userId, name };
-        dispatch(createWatchlist(watchlist)).then(console.log('success'));
+    function submitForm() {
+        const watchlist = { userId, name: name.value };
+        dispatch(createWatchlist(watchlist)).then(props.closeForm());
     }
 
     function useFormInput(initialValue) {
         const [value, setValue] = useState(initialValue);
 
         function handleChange(e) {
-            debugger;
             setValue(e.target.value);
         }
 
@@ -35,7 +34,7 @@ export default function NewWatchlistForm(props) {
                 </div>
                 <footer>
                     <button onClick={props.closeForm}>Cancel</button>
-                    <button onClick={(e) => submitForm(e)}>Create List</button>
+                    <button onClick={submitForm}>Create List</button>
                 </footer>
             </form>
         </div>
