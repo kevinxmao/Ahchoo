@@ -29,6 +29,7 @@
     font-weight: bold;
 
     header {
+        box-sizing: border-box;
         padding: 4px 24px 0 24px;
         height: 100%;
         display: flex;
@@ -192,4 +193,35 @@ a.sidebar-list-item > div {
 
 .ticker-symbol:hover {
     color: blue;
+}
+
+// new watchlist form
+.new-watchlist-form {
+    position: relative;
+    height: 92px;
+    width: 100%;
+
+    form {
+        padding: 8px 24px 0 18px;
+
+        footer {
+            
+        }
+    }
+}
+
+.new-watchlist-name {
+    height: 36px;
+    width: 100%;
+    margin-bottom: 8px;
+
+    input {
+        height: 36px;
+        width: 100%;
+        padding-left: 12px;
+        padding-right: 12px;
+        font-size: $textS_font_size;
+        line-height: 20px;
+        border-radius: $primary_input_border_radius;
+    }
 }

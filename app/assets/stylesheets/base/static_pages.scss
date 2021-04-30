@@ -61,6 +61,10 @@ a:focus {
   color: $primary_pressed;
 }
 
+input {
+  box-sizing: border-box;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */
