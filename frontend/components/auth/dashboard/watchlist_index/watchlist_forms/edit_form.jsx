@@ -26,12 +26,11 @@ export default function EditForm(props) {
 
     function submitForm() {
         watchlist.name = name.value;
-        debugger
         dispatch(updateWatchlist(watchlist)).then(() => dispatch(closeModal()))
     }
 
     return (
-        <div>
+        <div className="edit-watchlist">
             <header className="modal-title">
                 <div>
                     <span>Edit List</span>
