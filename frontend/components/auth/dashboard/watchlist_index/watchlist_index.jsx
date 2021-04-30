@@ -5,7 +5,7 @@ import Watchlist from './watchlist';
 import NewWatchlistForm from './new_watchlist_form/new_watchlist_form';
 
 export default function WatchlistIndex(props) {
-    const [form, setForm] = useState(false)
+    const [form, setForm] = useState(false);
 
     useEffect(() => {
         props.fetchWatchlists()

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleUp, faAngleDown, faEllipsisH } from '@fortawesome/pro-regular-svg-icons';
+import { faAngleUp, faAngleDown, faEllipsisH, faCog, faTimesCircle } from '@fortawesome/pro-regular-svg-icons';
 import WatchlistItem from './watchlist_item';
 import { fetchAllQuotes } from '../../../../util/companies/data_api_util';
 import { Link } from 'react-router-dom';
@@ -12,6 +12,7 @@ export default function Watchlist(props) {
     const ellipsis = <FontAwesomeIcon icon={faEllipsisH}/>
     const [expand, setExpand] = useState(false);
     const [data, setData] = useState(null);
+    const [dropdown, setDropdown] = useState(false);
 
     function handleExpandClick(event) {
         // event.preventDefault();
@@ -25,13 +26,26 @@ export default function Watchlist(props) {
         )
     }
 
-    function handleNameClick(event) {
-        // event.stopPropagation();
-        // props.openModal('watchlistName');
-    }
-
     function handleOverflowClick(event) {
         event.stopPropagation();
+        setDropdown(!dropdown);
+    }
+
+    function renderDropdown() {
+        return (
+            <div className="watchlist-dropdown">
+                <div>
+                    <button>
+                        <FontAwesomeIcon icon={faCog}/>
+                        <span>Edit List</span>
+                    </button>
+                    <button>
+                        <FontAwesomeIcon icon={faTimesCircle} />
+                        <span>Delete List</span>
+                    </button>
+                </div>
+            </div>
+        )
     }
 
     useEffect(() => {
@@ -51,6 +65,7 @@ export default function Watchlist(props) {
                         <button className="list-expand" onClick={(e) => handleExpandClick(e)}>{expand ? upArrow : downArrow}</button>
                     </div>
                 </header>
+                {dropdown && renderDropdown()}
             </div>
             {(data && expand) && <div className="list-items">{expandedList()}</div>}
         </div>
