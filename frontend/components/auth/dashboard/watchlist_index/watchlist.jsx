@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleUp, faAngleDown, faEllipsisH } from '@fortawesome/pro-regular-svg-icons';
 import WatchlistItem from './watchlist_item';
 import { fetchAllQuotes } from '../../../../util/companies/data_api_util';
+import { Link } from 'react-router-dom';
 
 export default function Watchlist(props) {
     const downArrow = <FontAwesomeIcon icon={faAngleDown} />;
@@ -25,8 +26,12 @@ export default function Watchlist(props) {
     }
 
     function handleNameClick(event) {
+        // event.stopPropagation();
+        // props.openModal('watchlistName');
+    }
+
+    function handleOverflowClick(event) {
         event.stopPropagation();
-        props.openModal('watchlistName');
     }
 
     useEffect(() => {
@@ -38,9 +43,11 @@ export default function Watchlist(props) {
         <div className="watchlist">
             <div className="watchlist-title" onClick={(e) => handleExpandClick(e)}>
                 <header>
-                    <button className="watchlist-name-button" onClick={(e) => handleNameClick(e)}>{props.watchlist.name}</button>
+                    <Link className="watchlist-name-button" to={`/auth/watchlists/${props.watchlist.id}`} onClick={(e) => handleNameClick(e)}>
+                        <span>{props.watchlist.name}</span>
+                    </Link>
                     <div className="watchlist-title-nav">
-                        <button className="list-overflow">{ellipsis}</button>
+                        <button className="list-overflow" onClick={(e) => handleOverflowClick(e)}>{ellipsis}</button>
                         <button className="list-expand" onClick={(e) => handleExpandClick(e)}>{expand ? upArrow : downArrow}</button>
                     </div>
                 </header>

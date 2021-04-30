@@ -132,6 +132,16 @@ a.sidebar-list-item > div {
 .watchlist-name-button {
     margin: 8px 16px;
     padding: 4px 8px;
+    height: 30px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+}
+
+.watchlist-name-button:hover {
+    border-radius: $primary_input_border_radius;
+    background-color: $neutral_hover;
+    color: black;
 }
 
 .watchlist-title-nav {
@@ -143,6 +153,10 @@ a.sidebar-list-item > div {
     display: none;
     font-size: 20px;
     margin-right: 20px;
+}
+
+.list-overflow:hover {
+    color: blue;
 }
 
 .watchlist-title:hover .list-overflow {
@@ -157,7 +171,7 @@ a.sidebar-list-item > div {
 }
 
 .list-expand:hover {
-    color: yellow;
+    color: blue;
 }
 
 .ticker-symbol {
@@ -169,5 +183,5 @@ a.sidebar-list-item > div {
 }
 
 .ticker-symbol:hover {
-    color: yellow;
+    color: blue;
 }
