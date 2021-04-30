@@ -246,7 +246,28 @@ a.sidebar-list-item > div {
         padding: 8px 24px 0 18px;
 
         footer {
+            display: flex;
+            justify-content: flex-end;
 
+            button {
+                padding: 0 24px;
+                border-width: 1px;
+                border-radius: $primary_input_border_radius;
+                height: 36px;
+                font-weight: 700;
+                line-height: 20px;
+            }
+
+            button:first-child {
+                margin-right: 8px;
+                border: 1px solid blue;
+                color: blue;
+            }
+
+            button:last-child {
+                background-color: blue;
+                color: white;
+            }
         }
     }
 }
@@ -264,5 +285,11 @@ a.sidebar-list-item > div {
         font-size: $textS_font_size;
         line-height: 20px;
         border-radius: $primary_input_border_radius;
+        background-color: $neutral_bg2;
+        border: 1px solid $neutral_bg2;
+    }
+
+    input:focus {
+        border-color: blue;
     }
 }
