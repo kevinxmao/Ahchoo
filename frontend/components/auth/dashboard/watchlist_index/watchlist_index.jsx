@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from '@fortawesome/pro-regular-svg-icons';
 import Watchlist from './watchlist';
-import NewWatchlistForm from './new_watchlist_form/new_watchlist_form';
+import NewWatchlistForm from './watchlist_forms/new_watchlist_form';
 
 export default function WatchlistIndex(props) {
     const [form, setForm] = useState(false);

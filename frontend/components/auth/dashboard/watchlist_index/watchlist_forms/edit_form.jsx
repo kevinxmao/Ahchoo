@@ -6,6 +6,6 @@ export default function EditForm(props) {
     const watchlist = useSelector(state => state.entities.watchlists[props.id]);
 
     return (
-        <div><span>What up</span></div>
+        <div><span>{watchlist.name}</span></div>
     )
 }

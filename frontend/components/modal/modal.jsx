@@ -3,6 +3,8 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import AboutMe from '../splash/about_me';
 import DepositForm from '../auth/dashboard/deposit_form';
+import EditForm from '../auth/dashboard/watchlist_index/watchlist_forms/edit_form';
+import DeleteForm from '../auth/dashboard/watchlist_index/watchlist_forms/delete_form';
 
 function Modal({modal, closeModal}) {
     if (!modal) return null;
@@ -18,10 +20,10 @@ function Modal({modal, closeModal}) {
             console.log('new watchlist');
             break;
         case (modal.match(/edit-list/) || {}).input:
-            const id = modal.match(/[0-9]+/)[0];
+            component = <EditForm id={modal.match(/[0-9]+/)[0]}/>;
             break;
         case (modal.match(/delete-list/) || {}).input:
-            console.log(modal.match(/[0-9]+/)[0]);
+            component = <DeleteForm id={modal.match(/[0-9]+/)[0]}/>
             break;
         default:
             return null;
