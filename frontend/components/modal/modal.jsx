@@ -17,6 +17,12 @@ function Modal({modal, closeModal}) {
         case 'watchlist':
             console.log('new watchlist');
             break;
+        case (modal.match(/edit-list/) || {}).input:
+            console.log(modal.match(/[0-9]+/)[0]);
+            break;
+        case (modal.match(/delete-list/) || {}).input:
+            console.log(modal.match(/[0-9]+/)[0]);
+            break;
         default:
             return null;
     }
@@ -31,7 +37,8 @@ function Modal({modal, closeModal}) {
 }
 
 const mSTP = state => ({
-    modal: state.ui.modal
+    modal: state.ui.modal,
+    watchlists: state.entities.watchlists
 })
 
 const mDTP = dispatch => ({

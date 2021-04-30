@@ -207,13 +207,33 @@ a.sidebar-list-item > div {
     top: 44px;
     left: 80px;
     display: block;
-    z-index: 2;
+    z-index: 99;
     background-color: white;
     box-shadow: $box_shadow;
 
     > div {
         padding: 12px 0 12px;
+
+        button {
+            display: flex;
+            align-items: center;
+            padding: 12px 24px 12px 22px;
+
+            span {
+                font-weight: 700;
+                line-height: 20px;
+            }
+        }
+
+        button:hover {
+            color: blue;
+        }
     }
+}
+
+.dropdown-icon {
+    font-size: 20px;
+    margin-right: 12px;
 }
 
 // new watchlist form

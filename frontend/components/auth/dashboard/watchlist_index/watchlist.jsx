@@ -15,7 +15,6 @@ export default function Watchlist(props) {
     const [dropdown, setDropdown] = useState(false);
 
     function handleExpandClick(event) {
-        // event.preventDefault();
         event.stopPropagation();
         setExpand(!expand);
     }
@@ -51,12 +50,12 @@ export default function Watchlist(props) {
         return (
             <div className="watchlist-dropdown" onClick={handleBodyclick}>
                 <div>
-                    <button>
-                        <FontAwesomeIcon icon={faCog}/>
+                    <button onClick={() => props.openModal(`edit-list-${props.watchlist.id}`)}>
+                        <div className="dropdown-icon"><FontAwesomeIcon icon={faCog} /></div>
                         <span>Edit List</span>
                     </button>
-                    <button>
-                        <FontAwesomeIcon icon={faTimesCircle} />
+                    <button onClick={() => props.openModal(`delete-list-${props.watchlist.id}`)}>
+                        <div className="dropdown-icon"><FontAwesomeIcon icon={faTimesCircle} /></div>
                         <span>Delete List</span>
                     </button>
                 </div>
