@@ -1,24 +1,29 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { createWatchlist } from '../../../../actions/watchlists_actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { createWatchlist } from '../../../../../actions/watchlists_actions';
 
 export default function NewWatchlistForm(props) {
     const name = useFormInput("");
+    const dispatch = useDispatch();
+    const userId = useSelector(state => state.session.id);
+    const errors = useSelector(state => state.errors.watchlist)
 
     function submitForm(e) {
-        
+        const watchlist = { userId, name };
+        dispatch(createWatchlist(watchlist)).then(console.log('success'));
     }
 
     function useFormInput(initialValue) {
         const [value, setValue] = useState(initialValue);
 
-        function handleNameChange(e) {
-            setName(e.target.value);
+        function handleChange(e) {
+            debugger;
+            setValue(e.target.value);
         }
 
         return {
-            name,
-            onChange: handleNameChange
+            value,
+            onChange: handleChange
         }
     }
 
@@ -29,16 +34,10 @@ export default function NewWatchlistForm(props) {
                     <input type="text" placeholder="List Name" {...name} />
                 </div>
                 <footer>
-                    <button onClick={() => setForm(false)}>Cancel</button>
+                    <button onClick={props.closeForm}>Cancel</button>
                     <button onClick={(e) => submitForm(e)}>Create List</button>
                 </footer>
             </form>
         </div>
     )
 }
-
-// const mDTP = dispatch => ({
-//     createWatchlist: (watchlist) => dispatch(createWatchlist(watchlist))
-// })
-
-// export default connect(null, mDTP)(NewWatchlistForm);
