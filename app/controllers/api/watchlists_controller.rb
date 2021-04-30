@@ -41,7 +41,6 @@ class Api::WatchlistsController < ApplicationController
                 ticker_id_to_add = (new_tickers - prev_tickers).first
                 
                 WatchlistJoin.create(watchlist_id: params[:id], ticker_id: ticker_id_to_add)
-                show()
 
             elsif @watchlist.tickers.length > params[:watchlist][:tickers].length
                 prev_tickers = @watchlist.tickers.map{|ticker| ticker[:id].to_i}
@@ -50,8 +49,9 @@ class Api::WatchlistsController < ApplicationController
                 ticker_id_to_destroy = (prev_tickers - new_tickers).first
                 ticker_to_destroy = @watchlist.watchlist_joins.find_by(ticker_id: ticker_id_to_destroy)
                 ticker_to_destroy.destroy
-                show()
             end
+
+            show();
             
         else
             render json: @watchlist.errors.full_messages, status: 404
