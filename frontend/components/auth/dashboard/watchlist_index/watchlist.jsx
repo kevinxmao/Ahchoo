@@ -31,9 +31,25 @@ export default function Watchlist(props) {
         setDropdown(!dropdown);
     }
 
+    function globalClickListener(nativeEvent) {
+        setDropdown(false);
+    }
+
+    useEffect(() => {
+        if (dropdown) {
+            window.addEventListener('click', globalClickListener)
+        } else {
+            window.removeEventListener('click', globalClickListener)
+        }
+    })
+
+    function handleBodyclick(syntheticEvent) {
+        syntheticEvent.stopPropagation();
+    }
+
     function renderDropdown() {
         return (
-            <div className="watchlist-dropdown">
+            <div className="watchlist-dropdown" onClick={handleBodyclick}>
                 <div>
                     <button>
                         <FontAwesomeIcon icon={faCog}/>
