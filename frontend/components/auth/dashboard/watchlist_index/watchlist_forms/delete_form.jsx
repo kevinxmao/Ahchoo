@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../../../../actions/modal_actions';
 import { deleteWatchlist } from '../../../../../actions/watchlists_actions';
@@ -8,11 +8,11 @@ import { faTimes } from '@fortawesome/pro-regular-svg-icons';
 export default function DeleteForm(props) {
     const dispatch = useDispatch();
     const watchlist = useSelector(state => state.entities.watchlists[props.id]);
-    const [name, setName] = useState(watchlist.name);
-    const [tickers, setTickers] = useState(watchlist.tickers);
+    const [name, setName] = useState(Object.assign({}, watchlist).name);
+    const [tickers, setTickers] = useState(Object.assign({}, watchlist).tickers);
 
     function submitForm() {
-        dispatch(deleteWatchlist(watchlist.id)).then(dispatch(closeModal()));
+        dispatch(deleteWatchlist(watchlist.id)).then(() => dispatch(closeModal()));
     }
 
     return (
