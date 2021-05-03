@@ -125,7 +125,7 @@
     font-size: 13px;
 }
 
-.delete-title {
+.delete-title, .edit-title {
     font-size: 18px;
     font-weight: 700;
     line-height: 28px;
@@ -134,3 +134,52 @@
 
 // edit watchlist
 
+.edit-watchlist {
+    width: 408px;
+    padding: 24px 0;
+
+    header {
+        padding: 0 24px;
+        margin-bottom: 12px;
+    }
+
+    form {
+        padding: 8px 24px 0 18px;
+
+        input {
+            font-size: 13px;
+            background-color: $neutral_bg2;
+            border: 1px solid transparent;
+            border-radius: $primary_input_border_radius;
+            padding: 0 12px;
+            margin-bottom: 24px;
+            height: 36px;
+            width: 100%;
+        }
+
+        input:focus {
+            border-color: $primary_base;
+        }
+
+        button {
+            font-weight: 700;
+            border-radius: $primary_input_border_radius;
+            background-color: $primary_base;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 48px;
+            height: 48px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: $primary_hover;
+        }
+
+        button:focus {
+            background-color: $primary_pressed;
+        }
+    }
+}

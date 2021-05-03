@@ -32,7 +32,7 @@ export default function EditForm(props) {
     return (
         <div className="edit-watchlist">
             <header className="modal-title">
-                <div>
+                <div className="edit-title">
                     <span>Edit List</span>
                 </div>
                 <button onClick={() => dispatch(closeModal())} className="close-btn">
