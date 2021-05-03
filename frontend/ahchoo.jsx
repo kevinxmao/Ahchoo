@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // test
-    // window.store = store;
+    window.store = store;
     // window.
     // window.login = login;
     // window.logout = logout;
