@@ -21,7 +21,6 @@ export default function WatchlistMain(props) {
                 </div>
             )
         } else {
-            debugger
             return <WatchlistTable tickers={watchlist.tickers}/>
         }
     }

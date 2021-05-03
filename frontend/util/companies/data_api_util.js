@@ -78,3 +78,10 @@ export const searchTicker = str => (
     url: `https://${endpoint}.iexapis.com/v1/search/${str}?token=${apiKey}`,
   })
 )
+
+export const fetchWatchlistInfo = (tickerArr) => (
+  $.ajax({
+    method: "GET",
+    url: `https://${endpoint}.iexapis.com/v1/stock/market/batch?&types=quote,company,stats&range=max&symbols=${tickerArr.join(',')}&token=${apiKey}`,
+  })
+)

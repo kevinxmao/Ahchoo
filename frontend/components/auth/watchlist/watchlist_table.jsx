@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { fetchWatchlistInfo } from '../../../util/companies/data_api_util';
 
 export default function WatchlistTable(props) {
-    const [tickers, setTickers] = useState(props.tickers);
+    // const [tickers, setTickers] = useState(props.tickers);
     const initialSortState = {
         name: '',
         symbol: '',
@@ -13,22 +14,21 @@ export default function WatchlistTable(props) {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        debugger
-        const symbols = tickers.map(ticker => ticker.ticker);
-        console.log(symbols)
+        const symbols = props.tickers.map(ticker => ticker.ticker);
+        fetchWatchlistInfo(symbols).then(res => setData(res));
     }, [props.tickers]);
 
     function handleHeaderClick(key) {
         debugger;
         switch(sort[key]) {
             case '':
-                setSort(Object.assign({}, sort, { [key]: 'ASC'}));
+                setSort(Object.assign({}, initialSortState, { [key]: 'ASC'}));
                 break;
             case 'ASC':
-                setSort(Object.assign({}, sort, { [key]: 'DSC' }));
+                setSort(Object.assign({}, initialSortState, { [key]: 'DSC' }));
                 break;
             case 'DSC':
-                setSort(Object.assign({}, sort, { [key]: '' }));
+                setSort(Object.assign({}, initialSortState, { [key]: '' }));
                 break;
             default:
                 break;
