@@ -1,25 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function WatchlistTable(props) {
     const [tickers, setTickers] = useState(props.tickers);
-    const [sort, setSort] = useState({
+    const initialSortState = {
         name: '',
         symbol: '',
         price: '',
         today: '',
         marketCap: '',
-    })
+    }
+    const [sort, setSort] = useState(initialSortState);
+    const [data, setData] = useState(null);
 
-    function handleHanderClick(name) {
+    useEffect(() => {
+        debugger
+        const symbols = tickers.map(ticker => ticker.ticker);
+        console.log(symbols)
+    }, [props.tickers]);
 
+    function handleHeaderClick(key) {
+        debugger;
+        switch(sort[key]) {
+            case '':
+                setSort(Object.assign({}, sort, { [key]: 'ASC'}));
+                break;
+            case 'ASC':
+                setSort(Object.assign({}, sort, { [key]: 'DSC' }));
+                break;
+            case 'DSC':
+                setSort(Object.assign({}, sort, { [key]: '' }));
+                break;
+            default:
+                break;
+        }
     }
 
     function renderColumnHeader(headerName) {
         const key = camalize(headerName);
-        const className = 
+        const className = sort[key] ? "column-header active" : "column-header";
         return (
-            <div className="column-header">
-                <button>
+            <div className={className}>
+                <button onClick={() => handleHeaderClick(key)}>
                     <div>{headerName}</div>
                     <div className="header-arrow"></div>
                 </button>
