@@ -72,7 +72,7 @@ export default function Watchlist(props) {
         <div className="watchlist">
             <div className="watchlist-title" onClick={(e) => handleExpandClick(e)}>
                 <header>
-                    <Link className="watchlist-name-button" to={`/auth/watchlists/${props.watchlist.id}`} onClick={(e) => handleNameClick(e)}>
+                    <Link className="watchlist-name-button" to={`/auth/watchlists/${props.watchlist.id}`}>
                         <span>{props.watchlist.name}</span>
                     </Link>
                     <div className="watchlist-title-nav">
