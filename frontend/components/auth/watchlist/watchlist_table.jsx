@@ -70,8 +70,7 @@ export default function WatchlistTable(props) {
 
     function renderTableBody() {
         if (!!symbols.length && data) {
-            console.log(data)
-            return symbols.map((symbol, i) => <WatchlistRow key={i} symbol={symbol} data={data}/>)
+            return symbols.map((symbol, i) => <WatchlistRow key={i} symbol={symbol} data={data} watchlist={props.watchlist}/>)
         } else {
             return <LoadingPage />
         }

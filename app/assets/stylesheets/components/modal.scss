@@ -158,13 +158,13 @@
         }
 
         input:focus {
-            border-color: $primary_base;
+            border-color: $primary_green_base;
         }
 
         button {
             font-weight: 700;
             border-radius: $primary_input_border_radius;
-            background-color: $primary_base;
+            background-color: $primary_green_base;
             color: white;
             display: flex;
             justify-content: center;
@@ -175,11 +175,11 @@
         }
 
         button:hover {
-            background-color: $primary_hover;
+            background-color: $primary_green_hover;
         }
 
         button:focus {
-            background-color: $primary_pressed;
+            background-color: $primary_green_pressed;
         }
     }
 }

@@ -67,17 +67,17 @@
                 height: 48px;
                 border: none;
                 border-radius: $primary_input_border_radius;
-                background-color: $primary_base;
+                background-color: $primary_green_base;
                 color: white;
                 font-weight: 700;
             }
 
             button.deposit-button:hover {
-                background-color: $primary_hover;
+                background-color: $primary_green_hover;
             }
 
             button.deposit-button:focus {
-                background-color: $primary_pressed;
+                background-color: $primary_green_pressed;
             }
 
             .table {

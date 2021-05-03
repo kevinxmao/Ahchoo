@@ -31,7 +31,7 @@
     }
 
     a:hover {
-        color: $primary_hover;
+        color: $primary_green_hover;
     }
 
 }
@@ -63,7 +63,7 @@
         }
     
         li:hover {
-            color: $primary_hover;
+            color: $primary_green_hover;
             cursor: pointer;
         }
     }
@@ -90,7 +90,7 @@
     }
 
     .button-login:hover {
-        color: $primary_hover;
+        color: $primary_green_hover;
     }
 
     a {
@@ -100,7 +100,7 @@
     }
 
     .button-signup {
-        background-color: $primary_base;
+        background-color: $primary_green_base;
         height: 48px;
         min-width: 150px;
         border-radius: 24px;
@@ -110,12 +110,12 @@
     }
 
     .button-signup:hover {
-        background-color: $primary_hover;
+        background-color: $primary_green_hover;
         color: black;
     }
 
     .button-signup:focus {
-        background-color: $primary_pressed;
+        background-color: $primary_green_pressed;
         color: black;
     }
 }

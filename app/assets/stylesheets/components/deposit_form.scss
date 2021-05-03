@@ -65,7 +65,7 @@
 
             .deposit-input:focus {
                 background-color: $neutral_bg2;
-                border-color: $primary_base;
+                border-color: $primary_green_base;
             }
         }
     }
@@ -80,7 +80,7 @@
         border: 1px solid transparent;
         border-radius: $primary_input_border_radius;
         color: white;
-        background-color: $primary_base;
+        background-color: $primary_green_base;
         cursor: pointer;
 
         span {
@@ -91,10 +91,10 @@
     }
 
     button:hover {
-        background-color: $primary_hover;
+        background-color: $primary_green_hover;
     }
 
     button:focus {
-        background-color: $primary_pressed;
+        background-color: $primary_green_pressed;
     }
 }

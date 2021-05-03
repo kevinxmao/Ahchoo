@@ -21,7 +21,7 @@ export default function WatchlistMain(props) {
                 </div>
             )
         } else {
-            return <WatchlistTable tickers={watchlist.tickers}/>
+            return <WatchlistTable watchlist={watchlist} tickers={watchlist.tickers}/>
         }
     }
 
@@ -54,13 +54,13 @@ export default function WatchlistMain(props) {
     function renderNameField() {
         if(edit) {
             return (
-                <form onBlur={handleOnblur}>
+                <form className="watchlist-name-form" onBlur={handleOnblur}>
                     <input type="text" autoFocus {...name}/>
                 </form>
             )
         } else {
             return (
-                <div onClick={() => setEdit(true)}>
+                <div className="watchlist-name-form" onClick={() => setEdit(true)}>
                     <span>{watchlist.name}</span>
                 </div>
             )
@@ -73,11 +73,11 @@ export default function WatchlistMain(props) {
                 <header>
                     <div className="main-watchlist-name">
                         {renderNameField()}
-                        <div className="icons">
-                            <FontAwesomeIcon icon={faEllipsisH} />
-                        </div>
+                        <div><span>{watchlist.tickers.length} {watchlist.tickers.length === 1 ? "item" : "items"}</span></div>
                     </div>
-                    <div><span>{watchlist.tickers.length} {watchlist.tickers.length === 1 ? "item" : "items"}</span></div>
+                    <div className="icons">
+                        <FontAwesomeIcon icon={faEllipsisH} />
+                    </div>
                 </header>
                 <div className="watchlist-table-container">
                     {renderTable()}

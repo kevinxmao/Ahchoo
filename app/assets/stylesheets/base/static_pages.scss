@@ -48,17 +48,17 @@ button:focus {
 }
 
 a {
-  // color: $primary_base;
+  // color: $primary_green_base;
   text-decoration: none;
   color: black;
 }
 
 a:hover {
-  color: $primary_hover;
+  color: $primary_green_hover;
 }
 
 a:focus {
-  color: $primary_pressed;
+  color: $primary_green_pressed;
 }
 
 input {

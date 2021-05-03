@@ -17,10 +17,61 @@
 .watchlist-main {
     flex: 0 0 66.66667%;
     padding: 0 6px;
+
+    header {
+        height: 80px;
+        margin: 0 -24px;
+        overflow: hidden;
+        padding: 0 24px;
+        position: sticky;
+        top: 64px;
+        display: flex;
+        align-items: start;
+    }
+}
+
+.main-watchlist-name {
+    margin-bottom: 10px;
+    flex-grow: 1;
+    max-height: 80px;
+    max-width: 600px;
+}
+
+.icons {
+    flex-shrink: 0;
+    margin-left: auto;
+    display: block;
+    margin-top: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.icons:hover {
+    color: $primary_green_hover;
+}
+
+div.watchlist-name-form {
+    cursor: pointer;
+}
+
+.watchlist-name-form {
+    background: none;
+    border: 0px;
+    border-radius: $primary_input_border_radius;
+    box-sizing: border-box;
+    margin-left: -8px;
+    padding: 8px;
+    text-align: left;
+    width: 100%;
+    font-size: $displayM_font_size;
 }
 
 .watchlist-sidebar {
     flex: 0 0 27.77778%;
     padding: 0 6px;
     margin-right: 0;
+}
+
+.btn.delete-watchlist-item:hover {
+    color: $primary_green_base;
 }
