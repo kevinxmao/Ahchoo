@@ -98,8 +98,27 @@ function camalize(str) {
     return str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
 }
 
-function sortSymbols(symbols, critieria, order, data) {
+function sortSymbols(symbols, field, order, data) {
+    const comparator = order === 'ASC' ? (a, b) => a > b : (a, b) => a < b;
 
+
+}
+
+const pivot = (arr, start = 0, end = arr.length + 1, field, data) => {
+    const swap = (arr, i, j) => [ar[i], arr[j]] = [arr[j], arr[i]];
+
+    let pivot = arr[start],
+        pointer = start;
+
+    for (let i = start; i < arr.length; i++) {
+        if (arr[i] < pivot) {
+            pointer++;
+            swap(arr, pointer, i);
+        }
+    };
+    swap(arr, start, pointer);
+
+    return pointer;
 }
 
 function swap(items, i, j) {
