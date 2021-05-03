@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAllQuotes } from '../../../util/companies/data_api_util';
 import WatchlistMain from './watchlist_main';
 import { fetchWatchlists } from '../../../actions/watchlists_actions';
+import LoadingPage from '../../loading_page';
 
 export default function WatchlistPage(props) {
     const id = props.match.params.id;
     const dispatch = useDispatch();
+    const watchlists = useSelector(state => Object.values(state.entities.watchlists));
     
     useEffect(() => {
         dispatch(fetchWatchlists())
     }, [])
 
-    return null;
+    if (!watchlists.length) return <LoadingPage />;
 
     return (
         <div id="_watchlist">
