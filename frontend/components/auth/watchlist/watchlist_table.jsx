@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchWatchlistInfo } from '../../../util/companies/data_api_util';
+import WatchlistRow from './watchlist_row';
+import LoadingPage from '../../loading_page';
 
 export default function WatchlistTable(props) {
     // const [tickers, setTickers] = useState(props.tickers);
@@ -17,7 +19,20 @@ export default function WatchlistTable(props) {
     useEffect(() => {
         const tickerArr = props.tickers.map(ticker => ticker.ticker)
         setSymbols(tickerArr);
-        fetchWatchlistInfo(tickerArr).then(res => setData(res));
+        fetchWatchlistInfo(tickerArr).then(res => {
+            const obj = {};
+            for (let [key, value] of Object.entries(res) ) {
+                let datum = {
+                    name: value.company.companyName,
+                    symbol: key,
+                    price: value.price,
+                    today: value.quote.changePercent,
+                    marketCap: value.stats.marketcap
+                };
+                obj[key] = datum;
+            }
+            setData(obj);
+        });
     }, [props.tickers]);
 
     function handleHeaderClick(key) {
@@ -53,16 +68,29 @@ export default function WatchlistTable(props) {
         )
     }
 
+    function renderTableBody() {
+        if (!!symbols.length) {
+            return symbols.map((symbol, i) => <WatchlistRow key={i} symbol={symbol} data={data}/>)
+        } else {
+            return <LoadingPage />
+        }
+    }
+
     return (
-        <header className="table-header">
-            <div>
-                {renderColumnHeader('Name')}
-                {renderColumnHeader('symbol')}
-                {renderColumnHeader('Price')}
-                {renderColumnHeader('Today')}
-                {renderColumnHeader('Market Cap')}
+        <>
+            <header className="table-header">
+                <div>
+                    {renderColumnHeader('Name')}
+                    {renderColumnHeader('symbol')}
+                    {renderColumnHeader('Price')}
+                    {renderColumnHeader('Today')}
+                    {renderColumnHeader('Market Cap')}
+                </div>
+            </header>
+            <div className="table-body">
+                {renderTableBody()}
             </div>
-        </header>
+        </>
     )
 }
 
@@ -74,3 +102,8 @@ function sortSymbols(symbols, critieria, order, data) {
 
 }
 
+function swap(items, i, j) {
+    let temp = items[i];
+    items[i] = items[j];
+    items[j] = temp;
+}
