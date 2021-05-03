@@ -11,11 +11,13 @@ export default function WatchlistTable(props) {
         marketCap: '',
     }
     const [sort, setSort] = useState(initialSortState);
+    const [symbols, setSymbols] = useState([]);
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        const symbols = props.tickers.map(ticker => ticker.ticker);
-        fetchWatchlistInfo(symbols).then(res => setData(res));
+        const tickerArr = props.tickers.map(ticker => ticker.ticker)
+        setSymbols(tickerArr);
+        fetchWatchlistInfo(tickerArr).then(res => setData(res));
     }, [props.tickers]);
 
     function handleHeaderClick(key) {
@@ -23,12 +25,15 @@ export default function WatchlistTable(props) {
         switch(sort[key]) {
             case '':
                 setSort(Object.assign({}, initialSortState, { [key]: 'ASC'}));
+                setSymbols(sortSymbols(symbols, key, 'ASC', data));
                 break;
             case 'ASC':
                 setSort(Object.assign({}, initialSortState, { [key]: 'DSC' }));
+                setSymbols(sortSymbols(symbols, key, 'DSC', data));
                 break;
             case 'DSC':
                 setSort(Object.assign({}, initialSortState, { [key]: '' }));
+                setSymbols(props.tickers.map(ticker => ticker.ticker));
                 break;
             default:
                 break;
@@ -63,5 +68,9 @@ export default function WatchlistTable(props) {
 
 function camalize(str) {
     return str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
+}
+
+function sortSymbols(symbols, critieria, order, data) {
+
 }
 
