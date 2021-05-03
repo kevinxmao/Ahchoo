@@ -1,10 +1,10 @@
 import React from 'react';
-import WatchlistIndex from '../dashboard/watchlist_index/watchlist_index';
+import WatchlistIndexContainer from '../dashboard/watchlist_index/watchlist_index_container';
 
 export default function WatchlistSidebar(props) {
     return (
         <div className="sidebar-content">
-            <WatchlistIndex />
+            <WatchlistIndexContainer />
         </div>
     )
 }

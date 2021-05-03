@@ -16,7 +16,7 @@ export default function WatchlistIndex(props) {
     }, []);
 
     function allWatchlists() {
-        const {createWatchlist, updateWatchlist, deleteWatchlist, openModal} = props;
+        const {openModal} = props;
         const watchlists = props.watchlists.map(
             watchlist => <Watchlist key={watchlist.id} watchlist={watchlist} openModal={openModal}/>
         )

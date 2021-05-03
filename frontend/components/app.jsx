@@ -8,6 +8,7 @@ import AuthPage from "./auth/auth_page";
 import AuthNavContainer from "./auth/navbar/auth_nav_container"
 import CompanyMainContainer from './auth/company/company_main_container';
 import Modal from './modal/modal';
+import WatchlistPage from "./auth/watchlist/watchlist_page";
 
 const App = () => (
     <div>
@@ -21,7 +22,7 @@ const App = () => (
         <ProtectedRoute path="/auth/home" component={AuthPage} />
         <ProtectedRoute path="/auth/tickers/:id" component={CompanyMainContainer} />
         {/* wishlists */}
-        <ProtectedRoute path="/auth/wishlists/:id" />
+        <ProtectedRoute path="/auth/watchlists/:id" component={WatchlistPage}/>
     </div>
 )
 

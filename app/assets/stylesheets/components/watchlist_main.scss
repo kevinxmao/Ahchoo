@@ -1,2 +1,26 @@
 @import "../base/variables.scss";
 
+.watchlist-page {
+    padding-top: 64px;
+    margin-bottom: 64px;
+}
+
+.watchlist-container {
+    padding-top: 36px;
+    width: 1024px;
+    margin: 0 auto;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.watchlist-main {
+    flex: 0 0 66.66667%;
+    padding: 0 6px;
+}
+
+.watchlist-sidebar {
+    flex: 0 0 27.77778%;
+    padding: 0 6px;
+    margin-right: 0;
+}

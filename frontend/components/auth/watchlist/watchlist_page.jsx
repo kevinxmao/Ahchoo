@@ -8,12 +8,14 @@ export default function WatchlistPage(props) {
     // const dispatch = useDispatch();
     // const [data, setData] = useState(null);
 
+    const id = props.match.params.id;
+
     return (
         <div id="_watchlist">
-            <div className="watchlist-main">
+            <div className="watchlist-page">
                 <div className="watchlist-main-content">
                     <div className="watchlist-container">
-                        <WatchlistMain />
+                        <WatchlistMain id={id}/>
                     </div>
                 </div>
             </div>
