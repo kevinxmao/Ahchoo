@@ -12,8 +12,9 @@
 
 .modal-form-div {
     position: relative;
-    height: 408px;
-    width: 408px;
+    // height: 408px;
+    // width: 408px;
+    width: max-content;
     border-radius: $primary_input_border_radius;
     background-color: white;
     top: 50%;
@@ -24,58 +25,112 @@
 }
 
 .about-me {
-    width: 100%;
+    // width: 100%;
+    height: 408px;
+    width: 408px;
     padding: 36px 0;
     line-height: 20px;
+}
 
-    .modal-title {
-        margin-bottom: 12px;
-        padding: 0 24px;
+.modal-title {
+    margin-bottom: 12px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: auto;
+
+    button {
+        background: none;
+        border: 0px;
+        padding: 0px;
         display: flex;
+        justify-content: center;
         align-items: center;
-        justify-content: space-between;
-        margin-left: auto;
+        height: 40px;
+        width: 40px;
+        cursor: pointer;
+        margin-top: -8px;
+        margin-right: -8px;
+        font-size: 24px;
+        color: $neutral_fg3;
+    }
+}
+
+.avatar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        height: 80px;
+        border-radius: 50%;
+    }
+}
+
+.developer {
+    margin-top: 24px;
+    padding: 0 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $neutral_fg2;
+}
+
+.description {
+    margin-top: 36px;
+    padding: 0 36px;
+    text-align: justify;
+}
+
+// delete watchlist
+
+.delete-watchlist {
+    width: 408px;
+    padding: 24px 0;
+
+    header {
+        padding: 0 24px;
+        margin-bottom: 12px;
+    }
+
+    footer {
+        padding: 0 24px;
 
         button {
-            background: none;
-            border: 0px;
-            padding: 0px;
+            font-weight: 700;
+            border-radius: $primary_input_border_radius;
+            background-color: $primary_red_base;
+            color: white;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 40px;
-            width: 40px;
-            cursor: pointer;
-            margin-top: -8px;
-            margin-right: -8px;
-            font-size: 24px;
-            color: $neutral_fg3;
+            padding: 0 48px;
+            height: 48px;
+            width: 100%;
         }
-    }
-    
-    .avatar-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
 
-        img {
-            height: 80px;
-            border-radius: 50%;
+        button:hover {
+            background-color: $primary_red_hover;
         }
-    }
 
-    .developer {
-        margin-top: 24px;
-        padding: 0 36px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: $neutral_fg2;
-    }
-
-    .description {
-        margin-top: 36px;
-        padding: 0 36px;
-        text-align: justify;
+        button:focus {
+            background-color: $primary_red_pressed;
+        }
     }
 }
+
+.delete-warning {
+    margin-bottom: 24px;
+    font-size: 13px;
+}
+
+.delete-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: .25px;
+}
+
+// edit watchlist
+

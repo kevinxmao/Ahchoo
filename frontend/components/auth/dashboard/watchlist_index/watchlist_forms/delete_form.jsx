@@ -18,19 +18,19 @@ export default function DeleteForm(props) {
     return (
         <div className="delete-watchlist">
             <header className="modal-title">
-                <div>
+                <div className="delete-title">
                     <span>Are you sure you want to delete "{name}"?</span>
                 </div>
                 <button onClick={() => dispatch(closeModal())} className="close-btn">
                     <span><FontAwesomeIcon icon={faTimes} /></span>
                 </button>
             </header>
-            <div>
+            <footer>
                 <div className="delete-warning">
-                    <span>If you delete this list and {tickers.length} {tickers.length == 1 ? "item" : "items"}, it'll be gone forever! </span>
+                    <span>If you delete this list and its {tickers.length} {tickers.length == 1 ? "item" : "items"}, it'll be gone forever! </span>
                 </div>
                 <button onClick={submitForm}><span>Delete {name}</span></button>
-            </div>
+            </footer>
         </div>
     )
 }
