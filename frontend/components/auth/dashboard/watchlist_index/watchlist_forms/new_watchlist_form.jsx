@@ -8,7 +8,7 @@ export default function NewWatchlistForm(props) {
     const name = useFormInput("");
     const dispatch = useDispatch();
     const userId = useSelector(state => state.session.id);
-    const errors = useSelector(state => state.errors.watchlist)
+    const errors = useSelector(state => state.errors.watchlist);
 
     function submitForm() {
         const watchlist = { userId, name: name.value };
@@ -30,10 +30,12 @@ export default function NewWatchlistForm(props) {
 
     function renderErrors() {
         return (<div className="create-errors">
-                    <span>
-                        <FontAwesomeIcon icon={faExclamationCircle} />
-                    </span>
-                    <span>You've already used that name. Try another.</span>
+                    <div>
+                        <div className="icon">
+                            <FontAwesomeIcon icon={faExclamationCircle} />
+                        </div>
+                        <span>You've already used that name. Try another.</span>
+                    </div>
                 </div>)
     }
 
@@ -41,7 +43,7 @@ export default function NewWatchlistForm(props) {
         <div className="new-watchlist-form">
             <form>
                 <div className="new-watchlist-name">
-                    <input type="text" placeholder="List Name" {...name} />
+                    <input type="text" placeholder="List Name" {...name} className={!!errors.length ? "red" : ""}/>
                     {!!errors.length && renderErrors()}
                 </div>
                 <footer>

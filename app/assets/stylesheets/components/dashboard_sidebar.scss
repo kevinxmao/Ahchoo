@@ -289,6 +289,10 @@ a.sidebar-list-item > div {
         border: 1px solid $neutral_bg2;
     }
 
+    input.red {
+        border-color: $primary_red_base;
+    }
+
     input:focus {
         border-color: blue;
     }
@@ -298,6 +302,26 @@ a.sidebar-list-item > div {
     position: absolute;
     background-color: white;
     box-shadow: $box_shadow;
+    border-radius: $primary_input_border_radius;
     z-index: 99;
-    
+    padding: 24px;
+    right: 24px;
+    top: 48px;
+
+    >div {
+        max-width: 220px;
+        display: flex;
+        align-items: center;
+    }
+
+    .icon {
+        font-size: 24px;
+        margin-right: 12px;
+    }
+
+    span {
+        font-size: 13px;
+        line-height: 20px;
+        letter-spacing: 0.1px;
+    }
 }
