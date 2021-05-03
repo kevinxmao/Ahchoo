@@ -29,7 +29,7 @@ export default function NewWatchlistForm(props) {
     }
 
     function renderErrors() {
-        return (<div>
+        return (<div className="create-errors">
                     <span>
                         <FontAwesomeIcon icon={faExclamationCircle} />
                     </span>
@@ -42,7 +42,7 @@ export default function NewWatchlistForm(props) {
             <form>
                 <div className="new-watchlist-name">
                     <input type="text" placeholder="List Name" {...name} />
-                    <div>{errors}</div>
+                    {!!errors.length && renderErrors()}
                 </div>
                 <footer>
                     <button onClick={props.closeForm}>Cancel</button>

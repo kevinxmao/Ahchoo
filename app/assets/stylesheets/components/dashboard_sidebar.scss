@@ -293,3 +293,11 @@ a.sidebar-list-item > div {
         border-color: blue;
     }
 }
+
+.create-errors {
+    position: absolute;
+    background-color: white;
+    box-shadow: $box_shadow;
+    z-index: 99;
+    
+}
