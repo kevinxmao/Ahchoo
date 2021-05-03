@@ -69,7 +69,8 @@ export default function WatchlistTable(props) {
     }
 
     function renderTableBody() {
-        if (!!symbols.length) {
+        if (!!symbols.length && data) {
+            console.log(data)
             return symbols.map((symbol, i) => <WatchlistRow key={i} symbol={symbol} data={data}/>)
         } else {
             return <LoadingPage />
@@ -99,30 +100,28 @@ function camalize(str) {
 }
 
 function sortSymbols(symbols, field, order, data) {
-    const comparator = order === 'ASC' ? (a, b) => a > b : (a, b) => a < b;
-
-
-}
-
-const pivot = (arr, start = 0, end = arr.length + 1, field, data) => {
-    const swap = (arr, i, j) => [ar[i], arr[j]] = [arr[j], arr[i]];
-
-    let pivot = arr[start],
-        pointer = start;
-
-    for (let i = start; i < arr.length; i++) {
-        if (arr[i] < pivot) {
-            pointer++;
-            swap(arr, pointer, i);
+    let comparator;
+    if (order === 'ASC') {
+        comparator = (a, b) => {
+            if (data[a][field] < data[b][field]) {
+                return -1;
+            } else if (data[a][field] > data[b][field]) {
+                return 1;
+            } else {
+                return 0;
+            }
         }
-    };
-    swap(arr, start, pointer);
+    } else {
+        comparator = (a, b) => {
+            if (data[a][field] > data[b][field]) {
+                return -1;
+            } else if (data[a][field] < data[b][field]) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+    }
 
-    return pointer;
-}
-
-function swap(items, i, j) {
-    let temp = items[i];
-    items[i] = items[j];
-    items[j] = temp;
+    return symbols.sort(comparator);
 }
