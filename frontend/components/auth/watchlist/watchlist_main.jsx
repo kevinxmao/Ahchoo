@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateWatchlist } from '../../../actions/watchlists_actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/pro-regular-svg-icons';
+import WatchlistTable from './watchlist_table';
 
 export default function WatchlistMain(props) {
     const watchlist = useSelector(state => state.entities.watchlists[props.id]);
@@ -11,8 +12,17 @@ export default function WatchlistMain(props) {
     const name = useFormInput(watchlist.name);
     const dispatch = useDispatch();
 
-    function renderEmpty() {
-        
+    function renderTable() {
+        if (watchlist.tickers.length === 0) {
+            return (
+                <div>
+                    <header><span>Feels a little empty in here...</span></header>
+                    <div><span>Search for companies to add and stay up to date.</span></div>
+                </div>
+            )
+        } else {
+            return <WatchlistTable tickers={watchlist.tickers}/>
+        }
     }
 
     function useFormInput(initialValue) {
@@ -69,6 +79,9 @@ export default function WatchlistMain(props) {
                     </div>
                     <div><span>{watchlist.tickers.length} {watchlist.tickers.length === 1 ? "item" : "items"}</span></div>
                 </header>
+                <div className="watchlist-table-container">
+                    {renderTable()}
+                </div>
             </div>
             <div className="watchlist-sidebar">
                 <div>
