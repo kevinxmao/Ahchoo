@@ -59,7 +59,7 @@ export default function WatchlistSidebarItem(props) {
                             <span>{props.watchlist.name}</span>
                         </div>
                         <div className="watchlist-title-nav">
-                            <button className={dropdown ? "list-overflow active" : "list-overflow"} onClick={handleOverflowClick}>{ellipsis}</button>
+                            <button className={dropdown ? "list-overflow _defaultGreen active" : "list-overflow _defaultGreen"} onClick={handleOverflowClick}>{ellipsis}</button>
                         </div>
                     </header>
                     {dropdown && renderDropdown()}

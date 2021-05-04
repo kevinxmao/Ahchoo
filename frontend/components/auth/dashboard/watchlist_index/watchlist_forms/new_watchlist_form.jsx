@@ -34,7 +34,7 @@ export default function NewWatchlistForm(props) {
                         <div className="icon">
                             <FontAwesomeIcon icon={faExclamationCircle} />
                         </div>
-                        <span>You've already used that name. Try another.</span>
+                        <span>{errors}</span>
                     </div>
                 </div>)
     }

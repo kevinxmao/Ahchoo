@@ -11,7 +11,7 @@ export default function WatchlistPage(props) {
     
     useEffect(() => {
         dispatch(fetchWatchlists())
-    }, [])
+    }, []);
 
     if (!watchlists.length) return <LoadingPage />;
 
@@ -20,7 +20,7 @@ export default function WatchlistPage(props) {
             <div className="watchlist-page">
                 <div className="watchlist-main-content">
                     <div className="watchlist-container">
-                        <WatchlistMain id={id}/>
+                        <WatchlistMain id={id} />
                     </div>
                 </div>
             </div>

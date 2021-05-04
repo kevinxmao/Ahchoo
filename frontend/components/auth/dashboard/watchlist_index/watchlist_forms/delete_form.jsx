@@ -4,15 +4,19 @@ import { closeModal } from '../../../../../actions/modal_actions';
 import { deleteWatchlist } from '../../../../../actions/watchlists_actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/pro-regular-svg-icons';
+import { withRouter } from 'react-router-dom';
 
-export default function DeleteForm(props) {
+function DeleteForm(props) {
     const dispatch = useDispatch();
     const watchlist = useSelector(state => state.entities.watchlists[props.id]);
     const [name, setName] = useState(Object.assign({}, watchlist).name);
     const [tickers, setTickers] = useState(Object.assign({}, watchlist).tickers);
 
     function submitForm() {
-        dispatch(deleteWatchlist(watchlist.id)).then(() => dispatch(closeModal()));
+        dispatch(deleteWatchlist(watchlist.id)).then(() => {
+            props.history.push('/');
+            dispatch(closeModal());
+        });
     }
 
     return (
@@ -34,3 +38,5 @@ export default function DeleteForm(props) {
         </div>
     )
 }
+
+export default withRouter(DeleteForm);

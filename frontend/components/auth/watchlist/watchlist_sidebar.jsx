@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/pro-regular-svg-icons';
 import WatchlistSidebarItem from './watchlist_sidebar_item';
 
-export default function WatchlistSidebar(props) {
+export default function WatchlistSidebar() {
     const [form, setForm] = useState(false);
     const dispatch = useDispatch();
     const watchlists = useSelector(state => Object.values(state.entities.watchlists))
@@ -41,11 +41,11 @@ export default function WatchlistSidebar(props) {
 
     return (
         <div className="sidebar-content">
-            <div className="watchlists-index">
+            <div className="watchlists-index _defaultGreen">
                 <div className="sidebar-title" onClick={(form && !!errors.length) ? closeForm : () => { }}>
                     <header>
                         <span>Lists</span>
-                        <button className="btn new-watchlist" onClick={openForm}><FontAwesomeIcon icon={faPlus} /></button>
+                        <button className="btn new-watchlist _defaultGreen" onClick={openForm}><FontAwesomeIcon icon={faPlus} /></button>
                     </header>
                 </div>
                 {form && renderForm()}

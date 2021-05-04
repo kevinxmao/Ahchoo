@@ -3,12 +3,15 @@ import WatchlistSidebar from './watchlist_sidebar';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateWatchlist } from '../../../actions/watchlists_actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisH } from '@fortawesome/pro-regular-svg-icons';
+import { faEllipsisH, faTimesCircle } from '@fortawesome/pro-regular-svg-icons';
 import WatchlistTable from './watchlist_table';
+import { openModal } from '../../../actions/modal_actions';
+import { withRouter } from 'react-router-dom';
 
-export default function WatchlistMain(props) {
-    const watchlist = useSelector(state => state.entities.watchlists[props.id]);
+function WatchlistMain(props) {
+    const watchlist = useSelector(state => Object.assign({}, state.entities.watchlists[props.id]));
     const [edit, setEdit] = useState(false);
+    const [dropdown, setDropdown] = useState(false);
     const name = useFormInput(watchlist.name);
     const dispatch = useDispatch();
 
@@ -67,6 +70,44 @@ export default function WatchlistMain(props) {
         }
     }
 
+    function handleOverflowClick(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        event.nativeEvent.stopImmediatePropagation();
+        setDropdown(!dropdown);
+    }
+
+    function globalClickListener(nativeEvent) {
+        setDropdown(false);
+    }
+
+    useEffect(() => {
+        if (dropdown) {
+            window.addEventListener('click', globalClickListener)
+        } else {
+            window.removeEventListener('click', globalClickListener)
+        }
+    })
+
+    function handleBodyclick(syntheticEvent) {
+        syntheticEvent.stopPropagation();
+    }
+
+    function renderDropdown() {
+        return (
+            <div className="delete-dropdown _defaultGreen" onClick={handleBodyclick}>
+                <div>
+                    <button onClick={() => dispatch(openModal(`delete-list-${watchlist.id}`))}>
+                        <div className="dropdown-icon"><FontAwesomeIcon icon={faTimesCircle} /></div>
+                        <span>Delete List</span>
+                    </button>
+                </div>
+            </div>
+        )
+    }
+
+    if (!Object.values(watchlist).length) return null;
+
     return (
         <>
             <div className="watchlist-main">
@@ -77,9 +118,10 @@ export default function WatchlistMain(props) {
                             <span>{watchlist.tickers.length} {watchlist.tickers.length === 1 ? "item" : "items"}</span>
                         </div>
                     </div>
-                    <div className="icons">
+                    <div className="icons" onClick={handleOverflowClick}>
                         <FontAwesomeIcon icon={faEllipsisH} />
                     </div>
+                    {dropdown && renderDropdown()}
                 </header>
                 <div className="watchlist-table-container">
                     {renderTable()}
@@ -93,3 +135,5 @@ export default function WatchlistMain(props) {
         </>
     )
 }
+
+export default WatchlistMain;

@@ -293,6 +293,10 @@ a.sidebar-list-item > div {
         border-color: $primary_red_base;
     }
 
+    input:hover {
+        background-color: white;
+    }
+
     input:focus {
         border-color: blue;
     }
