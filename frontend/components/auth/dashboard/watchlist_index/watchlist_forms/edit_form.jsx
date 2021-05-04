@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../../../../actions/modal_actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/pro-regular-svg-icons';
+import { faTimes, faExclamationCircle } from '@fortawesome/pro-regular-svg-icons';
 import { updateWatchlist } from '../../../../../actions/watchlists_actions';
 
 export default function EditForm(props) {
     const dispatch = useDispatch();
-    const watchlist = useSelector(state => state.entities.watchlists[props.id]);
+    const watchlist = useSelector(state => Object.assign({}, state.entities.watchlists[props.id]));
+    console.log(watchlist)
     const name = useFormInput(watchlist.name);
     const errors = useSelector(state => state.errors.watchlist)
     
@@ -22,6 +23,17 @@ export default function EditForm(props) {
             value,
             onChange: handleChange
         }
+    }
+
+    function renderErrors() {
+        return (<div className="edit-errors">
+            <div>
+                <div className="icon">
+                    <FontAwesomeIcon icon={faExclamationCircle} />
+                </div>
+                <span>{errors}</span>
+            </div>
+        </div>)
     }
 
     function submitForm() {
@@ -40,7 +52,8 @@ export default function EditForm(props) {
                 </button>
             </header>
             <form>
-                <input type="text" {...name}/>
+                <input type="text" {...name} className={!!errors.length ? "red" : ""}/>
+                {!!errors.length && renderErrors()}
                 <button onClick={submitForm}><span>Save</span></button>
             </form>
         </div>

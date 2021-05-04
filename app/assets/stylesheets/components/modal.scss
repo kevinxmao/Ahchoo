@@ -157,6 +157,10 @@
             width: 100%;
         }
 
+        input.red {
+            border-color: $primary_red_base;
+        }
+
         input:focus {
             border-color: $primary_green_base;
         }
@@ -181,5 +185,33 @@
         button:focus {
             background-color: $primary_green_pressed;
         }
+    }
+}
+
+.edit-errors {
+    position: absolute;
+    background-color: white;
+    box-shadow: $box_shadow;
+    border-radius: $primary_border_radius;
+    z-index: 99;
+    padding: 24px;
+    right: 24px;
+    top: 120px;
+
+    >div {
+        max-width: 220px;
+        display: flex;
+        align-items: center;
+    }
+
+    .icon {
+        font-size: 24px;
+        margin-right: 12px;
+    }
+
+    span {
+        font-size: 13px;
+        line-height: 20px;
+        letter-spacing: 0.1px;
     }
 }
