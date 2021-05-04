@@ -25,7 +25,7 @@ export default function WatchlistIndex(props) {
     }
 
     function renderForm() {
-        return <NewWatchlistForm closeForm={closeForm} createWatchlist={props.createWatchlist}/>
+        return <NewWatchlistForm closeForm={closeForm} />
     }
 
     function openForm(event) {
