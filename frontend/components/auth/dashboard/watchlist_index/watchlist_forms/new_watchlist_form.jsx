@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { createWatchlist } from '../../../../../actions/watchlists_actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExclamationCircle } from '@fortawesome/pro-regular-svg-icons';
+import { faExclamationCircle, faSpinner } from '@fortawesome/pro-regular-svg-icons';
+import { clearErrors } from '../../../../../actions/session_actions';
 
 export default function NewWatchlistForm(props) {
     const name = useFormInput("");
@@ -12,7 +14,15 @@ export default function NewWatchlistForm(props) {
 
     function submitForm() {
         const watchlist = { userId, name: name.value };
-        dispatch(createWatchlist(watchlist)).then(() => props.closeForm());
+        ReactDOM.render(<FontAwesomeIcon icon={faSpinner} spin size="lg" />, document.querySelector("button.btn.watchlist-cancel"))
+        ReactDOM.render(<FontAwesomeIcon icon={faSpinner} spin size="lg" />, document.querySelector("button.btn.watchlist-new"))
+        dispatch(createWatchlist(watchlist)).then(
+            () => props.closeForm(),
+            () => {
+                ReactDOM.render(<span>Cancel</span>, document.querySelector("button.btn.watchlist-cancel"));
+                ReactDOM.render(<span>Create List</span>, document.querySelector("button.btn.watchlist-new"));
+            }
+        );
     }
 
     function useFormInput(initialValue) {
@@ -43,12 +53,12 @@ export default function NewWatchlistForm(props) {
         <div className="new-watchlist-form">
             <form>
                 <div className="new-watchlist-name">
-                    <input type="text" placeholder="List Name" {...name} className={!!errors.length ? "red" : ""}/>
+                    <input type="text" placeholder="List Name" {...name} className={!!errors.length ? "red" : ""} onFocus={() => dispatch(clearErrors())}/>
                     {!!errors.length && renderErrors()}
                 </div>
                 <footer>
-                    <button onClick={props.closeForm}>Cancel</button>
-                    <button onClick={submitForm}>Create List</button>
+                    <button className="btn watchlist-cancel" onClick={props.closeForm}>Cancel</button>
+                    <button className="btn watchlist-new" onClick={submitForm}>Create List</button>
                 </footer>
             </form>
         </div>

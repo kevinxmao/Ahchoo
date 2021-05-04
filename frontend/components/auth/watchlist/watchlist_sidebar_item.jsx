@@ -33,15 +33,23 @@ export default function WatchlistSidebarItem(props) {
         syntheticEvent.stopPropagation();
     }
 
+    function handleOpenModal(event, mode) {
+        event.preventDefault();
+        event.stopPropagation();
+        event.nativeEvent.stopImmediatePropagation();
+        dispatch(openModal(`${mode}-list-${props.watchlist.id}`));
+        setDropdown(false);
+    }
+
     function renderDropdown() {
         return (
             <div className="watchlist-dropdown" onClick={handleBodyclick}>
                 <div>
-                    <button onClick={() => dispatch(openModal(`edit-list-${props.watchlist.id}`))}>
+                    <button onClick={(e) => handleOpenModal(e, 'edit')}>
                         <div className="dropdown-icon"><FontAwesomeIcon icon={faCog} /></div>
                         <span>Edit List</span>
                     </button>
-                    <button onClick={() => dispatch(openModal(`delete-list-${props.watchlist.id}`))}>
+                    <button onClick={(e) => handleOpenModal(e, 'delete')}>
                         <div className="dropdown-icon"><FontAwesomeIcon icon={faTimesCircle} /></div>
                         <span>Delete List</span>
                     </button>

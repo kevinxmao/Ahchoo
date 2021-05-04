@@ -5,6 +5,7 @@ import { closeModal } from '../../../../../actions/modal_actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faExclamationCircle, faSpinner } from '@fortawesome/pro-regular-svg-icons';
 import { updateWatchlist } from '../../../../../actions/watchlists_actions';
+import { clearErrors } from '../../../../../actions/session_actions';
 
 export default function EditForm(props) {
     const dispatch = useDispatch();
@@ -56,7 +57,7 @@ export default function EditForm(props) {
                 </button>
             </header>
             <form>
-                <input type="text" {...name} className={!!errors.length ? "red" : ""}/>
+                <input type="text" {...name} className={!!errors.length ? "red" : ""} onFocus={() => dispatch(clearErrors())}/>
                 {!!errors.length && renderErrors()}
                 <button className="btn watchlist-edit" onClick={submitForm}><span>Save</span></button>
             </form>

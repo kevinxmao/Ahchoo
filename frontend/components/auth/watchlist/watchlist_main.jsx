@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH, faTimesCircle } from '@fortawesome/pro-regular-svg-icons';
 import WatchlistTable from './watchlist_table';
 import { openModal } from '../../../actions/modal_actions';
-import { withRouter } from 'react-router-dom';
 
 function WatchlistMain(props) {
     const watchlist = useSelector(state => Object.assign({}, state.entities.watchlists[props.id]));
