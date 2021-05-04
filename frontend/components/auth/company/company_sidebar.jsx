@@ -1,5 +1,6 @@
 import React from 'react';
 import OrderForm from './main_order_form';
+import WatchlistForm from './watchlist_form';
 
 class CompanySidebar extends React.Component {
 
@@ -28,7 +29,8 @@ class CompanySidebar extends React.Component {
                 fetchUser={fetchUser}
               />
             </div>
-            <div className="wishlist-form">
+            <div className="watchlist-form">
+              <WatchlistForm ticker={ticker}/>
             </div>
           </div>
         );

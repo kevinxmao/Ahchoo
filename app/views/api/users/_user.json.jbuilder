@@ -14,3 +14,15 @@ json.holdings do
         end
     end
 end
+
+json.watchlists do 
+    user.watchlists.each do |watchlist|
+        json.set! watchlist.id do
+            json.extract! watchlist, :id, :name, :user_id
+
+            json.tickers do
+                json.array! watchlist.tickers, :id, :ticker
+            end
+        end
+    end
+end
