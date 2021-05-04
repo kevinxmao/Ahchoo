@@ -1,9 +1,10 @@
 import React, { useState, useCallback } from 'react';
+import ReactDOM from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../../../../actions/modal_actions';
 import { deleteWatchlist } from '../../../../../actions/watchlists_actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/pro-regular-svg-icons';
+import { faTimes, faSpinner } from '@fortawesome/pro-regular-svg-icons';
 import { withRouter } from 'react-router-dom';
 
 function DeleteForm(props) {
@@ -13,6 +14,7 @@ function DeleteForm(props) {
     const [tickers, setTickers] = useState(Object.assign({}, watchlist).tickers);
 
     function submitForm() {
+        ReactDOM.render(<FontAwesomeIcon icon={faSpinner} spin size="lg"/>, document.querySelector("button.btn.watchlist-delete"))
         dispatch(deleteWatchlist(watchlist.id)).then(() => {
             props.history.push('/');
             dispatch(closeModal());
@@ -33,7 +35,7 @@ function DeleteForm(props) {
                 <div className="delete-warning">
                     <span>If you delete this list and its {tickers.length} {tickers.length == 1 ? "item" : "items"}, it'll be gone forever! </span>
                 </div>
-                <button onClick={submitForm}><span>Delete {name}</span></button>
+                <button className="btn watchlist-delete" onClick={submitForm}><span>Delete {name}</span></button>
             </footer>
         </div>
     )

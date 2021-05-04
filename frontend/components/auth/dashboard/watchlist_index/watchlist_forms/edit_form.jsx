@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../../../../actions/modal_actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faExclamationCircle } from '@fortawesome/pro-regular-svg-icons';
+import { faTimes, faExclamationCircle, faSpinner } from '@fortawesome/pro-regular-svg-icons';
 import { updateWatchlist } from '../../../../../actions/watchlists_actions';
 
 export default function EditForm(props) {
     const dispatch = useDispatch();
     const watchlist = useSelector(state => Object.assign({}, state.entities.watchlists[props.id]));
-    console.log(watchlist)
     const name = useFormInput(watchlist.name);
     const errors = useSelector(state => state.errors.watchlist)
     
@@ -38,7 +38,11 @@ export default function EditForm(props) {
 
     function submitForm() {
         watchlist.name = name.value;
-        dispatch(updateWatchlist(watchlist)).then(() => dispatch(closeModal()))
+        ReactDOM.render(<FontAwesomeIcon icon={faSpinner} spin size="lg" />, document.querySelector("button.btn.watchlist-edit"))
+        dispatch(updateWatchlist(watchlist)).then(
+            () => dispatch(closeModal()),
+            () => ReactDOM.render(<span>Save</span>, document.querySelector("button.btn.watchlist-edit"))
+        )
     }
 
     return (
@@ -54,7 +58,7 @@ export default function EditForm(props) {
             <form>
                 <input type="text" {...name} className={!!errors.length ? "red" : ""}/>
                 {!!errors.length && renderErrors()}
-                <button onClick={submitForm}><span>Save</span></button>
+                <button className="btn watchlist-edit" onClick={submitForm}><span>Save</span></button>
             </form>
         </div>
     )
