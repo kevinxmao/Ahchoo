@@ -2,7 +2,7 @@
 
 .company-sidebar > div {
     margin-bottom: 0;
-    height: calc(100% - 64px - 31px);
+    // height: calc(100% - 64px - 31px);
     margin-top: -24px;
     margin-left: -24px;
     padding: 24px;
@@ -19,7 +19,24 @@
             box-shadow: $box_shadow;
             position: relative;
             overflow: hidden auto;
-            height: 500px; // change later
+            height: 400px; // change later
         }
+    }
+}
+
+.watchlist-form {
+    margin-top: 24px;
+    padding: 0 24px;
+    width: 100%;
+    box-sizing: border-box;
+
+    button {
+        margin-top: 12px;
+        margin-bottom: 12px;
+        border: 1px solid blue;
+        border-radius: $primary_border_radius;
+        padding: 0 48px;
+        height: 46px;
+        width: 100%;
     }
 }

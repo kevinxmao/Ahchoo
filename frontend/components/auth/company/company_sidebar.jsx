@@ -16,23 +16,25 @@ class CompanySidebar extends React.Component {
           fetchUser
         } = this.props;
         return (
-          <div className="sidebar-content">
-            <div className="order-form">
-              <OrderForm
-                user= {user}
-                ticker={ticker}
-                holdings={holdings}
-                price={price}
-                updateHolding={updateHolding}
-                createHolding={createHolding}
-                deleteHolding={deleteHolding}
-                fetchUser={fetchUser}
-              />
+          <>
+            <div className="sidebar-content">
+              <div className="order-form">
+                <OrderForm
+                  user={user}
+                  ticker={ticker}
+                  holdings={holdings}
+                  price={price}
+                  updateHolding={updateHolding}
+                  createHolding={createHolding}
+                  deleteHolding={deleteHolding}
+                  fetchUser={fetchUser}
+                />
+              </div>
             </div>
             <div className="watchlist-form">
-              <WatchlistForm ticker={ticker}/>
+              <WatchlistForm ticker={ticker} />
             </div>
-          </div>
+          </>
         );
     }
 }

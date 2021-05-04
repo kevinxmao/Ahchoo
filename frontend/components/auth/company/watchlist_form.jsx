@@ -14,11 +14,9 @@ export default function WatchlistForm(props) {
         let res = [];
         for (let [key, value] of Object.entries(watchlists)) {
             if (value.tickers.findIndex((ticker) => ticker.ticker === props.ticker) !== -1) {
-                res = res.push(key);
+                res.push(key);
             }
         }
-
-        console.log(res)
         return res;
     }
 
@@ -26,9 +24,13 @@ export default function WatchlistForm(props) {
         return findContainedWatchlists().length > 0;
     }
 
-    if (watchlists === {}) return null;
+    function handleClick() {
+
+    }
 
     return (
-        <div><span>{`${inAnyWatchlist()}`}</span></div>
+        <button onClick={handleClick}>
+            <div>{inAnyWatchlist() ? "Added to Lists" : "Add to List"}</div>
+        </button>
     )
 }
