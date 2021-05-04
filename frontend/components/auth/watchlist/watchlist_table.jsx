@@ -77,11 +77,11 @@ export default function WatchlistTable(props) {
     }
 
     return (
-        <>
+        <div className="table">
             <header className="table-header">
                 <div>
                     {renderColumnHeader('Name')}
-                    {renderColumnHeader('symbol')}
+                    {renderColumnHeader('Symbol')}
                     {renderColumnHeader('Price')}
                     {renderColumnHeader('Today')}
                     {renderColumnHeader('Market Cap')}
@@ -90,7 +90,7 @@ export default function WatchlistTable(props) {
             <div className="table-body">
                 {renderTableBody()}
             </div>
-        </>
+        </div>
     )
 }
 

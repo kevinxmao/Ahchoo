@@ -18,7 +18,8 @@
     flex: 0 0 66.66667%;
     padding: 0 6px;
 
-    header {
+    > header {
+        background-color: white;
         height: 80px;
         margin: 0 -24px;
         overflow: hidden;
@@ -27,6 +28,7 @@
         top: 64px;
         display: flex;
         align-items: start;
+        z-index: 1;
     }
 }
 
@@ -54,7 +56,11 @@ div.watchlist-name-form {
     cursor: pointer;
 }
 
-.watchlist-name-form {
+div.watchlist-name-form:hover {
+    background-color: $neutral_bg2;
+}
+
+.watchlist-name-form, .watchlist-page input {
     background: none;
     border: 0px;
     border-radius: $primary_input_border_radius;
@@ -66,10 +72,68 @@ div.watchlist-name-form {
     font-size: $displayM_font_size;
 }
 
+.watchlist-page input {
+    box-sizing: border-box;
+    border: 2px solid blue;
+}
+
+.watchlist-subtitle {
+    font-size: $textS_font_size;
+    color: $neutral_fg2;
+}
+
+.watchlist-table-container {
+    margin-top: 24px;
+    position: relative;
+}
+
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0px;
+}
+
+.table-header {
+    position: sticky;
+    top: 80px;
+    z-index: 0;
+
+    >div {
+        display: flex;
+        background-color: white;
+        padding: 0 24px;
+        margin: 0 -24px;
+    }
+}
+
 .watchlist-sidebar {
     flex: 0 0 27.77778%;
     padding: 0 6px;
     margin-right: 0;
+}
+
+.column-header {
+    border-bottom: 1px solid $neutral_border_color;
+    height: 48px;
+    box-sizing: border-box;
+    text-align: left;
+    padding-right: 24px;
+    position: relative;
+    color: $neutral_bg3;
+    display: flex;
+    align-items: center;
+}
+
+.column-header:first-of-type {
+    width: 250px;
+}
+
+.column-header:not(:first-of-type):not(:last-of-type) {
+    width: calc(0px + (100% - 286px) / 4);
+}
+
+.column-header:last-of-type {
+    width: calc(36px + (100% - 286px) / 4);
 }
 
 .btn.delete-watchlist-item:hover {

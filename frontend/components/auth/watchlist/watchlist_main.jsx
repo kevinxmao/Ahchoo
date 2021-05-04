@@ -61,7 +61,7 @@ export default function WatchlistMain(props) {
         } else {
             return (
                 <div className="watchlist-name-form" onClick={() => setEdit(true)}>
-                    <span>{watchlist.name}</span>
+                    <div><span>{watchlist.name}</span></div>
                 </div>
             )
         }
@@ -73,7 +73,9 @@ export default function WatchlistMain(props) {
                 <header>
                     <div className="main-watchlist-name">
                         {renderNameField()}
-                        <div><span>{watchlist.tickers.length} {watchlist.tickers.length === 1 ? "item" : "items"}</span></div>
+                        <div className="watchlist-subtitle">
+                            <span>{watchlist.tickers.length} {watchlist.tickers.length === 1 ? "item" : "items"}</span>
+                        </div>
                     </div>
                     <div className="icons">
                         <FontAwesomeIcon icon={faEllipsisH} />
