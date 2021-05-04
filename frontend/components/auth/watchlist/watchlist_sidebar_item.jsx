@@ -11,7 +11,9 @@ export default function WatchlistSidebarItem(props) {
     const ellipsis = <FontAwesomeIcon icon={faEllipsisH}/>
 
     function handleOverflowClick(event) {
+        event.preventDefault();
         event.stopPropagation();
+        event.nativeEvent.stopImmediatePropagation();
         setDropdown(!dropdown);
     }
 
@@ -50,7 +52,7 @@ export default function WatchlistSidebarItem(props) {
 
     return (
         <div className="watchlist">
-            <Link to={`/auth/watchlists/${props.watchlist.id}`}>
+            <Link to={`/auth/watchlists/${props.watchlist.id}`} className="watchlist-title-button">
                 <div className="watchlist-title">
                     <header>
                         <div className="watchlist-name" >

@@ -249,3 +249,16 @@ form.watchlist-name-form {
         font-size: $textM_font_size;
     }
 }
+
+.watchlist-title-button:hover {
+    color: initial;
+}
+
+.watchlist-name {
+    margin: 8px 16px;
+    padding: 4px 8px;
+    height: 30px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+}
