@@ -34,3 +34,19 @@ export const debounce = (fcn, wait) => {
     timeout = setTimeout(later, wait)
   };
 }
+
+export const formatLargeNumber = number => {
+  return Math.abs(Number(number)) >= 1.0e+12
+
+    ? (Math.abs(Number(number)) / 1.0e+12).toFixed(2) + "T"
+    // Six Zeroes for Millions 
+    : Math.abs(Number(number)) >= 1.0e+9
+
+      ? (Math.abs(Number(number)) / 1.0e+9).toFixed(2) + "B"
+      // Three Zeroes for Thousands
+      : Math.abs(Number(number)) >= 1.0e+6
+
+        ? (Math.abs(Number(number)) / 1.0e+6).toFixed(2) + "M"
+
+        : Math.abs(Number(number));
+}

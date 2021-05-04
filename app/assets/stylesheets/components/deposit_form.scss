@@ -57,7 +57,7 @@
                 box-sizing: border-box;
                 color: rgb(0, 0, 0);
                 border: 1px solid black;
-                border-radius: $primary_input_border_radius;
+                border-radius: $primary_border_radius;
                 line-height: 1.5em;
                 border: none;
                 background-color: $neutral_bg2;
@@ -78,7 +78,7 @@
         align-items: center;
         justify-content: center;
         border: 1px solid transparent;
-        border-radius: $primary_input_border_radius;
+        border-radius: $primary_border_radius;
         color: white;
         background-color: $primary_green_base;
         cursor: pointer;

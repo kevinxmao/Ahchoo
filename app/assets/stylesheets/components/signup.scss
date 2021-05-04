@@ -96,7 +96,7 @@
         border: none;
         background-color: $neutral_base;
         border: 1px solid $neutral_base;
-        border-radius: $primary_input_border_radius;
+        border-radius: $primary_border_radius;
     }
 
     input:hover {
@@ -125,7 +125,7 @@
         height: $primary_button_height;
         width: $primary_button_width;
         border: none;
-        border-radius: $primary_input_border_radius;
+        border-radius: $primary_border_radius;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -147,7 +147,7 @@
         color: black;
         border: none;
         font-weight: bold;
-        border-radius: $primary_input_border_radius;
+        border-radius: $primary_border_radius;
         height: $primary_button_height;
         width: $primary_button_width;
     }

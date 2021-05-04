@@ -15,7 +15,7 @@
     // height: 408px;
     // width: 408px;
     width: max-content;
-    border-radius: $primary_input_border_radius;
+    border-radius: $primary_border_radius;
     background-color: white;
     top: 50%;
     left: 50%;
@@ -99,7 +99,7 @@
 
         button {
             font-weight: 700;
-            border-radius: $primary_input_border_radius;
+            border-radius: $primary_border_radius;
             background-color: $primary_red_base;
             color: white;
             display: flex;
@@ -150,7 +150,7 @@
             font-size: 13px;
             background-color: $neutral_bg2;
             border: 1px solid transparent;
-            border-radius: $primary_input_border_radius;
+            border-radius: $primary_border_radius;
             padding: 0 12px;
             margin-bottom: 24px;
             height: 36px;
@@ -163,7 +163,7 @@
 
         button {
             font-weight: 700;
-            border-radius: $primary_input_border_radius;
+            border-radius: $primary_border_radius;
             background-color: $primary_green_base;
             color: white;
             display: flex;
