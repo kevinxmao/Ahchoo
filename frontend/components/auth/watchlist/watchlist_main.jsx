@@ -15,9 +15,9 @@ export default function WatchlistMain(props) {
     function renderTable() {
         if (watchlist.tickers.length === 0) {
             return (
-                <div>
+                <div className="empty-table">
                     <header><span>Feels a little empty in here...</span></header>
-                    <div><span>Search for companies to add and stay up to date.</span></div>
+                    <footer><span>Search for companies to add and stay up to date.</span></footer>
                 </div>
             )
         } else {

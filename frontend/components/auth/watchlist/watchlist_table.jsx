@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { fetchWatchlistInfo } from '../../../util/companies/data_api_util';
 import WatchlistRow from './watchlist_row';
 import LoadingPage from '../../loading_page';
+import { useDispatch } from 'react-redux';
+import { updateWatchlist } from '../../../actions/watchlists_actions';
+import { camalize } from '../../../util/util_functions';
 
 export default function WatchlistTable(props) {
-    // const [tickers, setTickers] = useState(props.tickers);
     const initialSortState = {
         name: '',
         symbol: '',
@@ -15,6 +17,7 @@ export default function WatchlistTable(props) {
     const [sort, setSort] = useState(initialSortState);
     const [symbols, setSymbols] = useState([]);
     const [data, setData] = useState(null);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const tickerArr = props.tickers.map(ticker => ticker.ticker)
@@ -68,9 +71,16 @@ export default function WatchlistTable(props) {
         )
     }
 
+    function deleteItem(symbol) {
+        const watchlist = props.watchlist;
+        const newTickers = watchlist.tickers.filter(ticker => ticker.ticker !== symbol);
+        watchlist.tickers = newTickers;
+        dispatch(updateWatchlist(watchlist));
+    }
+
     function renderTableBody() {
         if (!!symbols.length && data) {
-            return symbols.map((symbol, i) => <WatchlistRow key={i} symbol={symbol} data={data} watchlist={props.watchlist}/>)
+            return symbols.map((symbol, i) => <WatchlistRow key={i} symbol={symbol} data={data} deleteItem={deleteItem}/>)
         } else {
             return <LoadingPage />
         }
@@ -92,10 +102,6 @@ export default function WatchlistTable(props) {
             </div>
         </div>
     )
-}
-
-function camalize(str) {
-    return str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
 }
 
 function sortSymbols(symbols, field, order, data) {

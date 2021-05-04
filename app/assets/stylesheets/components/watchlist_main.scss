@@ -60,7 +60,12 @@ div.watchlist-name-form:hover {
     background-color: $neutral_bg2;
 }
 
-.watchlist-name-form, .watchlist-page input {
+form.watchlist-name-form {
+    margin-top: -8px;
+    margin-bottom: -10px;
+}
+
+.watchlist-name-form, .watchlist-name-form input {
     background: none;
     border: 0px;
     border-radius: $primary_border_radius;
@@ -222,4 +227,25 @@ div.watchlist-name-form:hover {
 
 .btn.delete-watchlist-item:hover {
     color: $primary_green_base;
+}
+
+.empty-table {
+    margin-top: 72px;
+    text-align: center;
+
+    header {
+        margin-bottom: 12px;
+
+        span {
+            font-size: $displayS_font_size;
+            font-weight: $displayS_line_height;
+            line-height: 28px;
+        }
+    }
+
+    footer {
+        margin: 0 auto;
+        max-width: 340px;
+        font-size: $textM_font_size;
+    }
 }

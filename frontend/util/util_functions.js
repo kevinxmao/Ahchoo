@@ -50,3 +50,7 @@ export const formatLargeNumber = number => {
 
         : Math.abs(Number(number));
 }
+
+export const camalize = (str) => {
+  return str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
+}
