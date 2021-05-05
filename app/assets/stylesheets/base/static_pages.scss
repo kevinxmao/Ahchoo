@@ -75,3 +75,10 @@ input::-webkit-inner-spin-button {
 ::-webkit-scrollbar {
     display: none;
 }
+
+:root {
+  // --primary-base: $primary_green_base;
+  --primary-base: rgb(0, 200, 5);
+  --primary-hover: rgba(0, 180, 5, 1);
+  --primary-pressed: rgba(0, 160, 4, 1);
+}

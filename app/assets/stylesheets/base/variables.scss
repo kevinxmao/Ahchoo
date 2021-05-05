@@ -1,4 +1,9 @@
 // primary styling
+
+$primary_base: var(--primary-base);
+$primary_hover: var(--primary-hover);
+$primary_pressed: var(--primary-pressed);
+
 $primary_border_radius: 4px;
 $primary_green_base: rgb(0, 200, 5);
 $primary_green_hover: rgba(0, 180, 5, 1);
@@ -26,7 +31,9 @@ $neutral_bg3: rgb(227, 233, 237);
 
 // fonts
 $textS_font_size: 13px;
+$textS_line_height: 20px;
 $textM_font_size: 15px;
+$textM_line_height: 23px;
 $textXL_font_size: 32px;
 $textS_font_weight: 400;
 $textXL_font_weight: 700;

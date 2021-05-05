@@ -52,7 +52,7 @@ export default function AddToListsForm(props) {
         <div className="addTo-watchlists">
             <header className="modal-title">
                 <div className="addTo-title">
-                    <span>Add {props.tickerSymbol} to your lists</span>
+                    <span>Add {props.tickerSymbol} to Your Lists</span>
                 </div>
                 <button onClick={() => dispatch(closeModal())} className="close-btn">
                     <span><FontAwesomeIcon icon={faTimes} /></span>

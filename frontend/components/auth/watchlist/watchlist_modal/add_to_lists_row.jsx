@@ -1,14 +1,11 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckSquare, faSquare } from '@fortawesome/pro-regular-svg-icons';
+import { faSquare } from '@fortawesome/pro-regular-svg-icons';
+import { faCheckSquare } from '@fortawesome/pro-solid-svg-icons';
 
 export default function AddToListsRow(props) {
     const checkSq = <FontAwesomeIcon icon={faCheckSquare} />;
     const box = <FontAwesomeIcon icon={faSquare} />;
-
-    // function inWatchlist() {
-    //     return props.tickers.findIndex(ticker => ticker.ticker === props.toAdd) !== -1;
-    // }
 
     function handleSelect(event) {
         event.preventDefault();
@@ -17,11 +14,11 @@ export default function AddToListsRow(props) {
     }
 
     return (
-        <button onClick={handleSelect}>
-            <div>{props.inWatchlist ? checkSq : box}</div>
-            <div>
-                <div><span>{props.name}</span></div>
-                <div>{props.tickers.length} {props.tickers.length === 1 ? "item" : "items" }</div>
+        <button onClick={handleSelect} className="btn watchlist-select">
+            <div className="checkbox">{props.inWatchlist ? checkSq : box}</div>
+            <div className="watchlist-header-box">
+                <div className="watchlist-header-title"><span>{props.name}</span></div>
+                <div className="watchlist-header-subtitle">{props.tickers.length} {props.tickers.length === 1 ? "item" : "items" }</div>
             </div>
         </button>
     );
