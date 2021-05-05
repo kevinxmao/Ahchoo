@@ -39,7 +39,6 @@ export default function WatchlistTable(props) {
     }, [props.tickers]);
 
     function handleHeaderClick(key) {
-        debugger;
         switch(sort[key]) {
             case '':
                 setSort(Object.assign({}, initialSortState, { [key]: 'ASC'}));
@@ -75,7 +74,6 @@ export default function WatchlistTable(props) {
         const watchlist = props.watchlist;
         const newTickers = watchlist.tickers.filter(ticker => ticker.ticker !== symbol);
         watchlist.tickers = newTickers;
-        debugger;
         dispatch(updateWatchlist(watchlist));
     }
 

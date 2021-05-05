@@ -33,7 +33,6 @@ function DepositForm(props) {
 
         const newFunds = props.user.funds + deposit;
         const newPortfolioValue = props.portfolioValue + deposit;
-        debugger;
         const newUser = Object.assign({}, props.user, {funds: newFunds});
         props.updateUser(newUser).then(props.receivePortfolioValue(newPortfolioValue)).then(props.closeModal());
     }

@@ -42,11 +42,8 @@ class Api::WatchlistsController < ApplicationController
                 prev_tickers = @watchlist.tickers.map{|ticker| ticker[:ticker]}
                 new_tickers = received_tickers_arr.map{|ticker| ticker['ticker']}
 
-                # ticker_id_to_add = (new_tickers - prev_tickers).first
                 ticker_to_add = (new_tickers - prev_tickers).first;
                 ticker_id_to_add = Ticker.find_by(ticker: ticker_to_add)[:id];
-
-                # fail
                 
                 WatchlistJoin.create(watchlist_id: params[:id], ticker_id: ticker_id_to_add)
 

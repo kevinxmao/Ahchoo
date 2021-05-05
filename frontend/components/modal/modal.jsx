@@ -17,9 +17,6 @@ function Modal({modal, closeModal}) {
         case "deposit":
             component = <DepositForm />
             break;
-        case 'watchlist':
-            console.log('new watchlist');
-            break;
         case (modal.match(/edit-list/) || {}).input:
             component = <EditForm id={modal.match(/[0-9]+/)[0]}/>;
             break;
