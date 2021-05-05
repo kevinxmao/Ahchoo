@@ -1,6 +1,6 @@
 import React from "react";
 import { fetchSingleQuote } from "../../../util/companies/data_api_util";
-import { formatCompanyName, formatNumber, formatPercent } from "../../../util/util_functions";
+import { formatCompanyName, formatNumber, formatPercent, setTheme } from "../../../util/util_functions";
 import CompanyChart from "./company_chart";
 import CompanySidebar from "./company_sidebar";
 import LoadingPage from "../../loading_page";
@@ -40,6 +40,7 @@ class CompanyMain extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    if (prevProps.theme !== this.props.theme) setTheme(this.props.theme);
     if (prevProps.match.params.id !== this.props.match.params.id) {
       fetchSingleQuote(this.props.ticker).then((responseJSON) =>
         this.setState({ data: responseJSON }, this.formatCompanyInfo)
@@ -77,7 +78,15 @@ class CompanyMain extends React.Component {
     let openPrice =
         this.state.data["intraday-prices"][0].average ||
         this.state.data["intraday-prices"][4].open;
-    this.setState({change: (this.state.price - openPrice), referenceValue: openPrice}, () => this.calculatePercentChange(openPrice))
+    this.setState({change: (this.state.price - openPrice), referenceValue: openPrice}, () => {
+      this.calculatePercentChange(openPrice);
+
+      if (this.state.change < 0) {
+        this.props.reddify();
+      } else {
+        this.props.greenify();
+      }
+    })
   }
 
   calculatePercentChange(openValue) {

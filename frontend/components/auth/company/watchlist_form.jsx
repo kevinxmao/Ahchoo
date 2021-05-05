@@ -35,9 +35,9 @@ export default function WatchlistForm(props) {
 
     return (
         <button onClick={handleClick}>
-            <div>
-                <span>{inAnyWatchlist() ? check : plus}</span>
-                <span>{inAnyWatchlist() ? "Added to Lists" : "Add to List"}</span>
+            <div className="button-content">
+                <div>{inAnyWatchlist() ? check : plus}</div>
+                <div>{inAnyWatchlist() ? " Added to Lists" : " Add to List"}</div>
             </div>
         </button>
     )

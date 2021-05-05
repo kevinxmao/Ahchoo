@@ -40,7 +40,7 @@ img.auth-nav-logo {
 }
 
 img.auth-nav-logo:hover {
-    fill: $primary_green_hover;
+    fill: $primary_hover;
 }
 
 .auth-nav-left {
@@ -128,13 +128,13 @@ img.auth-nav-logo:hover {
         }
 
         .nav-link:hover  {
-            color: $primary_green_hover;
+            color: $primary_hover;
             cursor: pointer;
         }
 
         .visible {
-            border-color: $primary_green_hover;
-            color: $primary_green_hover;
+            border-color: $primary_hover;
+            color: $primary_hover;
         }
     }
  }

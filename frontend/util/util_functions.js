@@ -84,7 +84,14 @@ export const objEqual = (obj1, obj2) => {
   }
 }
 
-export const findAndRemove = (tickerName, arr) => {
-  
+import * as COLORS from './constants';
+
+export const setTheme = color => {
+  const {base, hover, pressed, light, lightBase} = COLORS[color.toUpperCase()];
+  document.documentElement.style.setProperty('--primary-base', base);
+  document.documentElement.style.setProperty('--primary-hover', hover);
+  document.documentElement.style.setProperty('--primary-pressed', pressed);
+  document.documentElement.style.setProperty('--primary-light', light);
+  document.documentElement.style.setProperty('--primary-lightBase', lightBase);
 }
 

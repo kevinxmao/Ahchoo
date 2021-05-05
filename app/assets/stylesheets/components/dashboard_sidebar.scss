@@ -113,7 +113,7 @@ a.sidebar-list-item > div {
 }
 
 .btn.new-watchlist:hover {
-    color: blue;
+    color: $primary_hover;
 }
 
 .watchlist-title {
@@ -167,12 +167,12 @@ a.sidebar-list-item > div {
 }
 
 .list-overflow:hover {
-    color: blue;
+    color: $primary_hover;
 }
 
 .list-overflow.active {
-    color: blue;
-    border-color: blue;
+    color: $primary_pressed;
+    border-color: $primary_pressed;
 }
 
 .watchlist-title:hover .list-overflow {
@@ -187,7 +187,7 @@ a.sidebar-list-item > div {
 }
 
 .list-expand:hover {
-    color: blue;
+    color: $primary_hover;
 }
 
 .ticker-symbol {
@@ -199,7 +199,7 @@ a.sidebar-list-item > div {
 }
 
 .ticker-symbol:hover {
-    color: blue;
+    color: $primary_hover;
 }
 
 .watchlist-dropdown {
@@ -226,7 +226,7 @@ a.sidebar-list-item > div {
         }
 
         button:hover {
-            color: blue;
+            color: $primary_hover;
         }
     }
 }
@@ -260,12 +260,12 @@ a.sidebar-list-item > div {
 
             button:first-child {
                 margin-right: 8px;
-                border: 1px solid blue;
-                color: blue;
+                border: 1px solid $primary_base;
+                color: $primary_base;
             }
 
             button:last-child {
-                background-color: blue;
+                background-color: $primary_base;
                 color: white;
             }
         }
@@ -298,7 +298,7 @@ a.sidebar-list-item > div {
     }
 
     input:focus {
-        border-color: blue;
+        border-color: $primary_pressed;
     }
 }
 

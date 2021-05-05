@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatNumber, formatPercent } from "../../../util/util_functions";
+import { formatNumber, formatPercent, setTheme } from "../../../util/util_functions";
 import DashboardSidebar from './dashboard_sidebar';
 import { fetchAllQuotes } from '../../../util/companies/data_api_util';
 import DashboardChart from './dashboard_chart';
@@ -27,6 +27,7 @@ class PortfolioMain extends React.Component {
   }
 
   componentDidMount() {
+
     this.setState({ portfolioValue: this.props.portfolioValue });
     this.props
       .fetchUser(this.props.user.id)
@@ -45,7 +46,7 @@ class PortfolioMain extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.portfolioValue !== this.props.portfolioValue) this.setState({portfolioValue: this.props.portfolioValue});
-    // window.localStorage.setItem("portfolioValue", `${this.state.portfolioValue}`);
+    if (prevProps.theme !== this.props.theme) setTheme(this.props.theme);
   }
 
   calculatePortfolioValue() {
@@ -71,7 +72,15 @@ class PortfolioMain extends React.Component {
         openPrice;
     });
     this.setState({ change: this.state.portfolioValue - openSum, referenceValue: openSum }, () =>
-      this.calculatePercentChange(openSum)
+      {
+        this.calculatePercentChange(openSum);
+
+        if (this.state.change < 0 ) {
+          this.props.reddify();
+        } else {
+          this.props.greenify();
+        }
+      }
     );
   }
 

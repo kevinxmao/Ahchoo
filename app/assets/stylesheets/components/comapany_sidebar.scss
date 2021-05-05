@@ -39,6 +39,7 @@
         padding: 0 48px;
         height: 46px;
         width: 100%;
+        font-weight: 700;
     }
 
     button:hover {
@@ -47,5 +48,15 @@
 
     button:focus {
         background-color: $primary_light-base;
+    }
+
+    .button-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        div:first-child {
+            margin-right: 10px;
+        }
     }
 }
