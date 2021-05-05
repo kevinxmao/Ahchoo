@@ -10,8 +10,14 @@ export default function AddToListsRow(props) {
     //     return props.tickers.findIndex(ticker => ticker.ticker === props.toAdd) !== -1;
     // }
 
+    function handleSelect(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        props.handleSelect(props.id);
+    }
+
     return (
-        <button onClick={() => props.handleSelect(props.id)}>
+        <button onClick={handleSelect}>
             <div>{props.inWatchlist ? checkSq : box}</div>
             <div>
                 <div><span>{props.name}</span></div>
