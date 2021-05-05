@@ -5,6 +5,7 @@ import { closeModal } from '../../../../actions/modal_actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/pro-regular-svg-icons';
 import { tickerInWatchlists, objEqual } from '../../../../util/util_functions';
+import { updateWatchlist } from '../../../../actions/watchlists_actions';
 
 export default function AddToListsForm(props) {
     const watchlists = useSelector(state => Object.assign({}, state.entities.watchlists));
@@ -23,15 +24,26 @@ export default function AddToListsForm(props) {
     }
 
     function handleSubmit() {
-        // let promises = [];
-        // for (let id in fixedStatus) {
-        //     if (fixedStatus[id] !== status[id]) {
-        //         const newWatchlist = Object.assign({}, watchlists[id]);
-        //         const tickersArr = newWatchlist.tickers;
+        let reqWatchlists = [];
+        for (let id in fixedStatus) {
+            if (fixedStatus[id] !== status[id]) {
+                const newWatchlist = Object.assign({}, watchlists[id]);
+                const tickersArr = newWatchlist.tickers;
 
-        //         if ()
-        //     }
-        // }
+                if (status[id]) {
+                    tickersArr.push({ticker: props.tickerSymbol});
+                } else {
+                    const index = tickersArr.findIndex(ele => ele.ticker === props.tickerSymbol);
+                    tickersArr.splice(index, 1);
+                }
+
+                newWatchlist.tickers = tickersArr;
+                reqWatchlists.push(newWatchlist);
+            }
+        }
+
+        // debugger;
+        Promise.all(reqWatchlists.map(watchlist => dispatch(updateWatchlist(watchlist)))).then(() => console.log('all done'));
 
         return;
     }

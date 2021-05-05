@@ -44,7 +44,9 @@ class Api::WatchlistsController < ApplicationController
 
                 # ticker_id_to_add = (new_tickers - prev_tickers).first
                 ticker_to_add = (new_tickers - prev_tickers).first;
-                ticker_id_to_add = Ticker.find_by(ticker: ticker_to_add);
+                ticker_id_to_add = Ticker.find_by(ticker: ticker_to_add)[:id];
+
+                # fail
                 
                 WatchlistJoin.create(watchlist_id: params[:id], ticker_id: ticker_id_to_add)
 
