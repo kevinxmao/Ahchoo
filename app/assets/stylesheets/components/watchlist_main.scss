@@ -119,6 +119,20 @@ form.watchlist-name-form {
     margin-right: 0;
 }
 
+.watchlist-sidebar>div {
+    margin-bottom: 0;
+    height: calc(100% - 64px - 31px);
+    margin-top: -24px;
+    margin-left: -24px;
+    padding: 24px;
+    position: fixed;
+    overflow-y: auto;
+    top: calc(64px + 31px);
+    width: 324px;
+    box-sizing: border-box;
+    background-color: white;
+}
+
 .column-header {
     border-bottom: 1px solid $neutral_border_color;
     height: 48px;

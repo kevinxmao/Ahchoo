@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import AddToListsRow from './add_to_lists_row';
 import { closeModal } from '../../../../actions/modal_actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/pro-regular-svg-icons';
+import { faTimes, faSpinner } from '@fortawesome/pro-regular-svg-icons';
 import { tickerInWatchlists, objEqual } from '../../../../util/util_functions';
 import { updateWatchlist } from '../../../../actions/watchlists_actions';
 
@@ -24,6 +25,8 @@ export default function AddToListsForm(props) {
     }
 
     function handleSubmit() {
+        ReactDOM.render(<FontAwesomeIcon icon={faSpinner} spin size="lg" />, document.querySelector("button.btn.watchlist-add"))
+
         let reqWatchlists = [];
         for (let id in fixedStatus) {
             if (fixedStatus[id] !== status[id]) {
@@ -42,10 +45,10 @@ export default function AddToListsForm(props) {
             }
         }
 
-        // debugger;
-        Promise.all(reqWatchlists.map(watchlist => dispatch(updateWatchlist(watchlist)))).then(() => console.log('all done'));
-
-        return;
+        Promise.all(reqWatchlists.map(watchlist => dispatch(updateWatchlist(watchlist)))).then(
+            () => dispatch(closeModal()),
+            () => ReactDOM.render(<span>Save Changes</span>, document.querySelector("button.btn.watchlist-add"))
+        );
     }
 
     return (
