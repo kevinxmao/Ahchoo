@@ -1,10 +1,14 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchWatchlists } from '../../../actions/watchlists_actions'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faPlus } from '@fortawesome/pro-regular-svg-icons';
 
 export default function WatchlistForm(props) {
     const watchlists = useSelector(state => Object.assign({}, state.entities.watchlists));
     const dispatch = useDispatch();
+    const check = <FontAwesomeIcon icon={faCheck} />;
+    const plus = <FontAwesomeIcon icon={faPlus} />
 
     // useEffect(() => {
     //     dispatch(fetchWatchlists());
@@ -25,12 +29,15 @@ export default function WatchlistForm(props) {
     }
 
     function handleClick() {
-
+        dispatch()
     }
 
     return (
         <button onClick={handleClick}>
-            <div>{inAnyWatchlist() ? "Added to Lists" : "Add to List"}</div>
+            <div>
+                <span>{inAnyWatchlist() ? check : plus}</span>
+                <span>{inAnyWatchlist() ? "Added to Lists" : "Add to List"}</span>
+            </div>
         </button>
     )
 }
