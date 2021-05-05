@@ -5,6 +5,7 @@ import AboutMe from '../splash/about_me';
 import DepositForm from '../auth/dashboard/deposit_form';
 import EditForm from '../auth/dashboard/watchlist_index/watchlist_forms/edit_form';
 import DeleteForm from '../auth/dashboard/watchlist_index/watchlist_forms/delete_form';
+import AddToListsForm from '../auth/watchlist/watchlist_modal/add_to_lists_form';
 
 function Modal({modal, closeModal}) {
     if (!modal) return null;
@@ -26,7 +27,7 @@ function Modal({modal, closeModal}) {
             component = <DeleteForm id={modal.match(/[0-9]+/)[0]}/>
             break;
         case (modal.match(/add-to-list/) || {}).input:
-            console.log(modal.match(/add-to-list-(.*)/)[1]);
+            component = <AddToListsForm tickerSymbol={modal.match(/add-to-list-(.*)/)[1]} />
             break;
         default:
             return null;
