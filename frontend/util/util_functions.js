@@ -54,3 +54,13 @@ export const formatLargeNumber = number => {
 export const camalize = (str) => {
   return str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
 }
+
+export const tickerInWatchlists = (symbol, watchlists) => {
+  let res = {};
+
+  for (let [key, value] of Object.entries(watchlists)) {
+    res[key] = (value.tickers.findIndex(ticker => ticker.ticker === symbol) !== -1);
+  }
+
+  return res;
+}
