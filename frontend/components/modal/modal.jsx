@@ -25,6 +25,9 @@ function Modal({modal, closeModal}) {
         case (modal.match(/delete-list/) || {}).input:
             component = <DeleteForm id={modal.match(/[0-9]+/)[0]}/>
             break;
+        case (modal.match(/add-to-list/) || {}).input:
+            console.log(modal.match(/add-to-list-(.*)/)[1]);
+            break;
         default:
             return null;
     }

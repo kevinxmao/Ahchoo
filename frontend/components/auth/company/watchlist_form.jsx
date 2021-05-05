@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchWatchlists } from '../../../actions/watchlists_actions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faPlus } from '@fortawesome/pro-regular-svg-icons';
+import { openModal } from '../../../actions/modal_actions';
 
 export default function WatchlistForm(props) {
     const watchlists = useSelector(state => Object.assign({}, state.entities.watchlists));
@@ -29,7 +30,7 @@ export default function WatchlistForm(props) {
     }
 
     function handleClick() {
-        dispatch()
+        dispatch(openModal(`add-to-list-${props.ticker}`))
     }
 
     return (
