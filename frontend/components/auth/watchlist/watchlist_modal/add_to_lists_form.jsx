@@ -10,9 +10,7 @@ export default function AddToListsForm(props) {
     const dispatch = useDispatch();
 
     function renderWatchlists() {
-        for (let [key, value] of Object.entries(watchlists)) {
-            return <AddToListsRow key={key} {...value} toAdd={props.tickerSymbol}/>
-        }
+        return Object.keys(watchlists).map(key => <AddToListsRow key={key} {...watchlists[key]} toAdd={props.tickerSymbol} />)
     }
 
     function handleSubmit() {
