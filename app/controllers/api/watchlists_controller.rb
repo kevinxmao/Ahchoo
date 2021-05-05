@@ -32,19 +32,25 @@ class Api::WatchlistsController < ApplicationController
     def update
         @watchlist = current_user.watchlists.includes(:tickers).find_by(id: params[:id])
         if @watchlist.update(watchlist_params)
-            params[:watchlist][:tickers] ||= [];
+            received_tickers_arr = [];
 
-            if @watchlist.tickers.length < params[:watchlist][:tickers].length
-                prev_tickers = @watchlist.tickers.map{|ticker| ticker[:id].to_i}
-                new_tickers = params[:watchlist][:tickers].map{|ticker| JSON.parse(ticker)['id'].to_i}
+            if params[:watchlist][:tickers]
+                received_tickers_arr = JSON.parse(params[:watchlist][:tickers])
+            end
 
-                ticker_id_to_add = (new_tickers - prev_tickers).first
+            if @watchlist.tickers.length < received_tickers_arr.length
+                prev_tickers = @watchlist.tickers.map{|ticker| ticker[:ticker]}
+                new_tickers = received_tickers_arr.map{|ticker| ticker['ticker']}
+
+                # ticker_id_to_add = (new_tickers - prev_tickers).first
+                ticker_to_add = (new_tickers - prev_tickers).first;
+                ticker_id_to_add = Ticker.find_by(ticker: ticker_to_add);
                 
                 WatchlistJoin.create(watchlist_id: params[:id], ticker_id: ticker_id_to_add)
 
-            elsif @watchlist.tickers.length > params[:watchlist][:tickers].length
+            elsif @watchlist.tickers.length > received_tickers_arr.length
                 prev_tickers = @watchlist.tickers.map{|ticker| ticker[:id].to_i}
-                new_tickers = params[:watchlist][:tickers].map{|ticker| JSON.parse(ticker)['id'].to_i}
+                new_tickers = received_tickers_arr.map{|ticker| ticker['id'].to_i}
 
                 ticker_id_to_destroy = (prev_tickers - new_tickers).first
                 ticker_to_destroy = @watchlist.watchlist_joins.find_by(ticker_id: ticker_id_to_destroy)

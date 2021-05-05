@@ -23,7 +23,16 @@ export default function AddToListsForm(props) {
     }
 
     function handleSubmit() {
-        
+        // let promises = [];
+        // for (let id in fixedStatus) {
+        //     if (fixedStatus[id] !== status[id]) {
+        //         const newWatchlist = Object.assign({}, watchlists[id]);
+        //         const tickersArr = newWatchlist.tickers;
+
+        //         if ()
+        //     }
+        // }
+
         return;
     }
 

@@ -20,13 +20,15 @@ export const createWatchlist = watchlist => (
     })
 )
 
-export const updateWatchlist = watchlist => (
-    $.ajax({
+export const updateWatchlist = watchlist => {
+    watchlist.tickers = JSON.stringify(watchlist.tickers);
+
+    return $.ajax({
         method: 'PATCH',
         url: `api/watchlists/${watchlist.id}`,
-        data: {watchlist}
+        data: { watchlist }
     })
-)
+}
 
 export const deleteWatchlist = watchlistId => (
     $.ajax({

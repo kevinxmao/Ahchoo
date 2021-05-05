@@ -75,6 +75,7 @@ export default function WatchlistTable(props) {
         const watchlist = props.watchlist;
         const newTickers = watchlist.tickers.filter(ticker => ticker.ticker !== symbol);
         watchlist.tickers = newTickers;
+        debugger;
         dispatch(updateWatchlist(watchlist));
     }
 
