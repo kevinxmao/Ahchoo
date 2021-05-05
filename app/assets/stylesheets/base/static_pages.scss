@@ -81,4 +81,6 @@ input::-webkit-inner-spin-button {
   --primary-base: rgb(0, 200, 5);
   --primary-hover: rgba(0, 180, 5, 1);
   --primary-pressed: rgba(0, 160, 4, 1);
+  --primary-light: rgba(0, 200, 5, 0.1);
+  --primary-light-base: rgba(0, 200, 5, 0.3);
 }

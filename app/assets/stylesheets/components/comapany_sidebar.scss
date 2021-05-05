@@ -33,10 +33,19 @@
     button {
         margin-top: 12px;
         margin-bottom: 12px;
-        border: 1px solid blue;
+        border: 1px solid $primary_base;
+        color: $primary_base;
         border-radius: $primary_border_radius;
         padding: 0 48px;
         height: 46px;
         width: 100%;
+    }
+
+    button:hover {
+        background-color: $primary_light;
+    }
+
+    button:focus {
+        background-color: $primary_light-base;
     }
 }
