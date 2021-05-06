@@ -97,14 +97,8 @@
     .company-description {
         margin-bottom: 15px;
 
-        p {
-            font-size: $textM_font_size;
-        }
-
-        .read-more {
-            display: flex;
-            align-items: center;
-            position: relative;
+        .description-content {
+            width: 100%;
             font-size: $textM_font_size;
         }
     }

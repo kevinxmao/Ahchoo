@@ -1,9 +1,11 @@
 import React from "react";
+import ShowMoreText from "react-show-more-text";
 import { fetchSingleQuote } from "../../../util/companies/data_api_util";
-import { formatCompanyName, formatNumber, formatPercent, setTheme } from "../../../util/util_functions";
+import { formatCompanyName, formatNumber, formatPercent, setTheme, ownShare } from "../../../util/util_functions";
 import CompanyChart from "./company_chart";
 import CompanySidebar from "./company_sidebar";
 import LoadingPage from "../../loading_page";
+import Ownership from "./ownership";
 
 class CompanyMain extends React.Component {
   constructor(props) {
@@ -27,6 +29,7 @@ class CompanyMain extends React.Component {
     this.formatIntradayData = this.formatIntradayData.bind(this);
     this.calculateChange = this.calculateChange.bind(this);
     this.calculatePercentChange = this.calculatePercentChange.bind(this);
+    this.extractHolding = this.extractHolding.bind(this);
   }
 
   componentDidMount() {
@@ -95,8 +98,14 @@ class CompanyMain extends React.Component {
       this.setState({ percentChange: percentage, loading: false });
   }
 
+  extractHolding() {
+    const index = this.props.holdings.findIndex(holding => holding.ticker === this.props.ticker);
+    return this.props.holdings[index];
+  }
+
   render() {
     if (this.state.loading) return <LoadingPage />;
+
     const {price, companyInfo, change, percentChange, chartData, referenceValue} = this.state;
     const {user, ticker, holdings, createHolding, deleteHolding, updateHolding, fetchUser} = this.props;
     return (
@@ -139,25 +148,34 @@ class CompanyMain extends React.Component {
                   </div>
                 </div>
                 <div className="chart-range-container"></div>
-                <section className="ownership-info"></section>
+                {ownShare(holdings, ticker) && (
+                  <Ownership
+                    holding={this.extractHolding()}
+                    holdings={holdings}
+                    price={price}
+                    change={change}
+                    percentChange={percentChange}
+                  />
+                )}
                 <section className="company-basic-info">
                   <header className="about-header">
                     <div>
                       <h2>About</h2>
-                      <button>
+                      <a>
                         <span>Show More</span>
-                      </button>
+                      </a>
                     </div>
                   </header>
                   <div className="company-description">
-                    <p>
+                    <ShowMoreText
+                      line={2}
+                      more="Read More"
+                      less="Read Less"
+                      className="description-content"
+                      expanded={false}
+                    >
                       {companyInfo.description}{" "}
-                      <button>
-                        <div className="read-more">
-                          <span>Read More</span>
-                        </div>
-                      </button>
-                    </p>
+                    </ShowMoreText>
                   </div>
                 </section>
               </div>

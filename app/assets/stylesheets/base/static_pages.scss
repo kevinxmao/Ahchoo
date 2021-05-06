@@ -54,11 +54,11 @@ a {
 }
 
 a:hover {
-  color: $primary_green_hover;
+  color: $primary_hover;
 }
 
 a:focus {
-  color: $primary_green_pressed;
+  color: $primary_pressed;
 }
 
 select:focus-visible {

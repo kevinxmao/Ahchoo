@@ -18,5 +18,13 @@
         padding-top: 12px;
         padding-bottom: 12px;
         font-size: $textS_font_size;
+
+        mark {
+            color: $primary_base;
+        }
+    }
+
+    .search-result-item:hover {
+        background-color: #f5f8fa;
     }
 }
