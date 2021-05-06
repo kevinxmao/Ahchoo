@@ -122,6 +122,47 @@
     padding: 24px;
     margin: 0 6px 12px;
     flex: 1 1 0%;
+
+    header {
+        div.ownership-title-small {
+            margin-bottom: 1px;
+        }
+
+        h2 {
+            font-size: 24px;
+            line-height: 28px;
+            font-weight: 500;
+        }
+    }
+
+    table.table {
+        border-collapse: collapse;
+        display: table;
+        border-spacing: 2px;
+        border-color: grey;
+        width: 100%;
+        font-size: $textS_font_size;
+        margin-top: 5px;
+
+        tbody {
+            tr {
+                td {
+                    border: none;
+                    height: 36px;
+                    text-align: left;
+                    box-sizing: content-box;
+                }
+
+                td:last-child {
+                    text-align: end;
+                }
+            }
+
+            tr:last-child {
+                border-top: 1px solid $neutral_bg3;
+            }
+        }
+    }
 }
 
 .ownership-info-left {
@@ -130,4 +171,8 @@
 
 .ownership-info-right {
     margin-left: 6px;
+}
+
+.ownership-title-small {
+    font-size: $textS_font_size;
 }

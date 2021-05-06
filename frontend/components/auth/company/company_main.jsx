@@ -161,9 +161,6 @@ class CompanyMain extends React.Component {
                   <header className="about-header">
                     <div>
                       <h2>About</h2>
-                      <a>
-                        <span>Show More</span>
-                      </a>
                     </div>
                   </header>
                   <div className="company-description">
@@ -200,9 +197,5 @@ class CompanyMain extends React.Component {
     );
   }
 }
-
-// class Ownership extends React.Componet {
-
-// }
 
 export default CompanyMain;
