@@ -94,11 +94,12 @@ class SearchBar extends React.Component {
               value={searchTerm}
               onChange={this.handleChange}
               onClick={this.expandDropdown}
+              onBlur={() => this.setState({searchTerm: ""})}
               autoComplete="off"
             />
           </div>
-        </div>
         {(this.state.dropdownVisible && this.state.tickers.length > 0) && <SearchResultsList results={this.state.tickers} searchTerm={this.state.searchTerm}/>}
+        </div>
       </>
     );
   }

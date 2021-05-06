@@ -12,8 +12,8 @@ class SearchResultItem extends React.Component {
      const parts = text.split(new RegExp(`(${highlight})`, "gi"));
      return (
        <span>
-         {parts.map((part) =>
-           part.toLowerCase() === highlight.toLowerCase() ? <b>{part}</b> : part
+         {parts.map((part, i) =>
+           part.toLowerCase() === highlight.toLowerCase() ? <b key={i}>{part}</b> : part
          )}
        </span>
      );
