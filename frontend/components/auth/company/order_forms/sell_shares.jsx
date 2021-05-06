@@ -1,5 +1,8 @@
 import React from 'react';
 import { formatNumber } from '../../../../util/util_functions';
+import ReactDOM from 'react-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/pro-regular-svg-icons';
 
 class SellSharesForm extends React.Component {
     constructor(props) {
@@ -47,6 +50,7 @@ class SellSharesForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        ReactDOM.render(<FontAwesomeIcon icon={faSpinner} spin size="lg" />, document.querySelector("button.btn.sell"));
         const { shares, price } = this.state;
         const { user, ticker, updateHolding, deleteHolding } = this.props;
         let holding = this.state.holdings.find(holding => holding.ticker === this.state.ticker);
@@ -84,7 +88,7 @@ class SellSharesForm extends React.Component {
                     <div className="price-value"><span>{`${formatNumber(estimatedCredit)}`}</span></div>
                 </div>
                 <div className="order-form-submit">
-                    <button type="submit" disabled={!this.state.shares}>Execute Order</button>
+                    <button type="submit" className="btn sell" disabled={!this.state.shares}>Execute Order</button>
                 </div>
                 {errorMsg && <div className="order-form-error"><span>{errorMsg}</span></div>}
                 <footer className="order-note">{this.calcSharesOwned()} {"Shares Available"}</footer>

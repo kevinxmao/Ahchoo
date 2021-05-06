@@ -1,5 +1,8 @@
 import React from 'react';
 import { formatNumber } from '../../../../util/util_functions';
+import ReactDOM from 'react-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/pro-regular-svg-icons';
 
 class BuySharesForm extends React.Component {
     constructor(props) {
@@ -35,6 +38,7 @@ class BuySharesForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        ReactDOM.render(<FontAwesomeIcon icon={faSpinner} spin size="lg" />, document.querySelector("button.btn.buy"))
         const { shares, price, estimatedCost } = this.state;
         const { user, ticker, updateHolding, createHolding, isHolding } = this.props;
         let holding = this.state.holdings.find(holding => holding.ticker === this.state.ticker);
@@ -48,7 +52,9 @@ class BuySharesForm extends React.Component {
             let order = Object.assign({}, holding, { quantity: shares, avgPrice: price });
             updateHolding(order)
         }
-        this.setState({shares: ''});
+        this.setState({shares: ''}, 
+            () => ReactDOM.render(<span>Execute Order</span>, document.querySelector("button.btn.buy"))
+        )
     }
 
     render() {
@@ -69,7 +75,7 @@ class BuySharesForm extends React.Component {
                     <div className="price-value"><span>{`${formatNumber(estimatedCost)}`}</span></div>
                 </div>
                 <div className="order-form-submit">
-                    <button type="submit" disabled={!this.state.shares}>Execute Order</button>
+                    <button className="btn buy" type="submit" disabled={!this.state.shares}>Execute Order</button>
                 </div>
                 {errorMsg && <div className="order-form-error"><span>{errorMsg}</span></div>}
                 <footer className="order-note">
