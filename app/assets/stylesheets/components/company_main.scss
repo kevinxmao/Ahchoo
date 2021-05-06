@@ -96,12 +96,24 @@
 
     .company-description {
         margin-bottom: 15px;
+        margin-right: 80px;
 
         .description-content {
             width: 100%;
             font-size: $textM_font_size;
+            margin-bottom: 24px;
         }
     }
+}
+
+.basic-info {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.basic-info-block {
+    flex-basis: 25%;
+    padding-right: 12px;
 }
 
 .ownership-info-container {

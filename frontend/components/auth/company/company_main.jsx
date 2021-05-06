@@ -173,8 +173,33 @@ class CompanyMain extends React.Component {
                     >
                       {companyInfo.description}{" "}
                     </ShowMoreText>
+                    <div className="basic-info">
+                      <div className="basic-info-block">
+                        <div><span>CEO</span></div>
+                        <div><span>{companyInfo.CEO}</span></div>
+                      </div>
+                      <div className="basic-info-block">
+                        <div><span>Employees</span></div>
+                        <div><span>{companyInfo.employees}</span></div>
+                      </div>
+                      <div className="basic-info-block">
+                        <div><span>Headquarters</span></div>
+                        <div><span>{`${companyInfo.city}, ${companyInfo.state}`}</span></div>
+                      </div>
+                      <div className="basic-info-block">
+                        <div><span>Sector</span></div>
+                        <div><span>{companyInfo.sector}</span></div>
+                      </div>
+                    </div>
                   </div>
                 </section>
+                {/* <section className="company-stats">
+                  <header>
+                    <div>
+                      <h2>Key Statistics</h2>
+                    </div>
+                  </header>
+                </section> */}
               </div>
               <div className="company-sidebar">
                 <div>
