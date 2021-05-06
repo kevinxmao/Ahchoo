@@ -13,11 +13,15 @@ class SearchResultsList extends React.Component {
             return <SearchResultItem symbol={symbol} securityName={securityName} searchTerm={this.props.searchTerm}/>
         })
         return (
-            <div className="search-dropdown">
-                <p>Stocks</p>
+          <div className="search-dropdown">
+            <div className="search-title">
+              <span>Stocks</span>
+            </div>
+            <div className="search-results-container">
                 {items}
             </div>
-        )
+          </div>
+        );
     }
 }
 
