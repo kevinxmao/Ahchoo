@@ -3,28 +3,33 @@ import { Link } from 'react-router-dom';
 
 
 class SearchResultItem extends React.Component {
-    constructor(props) {
-        super(props);
-        this.renderResultHighlight = this.renderResultHighlight.bind(this);
-    }
+  constructor(props) {
+    super(props);
+    this.renderResultHighlight = this.renderResultHighlight.bind(this);
+  }
 
-    renderResultHighlight(result) {
-        const substring = new RegExp(this.props.searchTerm.toUpperCase());
-        // debugger
-        return result.replace(substring, (match) => `<mark>${match}</mark>`);
-    }
+  renderResultHighlight(text, highlight) {
+     const parts = text.split(new RegExp(`(${highlight})`, "gi"));
+     return (
+       <span>
+         {parts.map((part) =>
+           part.toLowerCase() === highlight.toLowerCase() ? <b>{part}</b> : part
+         )}
+       </span>
+     );
+  }
 
-    render() {
-        const { symbol, securityName } = this.props;
-        return (
-            <div className="search-result-item" >
-                <Link to={`/auth/tickers/${symbol}`}>
-                    <div><span>{this.renderResultHighlight(symbol)}</span></div>
-                    <div>{securityName}</div>
-                </Link>
-            </div>
-        )
-    }
+  render() {
+    const { symbol, securityName, searchTerm } = this.props;
+    return (
+      <div className="search-result-item">
+        <Link to={`/auth/tickers/${symbol}`}>
+          <div>{this.renderResultHighlight(symbol, searchTerm)}</div>
+          <div>{this.renderResultHighlight(securityName, searchTerm)}</div>
+        </Link>
+      </div>
+    );
+  }
 }
 
 export default SearchResultItem;

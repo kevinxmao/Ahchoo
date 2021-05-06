@@ -19,7 +19,8 @@
         padding-bottom: 12px;
         font-size: $textS_font_size;
 
-        mark {
+        b {
+            font-weight: 400;
             color: $primary_base;
         }
     }
