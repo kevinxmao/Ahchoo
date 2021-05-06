@@ -61,6 +61,10 @@ a:focus {
   color: $primary_green_pressed;
 }
 
+select:focus-visible {
+    outline: 0;
+}
+
 input {
   box-sizing: border-box;
 }

@@ -72,7 +72,11 @@ class BuySharesForm extends React.Component {
                     <button type="submit" disabled={!this.state.shares}>Execute Order</button>
                 </div>
                 {errorMsg && <div className="order-form-error"><span>{errorMsg}</span></div>}
-                <footer className="order-note">{`${formatNumber(this.props.user.funds)}`} {"Buying Power Available"}</footer>
+                <footer className="order-note">
+                    <div>
+                        {`${formatNumber(this.props.user.funds)}`} {"Buying Power Available"}
+                    </div>
+                </footer>
             </form>
         )
     }

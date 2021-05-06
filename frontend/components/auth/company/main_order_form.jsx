@@ -64,7 +64,7 @@ class OrderForm extends React.Component {
             <div className="input-main">
               <div className="invest-type">
                 <label className="input-label" htmlFor="type">Invest In</label>
-                <div>
+                <div className="input-type-options">
                   <select name="type" id="type" onChange={this.handleChange}>
                     <option value="shares">Shares</option>
                     <option value="dollars" disabled>Dollars</option>
