@@ -24,7 +24,7 @@ export default function Ownership(props) {
     return (
       <section className="ownership-info-container">
         <div className="ownership-info">
-          <div className="ownership-info-left">
+          <div className="ownership-info-left ownership-info-box">
             <header>
               <div>
                 <span>Your Market Value</span>
@@ -42,12 +42,8 @@ export default function Ownership(props) {
               <div>
                 <span>
                   {props.change >= 0
-                    ? `+${formatNumber(
-                        props.change * props.holding.quantity
-                      )}`
-                    : `-${formatNumber(
-                        props.change * props.holding.quantity
-                      )}`}
+                    ? `+${formatNumber(props.change * props.holding.quantity)}`
+                    : `-${formatNumber(props.change * props.holding.quantity)}`}
                 </span>
                 <span>
                   {props.change >= 0
@@ -75,7 +71,7 @@ export default function Ownership(props) {
               </div>
             </div>
           </div>
-          <div className="ownership-info-right">
+          <div className="ownership-info-right ownership-info-box">
             <header>{props.holding.avgPrice}</header>
             <div>{props.holding.quantity}</div>
             <div>{calcDiversity()}</div>

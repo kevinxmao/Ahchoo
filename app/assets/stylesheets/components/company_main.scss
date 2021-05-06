@@ -103,3 +103,31 @@
         }
     }
 }
+
+.ownership-info-container {
+    margin-bottom: 60px;
+    display: block;
+}
+
+.ownership-info {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ownership-info-box {
+    background-color: white;
+    border-radius: $primary_border_radius;
+    box-sizing: border-box;
+    border: 1px solid $neutral_bg3;
+    padding: 24px;
+    margin: 0 6px 12px;
+    flex: 1 1 0%;
+}
+
+.ownership-info-left {
+    margin-right: 6px;
+}
+
+.ownership-info-right {
+    margin-left: 6px;
+}
