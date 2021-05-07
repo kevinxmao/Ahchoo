@@ -1,5 +1,6 @@
 import React from 'react';
 import {LineChart, Line, XAxis, YAxis, ReferenceLine, Tooltip} from 'recharts';
+import CustomToolTip from './tooltip';
 
 const DashboardChart = ({data, change, portfolioValue, referenceValue}) => {
     if (!data) return null;
@@ -15,7 +16,7 @@ const DashboardChart = ({data, change, portfolioValue, referenceValue}) => {
           stroke={color}
           strokeWidth={2}
         />
-        <XAxis hide="true" dataKey="" domain={[0, 400]}/>
+        <XAxis hide="true" dataKey="timeKey" domain={[0, 400]}/>
         <YAxis
           hide="true"
           type="number"
@@ -28,7 +29,7 @@ const DashboardChart = ({data, change, portfolioValue, referenceValue}) => {
           isFront={false}
           strokeWidth={2}
         />
-        <Tooltip separator="-" position={{y: -20}} />
+        <Tooltip separator="-" position={{y: -20}} content={<CustomToolTip />}/>
       </LineChart>
     );
 }

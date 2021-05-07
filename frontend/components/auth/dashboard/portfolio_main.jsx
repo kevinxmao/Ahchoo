@@ -2,7 +2,7 @@ import React from 'react';
 import { formatNumber, formatPercent, setTheme } from "../../../util/util_functions";
 import DashboardSidebar from './dashboard_sidebar';
 import { fetchAllQuotes, fetchWeekQuotes, fetchMonthQuotes, fetchThreeMonthsQuotes, fetchOneYearQuotes, fetchMaxQuotes } from '../../../util/companies/data_api_util';
-import DashboardChart from './dashboard_chart';
+import DashboardChart from '../charts/dashboard_chart';
 import BuyingPowerButton from './buying_power';
 import LoadingPage from '../../loading_page';
 
