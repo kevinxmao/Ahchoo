@@ -129,6 +129,12 @@ class PortfolioMain extends React.Component {
     const chartData = {};
   }
 
+  changeRange(key) {
+    this.setState({range: key}, () => {
+      
+    })
+  }
+
   renderChartRange() {
     return ['1d', '1w', '1m', '3m', '1y', 'all'].map((ele, i) => {
       const className =
@@ -136,7 +142,7 @@ class PortfolioMain extends React.Component {
           ? "btn chart-range-button active"
           : "btn chart-range-button";
       return (
-        <button key={i} className={className}>
+        <button key={i} className={className} onClick={() => this.changeRange(ele)}>
           <div>{ele.toUpperCase()}</div>
         </button>
       );
