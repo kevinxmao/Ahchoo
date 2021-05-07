@@ -246,18 +246,18 @@ class PortfolioMain extends React.Component {
           <div className="portfolio-value-container">
             <header className="portfolio-value">
               <div className="portfolio-number">
-                <h1>{formatNumber(portfolioValue)}</h1>
+                <h1 id="_sum">{formatNumber(portfolioValue)}</h1>
               </div>
               <div className="portfolio-change-container">
                 <div className="portfolio-change">
-                  <span>
+                  <span id="_change">
                     {change >= 0
                       ? `+${formatNumber(change)}`
                       : `-${formatNumber(change)}`}
                   </span>
                 </div>
                 <div className="portfolio-percent-change">
-                  <span>
+                  <span id="_percentChange">
                     {percentChange >= 0
                       ? `(+${formatPercent(percentChange)})`
                       : `(-${formatPercent(percentChange)})`}

@@ -29,7 +29,7 @@ const DashboardChart = ({data, change, portfolioValue, referenceValue}) => {
           isFront={false}
           strokeWidth={2}
         />
-        <Tooltip separator="-" position={{y: -20}} content={<CustomToolTip />}/>
+        <Tooltip separator="-" position={{y: -20}} content={<CustomToolTip referenceValue={referenceValue}/>}/>
       </LineChart>
     );
 }
