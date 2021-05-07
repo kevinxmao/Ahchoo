@@ -1,7 +1,7 @@
 import React from 'react';
 import { formatNumber, formatPercent, setTheme } from "../../../util/util_functions";
 import DashboardSidebar from './dashboard_sidebar';
-import { fetchAllQuotes } from '../../../util/companies/data_api_util';
+import { fetchAllQuotes, fetchWeekQuotes, fetchMonthQuotes, fetchThreeMonthsQuotes, fetchOneYearQuotes, fetchMaxQuotes } from '../../../util/companies/data_api_util';
 import DashboardChart from './dashboard_chart';
 import BuyingPowerButton from './buying_power';
 import LoadingPage from '../../loading_page';
@@ -26,6 +26,7 @@ class PortfolioMain extends React.Component {
     this.formatIntradayData = this.formatIntradayData.bind(this);
     this.formatChartData = this.formatChartData.bind(this);
     this.renderChartRange = this.renderChartRange.bind(this);
+    this.receiveIntraday = this.receiveIntraday.bind(this);
   }
 
   componentDidMount() {
@@ -44,6 +45,13 @@ class PortfolioMain extends React.Component {
           );
       }
       )
+  }
+
+  receiveIntraday() {
+    fetchAllQuotes(this.props.holdings.map((holding) => holding.ticker))
+          .then((responseJSON) =>
+            this.setState({ data: responseJSON }, this.formatIntradayData)
+          );
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -124,15 +132,42 @@ class PortfolioMain extends React.Component {
     this.setState({ chartData: dataArr}, this.calculatePortfolioValue);
   }
 
-  formatChartData() {
-    const {data} = this.state;
+  formatChartData(key) {
+    // const {data} = this.state;
     const chartData = {};
+    const tickerArr = this.props.holdings.map((holding) => holding.ticker);
+    let apiCall;
+
+    if (key === '1d') {
+      this.receiveIntraday();
+      return;
+    }
+
+    switch (key) {
+      case '1w':
+        apiCall = fetchWeekQuotes;
+        break;
+      case '1m':
+        apiCall = fetchMonthQuotes;
+        break;
+      case '3m':
+        apiCall = fetchThreeMonthsQuotes;
+        break;
+      case '1y':
+        apiCall = fetchOneYearQuotes;
+        break;
+      case 'all':
+        apiCall = fetchMaxQuotes;
+        break;
+      default:
+        break;
+    }
+
+    apiCall(tickerArr).then((responseJSON) => console.log(responseJSON));
   }
 
   changeRange(key) {
-    this.setState({range: key}, () => {
-      
-    })
+    this.setState({range: key}, () => this.formatChartData(key))
   }
 
   renderChartRange() {

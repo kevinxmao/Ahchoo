@@ -40,7 +40,7 @@ export const fetchAllQuotes = (tickerArr) =>
 export const fetchWeekQuotes = (tickerArr) => (
   $.ajax({
     method: "GET",
-    url: `https://${endpoint}.iexapis.com/v1/stock/market/batch?&types=chart&range=5d&symbols=${tickerArr.join(',')}&token=${apiKey}`,
+    url: `https://${endpoint}.iexapis.com/v1/stock/market/batch?&types=chart&range=5dm&symbols=${tickerArr.join(',')}&token=${apiKey}`,
   })
 )
 
