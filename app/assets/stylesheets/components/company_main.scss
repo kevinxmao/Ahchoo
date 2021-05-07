@@ -96,12 +96,13 @@
 
     .company-description {
         margin-bottom: 15px;
-        margin-right: 80px;
 
         .description-content {
+            box-sizing: border-box;
             width: 100%;
             font-size: $textM_font_size;
             margin-bottom: 24px;
+            padding-right: 80px;
         }
     }
 }
@@ -109,11 +110,24 @@
 .basic-info {
     display: flex;
     flex-wrap: wrap;
+    box-sizing: border-box;
 }
 
 .basic-info-block {
-    flex-basis: 25%;
+    flex-basis: 23%;
     padding-right: 12px;
+    margin-bottom: 12px;
+
+    div:first-child {
+        font-size: $textS_font_size;
+        font-weight: 700;
+        line-height: $textS_line_height;
+        margin-bottom: 2px;
+    }
+
+    div:last-child {
+        font-size: $textS_font_size;
+    }
 }
 
 .ownership-info-container {
