@@ -18,12 +18,14 @@ class PortfolioMain extends React.Component {
       data: null,
       chartData: null,
       referenceValue: null,
+      range: '1d'
     };
     this.calculatePortfolioValue = this.calculatePortfolioValue.bind(this);
     this.calculateChange = this.calculateChange.bind(this);
     this.calculatePercentChange = this.calculatePercentChange.bind(this);
     this.formatIntradayData = this.formatIntradayData.bind(this);
     this.formatChartData = this.formatChartData.bind(this);
+    this.renderChartRange = this.renderChartRange.bind(this);
   }
 
   componentDidMount() {
@@ -127,6 +129,20 @@ class PortfolioMain extends React.Component {
     const chartData = {};
   }
 
+  renderChartRange() {
+    return ['1d', '1w', '1m', '3m', '1y', 'all'].map((ele, i) => {
+      const className =
+        ele === this.state.range
+          ? "btn chart-range-button active"
+          : "btn chart-range-button";
+      return (
+        <button key={i} className={className}>
+          <div>{ele.toUpperCase()}</div>
+        </button>
+      );
+    })
+  }
+
   render() {
     if (this.state.loading) return <LoadingPage />;
     const {portfolioValue, change, percentChange, data, chartData, referenceValue} = this.state;
@@ -166,7 +182,11 @@ class PortfolioMain extends React.Component {
             </div>
             {(!data) && <div className="initial-chart"><div></div></div>}
           </div>
-          <div className="chart-range-container"></div>
+          <nav className="chart-range-container">
+            <div className="chart-range">
+              {this.renderChartRange()}
+            </div>
+          </nav>
           <BuyingPowerButton user={user} updateUser={updateUser}/>
         </div>
         <div className="dashboard-sidebar">

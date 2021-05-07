@@ -2,6 +2,7 @@
 
 .portfolio-main {
     .buying-power-container {
+        width: 100%;
         margin-bottom: 60px;
         margin-top: -24px;
         transition: background-color 400ms ease 0s, box-shadow 400ms ease 0s, margin-bottom 400ms ease 0s;
@@ -16,8 +17,10 @@
         .buying-power-content {
             box-sizing: border-box;
             border-radius: $primary_border_radius;
-            width: 100%;
+            width: calc(100%+48);
             background-color: white;
+            margin-left: -24px;
+            margin-right: -24px;
         }
 
         .buying-power-btn {
@@ -27,9 +30,10 @@
             height: 64px;
             padding: 0 24px;
             width: 100%;
-            font-weight: bold;
-            line-height: 20px;
-            font-family: 'Capsule Sans', Fallback, sans-serif;
+            font-weight: 700;
+            font-size: $textM_font_size;
+            line-height: $textM_line_height;
+            display: block;
         }
 
         .buying-power-btn:hover {

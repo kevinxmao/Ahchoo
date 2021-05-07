@@ -71,3 +71,50 @@
         display: block;
     }
 }
+
+.chart-range-container {
+    border-bottom: 1px solid $neutral_bg3;
+    margin-top: 12px;
+    margin-bottom: 24px;
+    box-sizing: border-box;
+}
+
+.chart-range {
+    display: flex;
+    align-items: center;
+    height: 33px;
+    box-sizing: border-box;
+}
+
+.btn.chart-range-button {
+    background: none;
+    border: 0px;
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+    height: 100%;
+    box-sizing: border-box;
+
+    div {
+        height: 100%;
+        box-sizing: border-box;
+        padding-bottom: 12px;
+        margin: 0 12px;
+        font-size: $textS_font_size;
+        font-weight: 700;
+        box-sizing: border-box;
+    }
+
+    div:hover {
+        color: $primary_base;
+    }
+}
+
+.btn.chart-range-button:first-child {
+    margin-left: -12px;
+}
+
+.btn.chart-range-button.active div {
+    border-bottom: 2px solid $primary_base;
+    color: $primary_base;
+}
