@@ -68,7 +68,7 @@ export const fetchOneYearQuotes = (tickerArr) => (
 export const fetchMaxQuotes = (tickerArr) => (
   $.ajax({
     method: "GET",
-    url: `https://${endpoint}.iexapis.com/v1/stock/market/batch?&types=chart&range=max&symbols=${tickerArr.join(',')}&token=${apiKey}`,
+    url: `https://${endpoint}.iexapis.com/v1/stock/market/batch?&types=chart&range=5y&symbols=${tickerArr.join(',')}&token=${apiKey}`,
   })
 )
 

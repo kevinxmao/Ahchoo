@@ -18,44 +18,47 @@ class PortfolioMain extends React.Component {
       data: null,
       chartData: null,
       referenceValue: null,
-      range: '1d'
+      range: "1d",
     };
     this.calculatePortfolioValue = this.calculatePortfolioValue.bind(this);
     this.calculateChange = this.calculateChange.bind(this);
     this.calculatePercentChange = this.calculatePercentChange.bind(this);
     this.formatIntradayData = this.formatIntradayData.bind(this);
     this.formatChartData = this.formatChartData.bind(this);
+    this.receiveRangeData = this.receiveRangeData.bind(this);
     this.renderChartRange = this.renderChartRange.bind(this);
     this.receiveIntraday = this.receiveIntraday.bind(this);
   }
 
   componentDidMount() {
-
     this.setState({ portfolioValue: this.props.portfolioValue });
-    this.props
-      .fetchUser(this.props.user.id)
-      .then(() => {
-        if (!this.props.holdings.length) {
-          this.setState({ loading: false, portfolioValue: this.props.user.funds }, this.calculatePortfolioValue);
-          return;
-        }
-        fetchAllQuotes(this.props.holdings.map((holding) => holding.ticker))
-          .then((responseJSON) =>
-            this.setState({ data: responseJSON }, this.formatIntradayData)
-          );
+    this.props.fetchUser(this.props.user.id).then(() => {
+      if (!this.props.holdings.length) {
+        this.setState(
+          { loading: false, portfolioValue: this.props.user.funds },
+          this.calculatePortfolioValue
+        );
+        return;
       }
-      )
+      fetchAllQuotes(
+        this.props.holdings.map((holding) => holding.ticker)
+      ).then((responseJSON) =>
+        this.setState({ data: responseJSON }, this.formatIntradayData)
+      );
+    });
   }
 
   receiveIntraday() {
-    fetchAllQuotes(this.props.holdings.map((holding) => holding.ticker))
-          .then((responseJSON) =>
-            this.setState({ data: responseJSON }, this.formatIntradayData)
-          );
+    fetchAllQuotes(
+      this.props.holdings.map((holding) => holding.ticker)
+    ).then((responseJSON) =>
+      this.setState({ data: responseJSON }, this.formatIntradayData)
+    );
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.portfolioValue !== this.props.portfolioValue) this.setState({portfolioValue: this.props.portfolioValue});
+    if (prevProps.portfolioValue !== this.props.portfolioValue)
+      this.setState({ portfolioValue: this.props.portfolioValue });
     if (prevProps.theme !== this.props.theme) setTheme(this.props.theme);
   }
 
@@ -77,15 +80,14 @@ class PortfolioMain extends React.Component {
       let openPrice =
         this.state.data[holding.ticker]["intraday-prices"][0].average ||
         this.state.data[holding.ticker]["intraday-prices"][4].open;
-      openSum +=
-        holding.quantity *
-        openPrice;
+      openSum += holding.quantity * openPrice;
     });
-    this.setState({ change: this.state.portfolioValue - openSum, referenceValue: openSum }, () =>
-      {
+    this.setState(
+      { change: this.state.portfolioValue - openSum, referenceValue: openSum },
+      () => {
         this.calculatePercentChange(openSum);
 
-        if (this.state.change < 0 ) {
+        if (this.state.change < 0) {
           this.props.reddify();
         } else {
           this.props.greenify();
@@ -95,33 +97,34 @@ class PortfolioMain extends React.Component {
   }
 
   calculatePercentChange(openValue) {
-    const {change} = this.state;
+    const { change } = this.state;
     const percentage = change / openValue;
-    this.setState({percentChange: percentage, loading: false});
+    this.setState({ percentChange: percentage, loading: false });
   }
 
   formatIntradayData() {
     const chartData = {};
     const holdings = {};
-    this.props.holdings.forEach(
-      item => holdings[item.ticker] = item
-    )
+    this.props.holdings.forEach((item) => (holdings[item.ticker] = item));
 
     for (const [ticker, datum] of Object.entries(this.state.data)) {
-      const {quantity} = holdings[ticker];
+      const { quantity } = holdings[ticker];
 
       let price;
-      datum["intraday-prices"].forEach( intraPrice => {
+      datum["intraday-prices"].forEach((intraPrice) => {
         // const timeKey = [intraPrice.date, intraPrice.label].join(" ");
         const timeKey = intraPrice.label;
         price = intraPrice.average ? intraPrice.average : price;
 
         if (!chartData[timeKey]) {
-          chartData[timeKey] = {timeKey, value: (price * quantity + this.props.user.funds)};
+          chartData[timeKey] = {
+            timeKey,
+            value: price * quantity + this.props.user.funds,
+          };
         } else {
           chartData[timeKey].value += price * quantity;
         }
-      })
+      });
     }
 
     let dataArr = [];
@@ -129,64 +132,113 @@ class PortfolioMain extends React.Component {
       dataArr.push(Object.values(chartData)[i]);
     }
 
-    this.setState({ chartData: dataArr}, this.calculatePortfolioValue);
+    this.setState({ chartData: dataArr }, this.calculatePortfolioValue);
   }
 
-  formatChartData(key) {
-    // const {data} = this.state;
+  formatChartData(data, key) {
     const chartData = {};
+    const holdings = [];
+    this.props.holdings.forEach((item) => (holdings[item.ticker] = item));
+
+    for (const [ticker, datum] of Object.entries(data)) {
+      const { quantity } = holdings[ticker];
+
+      let price;
+      datum["chart"].forEach((quote) => {
+        const timeKey = [quote.date, quote.label].join(" ");
+        if (["3m", "1y", "all"].includes(key)) {
+          price = quote.close ? quote.close : price;
+        } else {
+          price = quote.average ? quote.average : price;
+        }
+
+        if (!chartData[timeKey]) {
+          chartData[timeKey] = {
+            timeKey,
+            value: price * quantity + this.props.user.funds,
+          };
+        } else {
+          chartData[timeKey].value += price * quantity;
+        }
+      });
+    }
+
+    let dataArr = [];
+    let interval;
+    for (let i = 0; i < Object.values(chartData).length; i += 1) {
+      dataArr.push(Object.values(chartData)[i]);
+    }
+    this.setState({chartData: dataArr, referenceValue: dataArr[0].value});
+  }
+
+  receiveRangeData(key) {
+    // const {data} = this.state;
     const tickerArr = this.props.holdings.map((holding) => holding.ticker);
     let apiCall;
 
-    if (key === '1d') {
+    if (key === "1d") {
       this.receiveIntraday();
       return;
     }
 
     switch (key) {
-      case '1w':
+      case "1w":
         apiCall = fetchWeekQuotes;
         break;
-      case '1m':
+      case "1m":
         apiCall = fetchMonthQuotes;
         break;
-      case '3m':
+      case "3m":
         apiCall = fetchThreeMonthsQuotes;
         break;
-      case '1y':
+      case "1y":
         apiCall = fetchOneYearQuotes;
         break;
-      case 'all':
+      case "all":
         apiCall = fetchMaxQuotes;
         break;
       default:
         break;
     }
 
-    apiCall(tickerArr).then((responseJSON) => console.log(responseJSON));
+    apiCall(tickerArr).then((responseJSON) => {
+      console.log(responseJSON);
+      this.formatChartData(responseJSON, key);
+    });
   }
 
   changeRange(key) {
-    this.setState({range: key}, () => this.formatChartData(key))
+    this.setState({ range: key }, () => this.receiveRangeData(key));
   }
 
   renderChartRange() {
-    return ['1d', '1w', '1m', '3m', '1y', 'all'].map((ele, i) => {
+    return ["1d", "1w", "1m", "3m", "1y", "all"].map((ele, i) => {
       const className =
         ele === this.state.range
           ? "btn chart-range-button active"
           : "btn chart-range-button";
       return (
-        <button key={i} className={className} onClick={() => this.changeRange(ele)}>
+        <button
+          key={i}
+          className={className}
+          onClick={() => this.changeRange(ele)}
+        >
           <div>{ele.toUpperCase()}</div>
         </button>
       );
-    })
+    });
   }
 
   render() {
     if (this.state.loading) return <LoadingPage />;
-    const {portfolioValue, change, percentChange, data, chartData, referenceValue} = this.state;
+    const {
+      portfolioValue,
+      change,
+      percentChange,
+      data,
+      chartData,
+      referenceValue,
+    } = this.state;
     const { user, holdings, updateUser } = this.props;
     return (
       <>
@@ -221,14 +273,16 @@ class PortfolioMain extends React.Component {
                 referenceValue={referenceValue}
               />
             </div>
-            {(!data) && <div className="initial-chart"><div></div></div>}
+            {!data && (
+              <div className="initial-chart">
+                <div></div>
+              </div>
+            )}
           </div>
           <nav className="chart-range-container">
-            <div className="chart-range">
-              {this.renderChartRange()}
-            </div>
+            <div className="chart-range">{this.renderChartRange()}</div>
           </nav>
-          <BuyingPowerButton user={user} updateUser={updateUser}/>
+          <BuyingPowerButton user={user} updateUser={updateUser} />
         </div>
         <div className="dashboard-sidebar">
           <div>
