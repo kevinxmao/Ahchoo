@@ -269,6 +269,12 @@ button.btn.watchlist-select {
     line-height: $textS_line_height;
 }
 
+.watchlist-header-box {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+}
+
 button.btn.watchlist-add {
     width: 100%;
     height: 48px;
