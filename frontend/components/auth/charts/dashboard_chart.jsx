@@ -4,7 +4,6 @@ import CustomToolTip from './tooltip';
 
 const DashboardChart = ({data, change, componentRef, referenceValue}) => {
     if (!data || !componentRef.sumRef.current) return null;
-    // debugger
 
     data[0].value = data[0].value || referenceValue;
     const color = change >= 0 ? "#00c807" : "#ff5000";

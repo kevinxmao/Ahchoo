@@ -84,7 +84,7 @@ class CompanyMain extends React.Component {
     this.state.data["intraday-prices"].forEach((intraPrice) => {
         const timeKey = intraPrice.label;
         price = intraPrice.average ? intraPrice.average : price;
-        chartData[timeKey] = {timeKey, price};
+        chartData[timeKey] = {timeKey, value: price};
     });
 
     let dataArr = [];
@@ -97,10 +97,19 @@ class CompanyMain extends React.Component {
 
   formatChartData(data, key) {
     const chartData = {};
-    data.forEach((intraPrice) => {
-      const timeKey = intraPrice.label;
-      price = intraPrice.average ? intraPrice.average : price;
-      chartData[timeKey] = { timeKey, price };
+
+    let price;
+    let timeKey;
+    data['chart'].forEach((quote) => {
+      if (["3m", "1y", "all"].includes(key)) {
+        price = quote.close ? quote.close : price;
+        timeKey = quote.label;
+      } else {
+        price = quote.average ? quote.average : price;
+        timeKey = [quote.date, quote.label].join(" ");
+      }
+
+      chartData[timeKey] = { timeKey, value: price };
     });
 
       let dataArr = [];

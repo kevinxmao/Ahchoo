@@ -18,7 +18,7 @@ const CompanyChart = ({data, change, referenceValue, componentRef}) => {
       <LineChart width={676} height={196} data={data}>
         <Line
           type="linear"
-          dataKey="price"
+          dataKey="value"
           dot={false}
           isAnimationActive={false}
           stroke={color}
