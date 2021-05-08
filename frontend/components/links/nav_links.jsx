@@ -117,7 +117,7 @@ class NavLinks extends React.Component {
                 </Link>
                 <a className="nav-link" href="https://www.linkedin.com/in/kevinxmao/" target="_blank"><span>LinkedIn</span></a>
                 <a className="nav-link" href="https://github.com/kevinxmao" target="_blank"><span>Github</span></a>
-                <a className="nav-link" href="https://www.kevinxmao.com/"><span>About</span></a>
+            <a className="nav-link" href="https://www.kevinxmao.com/" target="_blank"><span>About</span></a>
                 <div onClick={this.toggleDropdown} className={this.state.dropdownVisible ? "nav-link visible" : "nav-link"}>
                     <div>
                         <span>Account</span>
