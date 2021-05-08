@@ -164,7 +164,6 @@ class PortfolioMain extends React.Component {
           price = quote.average ? quote.average : price;
           timeKey = [quote.date, quote.label].join(" ");
         }
-
         if (!chartData[timeKey]) {
           chartData[timeKey] = {
             timeKey,
@@ -178,15 +177,15 @@ class PortfolioMain extends React.Component {
 
     let dataArr = [];
     let interval;
-    for (let i = 0; i < Object.values(chartData).length; i += 1) {
+    for (let i = 0; i < Object.keys(chartData).length; i += 1) {
       dataArr.push(Object.values(chartData)[i]);
     }
-    // console.log(this.state.portfolioValue - dataArr[0].value);
+    if (key = "all") dataArr.pop();
+
     this.setState({ chartData: dataArr, referenceValue: dataArr[0].value, change: this.state.portfolioValue - dataArr[0].value, percentChange: (this.state.portfolioValue - dataArr[0].value) / this.state.portfolioValue });
   }
 
   receiveRangeData(key) {
-    // const {data} = this.state;
     const tickerArr = this.props.holdings.map((holding) => holding.ticker);
     let apiCall;
 
@@ -216,6 +215,7 @@ class PortfolioMain extends React.Component {
     }
 
     apiCall(tickerArr).then((responseJSON) => {
+      console.log(responseJSON)
       this.formatChartData(responseJSON, key);
     });
   }
