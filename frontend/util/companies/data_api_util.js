@@ -85,3 +85,34 @@ export const fetchWatchlistInfo = (tickerArr) => (
     url: `https://${endpoint}.iexapis.com/v1/stock/market/batch?&types=price,quote,company,stats&range=max&symbols=${tickerArr.join(',')}&token=${apiKey}`,
   })
 )
+
+export const fetchSingleWeekQuotes = (ticker) =>
+  $.ajax({
+    method: "GET",
+    url: `https://${endpoint}.iexapis.com/v1/stock/${ticker}/chart/5dm&token=${apiKey}`,
+  });
+
+export const fetchSingleMonthQuotes = (ticker) =>
+  $.ajax({
+    method: "GET",
+    url: `https://${endpoint}.iexapis.com/v1/stock/${ticker}/chart/1mm&token=${apiKey}`,
+  });
+
+export const fetchSingleThreeMonthsQuotes = (ticker) =>
+  $.ajax({
+    method: "GET",
+    url: `https://${endpoint}.iexapis.com/v1/stock/${ticker}/chart/3m&token=${apiKey}`,
+  });
+
+export const fetchSingleOneYearQuotes = (ticker) =>
+  $.ajax({
+    method: "GET",
+    url: `https://${endpoint}.iexapis.com/v1/stock/${ticker}/chart/1y&token=${apiKey}`,
+  });
+
+export const fetchSingleMaxQuotes = (ticker) =>
+  $.ajax({
+    method: "GET",
+    url: `https://${endpoint}.iexapis.com/v1/stock/${ticker}/chart/5y&token=${apiKey}`,
+  });
+

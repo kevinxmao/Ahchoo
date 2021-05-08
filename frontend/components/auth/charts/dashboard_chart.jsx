@@ -31,7 +31,7 @@ const DashboardChart = ({data, change, componentRef, referenceValue}) => {
           isFront={false}
           strokeWidth={2}
         />
-        <Tooltip separator="-" position={{y: -40}} content={<CustomToolTip componentRef={componentRef} referenceValue={referenceValue}/>}/>
+        <Tooltip separator="-" position={{y: -30}} content={<CustomToolTip componentRef={componentRef} referenceValue={referenceValue}/>}/>
       </LineChart>
     );
 }

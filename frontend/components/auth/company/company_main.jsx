@@ -24,7 +24,16 @@ class CompanyMain extends React.Component {
       showMore: false,
       readMore: false,
       isHolding: false,
+      range: "1d",
     };
+    this.ref = {
+      sumRef: React.createRef(),
+      sumHoverRef: React.createRef(),
+      changeRef: React.createRef(),
+      changeHoverRef: React.createRef(),
+      percentRef: React.createRef(),
+      percentHoverRef: React.createRef()
+    }
     this.formatCompanyInfo = this.formatCompanyInfo.bind(this);
     this.formatIntradayData = this.formatIntradayData.bind(this);
     this.calculateChange = this.calculateChange.bind(this);
@@ -48,7 +57,7 @@ class CompanyMain extends React.Component {
       fetchSingleQuote(this.props.ticker).then((responseJSON) =>
         this.setState({ data: responseJSON }, this.formatCompanyInfo)
       );
-    }
+    } 
   }
 
   formatCompanyInfo() {
@@ -101,6 +110,63 @@ class CompanyMain extends React.Component {
   extractHolding() {
     const index = this.props.holdings.findIndex(holding => holding.ticker === this.props.ticker);
     return this.props.holdings[index];
+  }
+
+  changeRange(key) {
+    this.setState({ range: key }, () => this.receiveRangeData(key));
+  }
+
+  receiveRangeData(key) {
+    const tickerArr = [this.props.ticker];
+    let apiCall;
+
+    if (key === "1d") {
+      this.receiveIntraday();
+      return;
+    }
+
+    switch (key) {
+      case "1w":
+        apiCall = fetchWeekQuotes;
+        break;
+      case "1m":
+        apiCall = fetchMonthQuotes;
+        break;
+      case "3m":
+        apiCall = fetchThreeMonthsQuotes;
+        break;
+      case "1y":
+        apiCall = fetchOneYearQuotes;
+        break;
+      case "all":
+        apiCall = fetchMaxQuotes;
+        break;
+      default:
+        break;
+    }
+
+    apiCall(tickerArr).then((responseJSON) => {
+      console.log(responseJSON);
+      this.formatChartData(responseJSON, key);
+    });
+  }
+
+  renderChartRange() {
+    return ["1d", "1w", "1m", "3m", "1y", "all"].map((ele, i) => {
+      const className =
+        ele === this.state.range
+          ? "btn chart-range-button active"
+          : "btn chart-range-button";
+      return (
+        <button
+          key={i}
+          className={className}
+          onClick={() => this.changeRange(ele)}
+        >
+          <div>{ele.toUpperCase()}</div>
+        </button>
+      );
+    });
   }
 
   render() {

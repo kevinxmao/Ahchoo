@@ -120,6 +120,7 @@
     color: $primary_base;
 }
 
-.hide {
-    display: none;
+.custom-tooltip {
+    color: $neutral_fg2;
+    font-size: 13px;
 }

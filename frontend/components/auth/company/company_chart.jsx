@@ -8,7 +8,9 @@ import {
   Tooltip,
 } from "recharts";
 
-const CompanyChart = ({data, change, referenceValue}) => {
+const CompanyChart = ({data, change, referenceValue, componentRef}) => {
+    if (!data || !componentRef.sumRef.current) return null;
+
     data[0].value = data[0].value || referenceValue;
     const color = change >= 0 ? "#00c807" : "#ff5000";
     return (
@@ -34,7 +36,7 @@ const CompanyChart = ({data, change, referenceValue}) => {
           isFront={false}
           strokeWidth={2}
         />
-        <Tooltip separator="-" position={{ y: -25 }} />
+        <Tooltip separator="-" position={{ y: -30 }} content={<CustomToolTip componentRef={componentRef} referenceValue={referenceValue} />} />
       </LineChart>
     );
 }
