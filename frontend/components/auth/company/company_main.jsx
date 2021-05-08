@@ -1,6 +1,6 @@
 import React from "react";
 import ShowMoreText from "react-show-more-text";
-import { fetchSingleQuote } from "../../../util/companies/data_api_util";
+import { fetchSingleQuote, fetchSingleWeekQuotes, fetchSingleMonthQuotes, fetchSingleThreeMonthsQuotes, fetchSingleOneYearQuotes, fetchSingleMaxQuotes } from "../../../util/companies/data_api_util";
 import { formatCompanyName, formatNumber, formatPercent, setTheme, ownShare } from "../../../util/util_functions";
 import CompanyChart from "./company_chart";
 import CompanySidebar from "./company_sidebar";
@@ -39,6 +39,10 @@ class CompanyMain extends React.Component {
     this.calculateChange = this.calculateChange.bind(this);
     this.calculatePercentChange = this.calculatePercentChange.bind(this);
     this.extractHolding = this.extractHolding.bind(this);
+    this.formatChartData = this.formatChartData.bind(this);
+    this.receiveRangeData = this.receiveRangeData.bind(this);
+    this.renderChartRange = this.renderChartRange.bind(this);
+    this.receiveIntraday = this.receiveIntraday.bind(this);
   }
 
   componentDidMount() {
@@ -49,6 +53,11 @@ class CompanyMain extends React.Component {
       this.setState({ data: responseJSON }, this.formatCompanyInfo)
     );
       })
+  }
+
+  receiveIntraday() {
+    fetchSingleQuote(this.props.ticker).then((responseJSON) =>
+      this.setState({ data: responseJSON }, this.formatCompanyInfo));
   }
 
   componentDidUpdate(prevProps) {
@@ -84,6 +93,22 @@ class CompanyMain extends React.Component {
     }
 
     this.setState({ chartData: dataArr}, this.calculateChange);
+  }
+
+  formatChartData(data, key) {
+    const chartData = {};
+    data.forEach((intraPrice) => {
+      const timeKey = intraPrice.label;
+      price = intraPrice.average ? intraPrice.average : price;
+      chartData[timeKey] = { timeKey, price };
+    });
+
+      let dataArr = [];
+      let interval;
+      for (let i = 0; i < Object.values(chartData).length; i += 1) {
+        dataArr.push(Object.values(chartData)[i]);
+      }
+      this.setState({ chartData: dataArr, referenceValue: dataArr[0].value });
   }
 
   calculateChange() {
@@ -127,19 +152,19 @@ class CompanyMain extends React.Component {
 
     switch (key) {
       case "1w":
-        apiCall = fetchWeekQuotes;
+        apiCall = fetchSingleWeekQuotes;
         break;
       case "1m":
-        apiCall = fetchMonthQuotes;
+        apiCall = fetchSingleMonthQuotes;
         break;
       case "3m":
-        apiCall = fetchThreeMonthsQuotes;
+        apiCall = fetchSingleThreeMonthsQuotes;
         break;
       case "1y":
-        apiCall = fetchOneYearQuotes;
+        apiCall = fetchSingleOneYearQuotes;
         break;
       case "all":
-        apiCall = fetchMaxQuotes;
+        apiCall = fetchSingleMaxQuotes;
         break;
       default:
         break;
@@ -186,22 +211,27 @@ class CompanyMain extends React.Component {
                   </div>
                   <header className="company-price">
                     <div className="price-value">
-                      <h1>{`${formatNumber(price)}`}</h1>
+                      <h1>
+                        <span ref={this.ref.sumRef}>{`${formatNumber(price)}`}</span>
+                        <span ref={this.ref.sumHoverRef}></span>
+                      </h1>
                     </div>
                     <div className="price-change-container">
                       <div className="price-change">
-                        <span>
+                        <span ref={this.ref.changeRef}>
                           {change >= 0
                             ? `+${formatNumber(change)}`
                             : `-${formatNumber(change)}`}
                         </span>
+                        <span ref={this.ref.changeHoverRef}></span>
                       </div>
                       <div className="price-percent-change">
-                        <span>
+                        <span ref={this.ref.percentRef}>
                           {percentChange >= 0
                             ? `(+${formatPercent(percentChange)})`
                             : `(-${formatPercent(percentChange)})`}
                         </span>
+                        <span ref={this.ref.percentHoverRef}></span>
                       </div>
                     </div>
                   </header>
@@ -210,10 +240,13 @@ class CompanyMain extends React.Component {
                       data={chartData}
                       change={change}
                       referenceValue={referenceValue}
+                      componentRef={this.ref}
                     />
                   </div>
                 </div>
-                <div className="chart-range-container"></div>
+                <div className="chart-range-container">
+                  <div className="chart-range">{this.renderChartRange()}</div>
+                </div>
                 {ownShare(holdings, ticker) && (
                   <Ownership
                     holding={this.extractHolding()}

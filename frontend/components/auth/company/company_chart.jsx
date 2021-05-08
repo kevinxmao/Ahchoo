@@ -7,6 +7,7 @@ import {
   ReferenceLine,
   Tooltip,
 } from "recharts";
+import CustomToolTip from '../charts/tooltip';
 
 const CompanyChart = ({data, change, referenceValue, componentRef}) => {
     if (!data || !componentRef.sumRef.current) return null;
@@ -23,7 +24,7 @@ const CompanyChart = ({data, change, referenceValue, componentRef}) => {
           stroke={color}
           strokeWidth={2}
         />
-        <XAxis hide="true" dataKey="" domain={[0, 400]} />
+        <XAxis hide="true" dataKey="timeKey" domain={[0, 400]} />
         <YAxis
           hide="true"
           type="number"
