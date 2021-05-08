@@ -118,7 +118,13 @@ class CompanyMain extends React.Component {
       for (let i = 0; i < Object.values(chartData).length; i += 1) {
         dataArr.push(Object.values(chartData)[i]);
       }
-    this.setState({ chartData: dataArr, referenceValue: dataArr[0].value, change: this.state.price - dataArr[0].value, percentChange: (this.state.price - dataArr[0].value) / this.state.price });
+    this.setState({ chartData: dataArr, referenceValue: dataArr[0].value, change: this.state.price - dataArr[0].value, percentChange: (this.state.price - dataArr[0].value) / this.state.price }, () => {
+      if (this.state.change < 0) {
+        this.props.reddify();
+      } else {
+        this.props.greenify();
+      }
+    });
   }
 
   calculateChange() {

@@ -182,7 +182,13 @@ class PortfolioMain extends React.Component {
     }
     if (key = "all") dataArr.pop();
 
-    this.setState({ chartData: dataArr, referenceValue: dataArr[0].value, change: this.state.portfolioValue - dataArr[0].value, percentChange: (this.state.portfolioValue - dataArr[0].value) / this.state.portfolioValue });
+    this.setState({ chartData: dataArr, referenceValue: dataArr[0].value, change: this.state.portfolioValue - dataArr[0].value, percentChange: (this.state.portfolioValue - dataArr[0].value) / this.state.portfolioValue }, () => {
+      if (this.state.change < 0) {
+        this.props.reddify();
+      } else {
+        this.props.greenify();
+      }
+    });
   }
 
   receiveRangeData(key) {
