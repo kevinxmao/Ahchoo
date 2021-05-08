@@ -31,14 +31,12 @@ class SearchBar extends React.Component {
   }
 
   globalClickListener(nativeEvent) {
-      // console.log("global click");
     this.setState({ dropdownVisible: false }, () => {
       window.removeEventListener("click", this.globalClickListener);
     });
   }
 
   expandDropdown(syntheticEvent) {
-    // console.log("expand dropdown");
     syntheticEvent.stopPropagation();
     this.setState(
     //   (prevState) => ({ dropdownVisible: !prevState.dropdownVisible }),

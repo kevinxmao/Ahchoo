@@ -181,7 +181,6 @@ class CompanyMain extends React.Component {
     }
 
     apiCall(tickerArr).then((responseJSON) => {
-      console.log(responseJSON);
       this.formatChartData(responseJSON, key);
     });
   }
