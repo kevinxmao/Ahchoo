@@ -40,6 +40,8 @@ class PortfolioMain extends React.Component {
   }
 
   componentDidMount() {
+    document.title = `Portfolio | Ahchoo`;
+    
     this.setState({ portfolioValue: this.props.portfolioValue });
     this.props.fetchUser(this.props.user.id).then(() => {
       if (!this.props.holdings.length) {

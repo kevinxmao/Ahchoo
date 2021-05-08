@@ -46,6 +46,7 @@ class CompanyMain extends React.Component {
   }
 
   componentDidMount() {
+    document.title = `${this.props.ticker} | Ahchoo`;
     this.props
       .fetchUser(this.props.user.id)
       .then(() => {

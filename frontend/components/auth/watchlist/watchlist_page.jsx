@@ -10,6 +10,7 @@ export default function WatchlistPage(props) {
     const watchlists = useSelector(state => Object.values(state.entities.watchlists));
     
     useEffect(() => {
+        document.title = `Watchlist | Ahchoo`;
         dispatch(fetchWatchlists())
     }, []);
 

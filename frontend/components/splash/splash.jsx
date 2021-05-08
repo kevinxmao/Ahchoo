@@ -3,6 +3,10 @@ import SplashNav from "./splash_nav";
 import { DemoLogin } from "../../util/auth/demo_user";
 
 class Splash extends React.Component {
+  componentDidMount() {
+    document.title = `Ahchoo`;
+  }
+
   render() {
     return (
       <div id="splash">

@@ -5,6 +5,7 @@ import Navbar from "./navbar";
 const mapStateToProps = state => ({
     user: Object.values(state.entities.users)[0],
     portfolioValue: state.session.portfolioValue,
+    theme: state.ui.theme
 });
 
 const mapDispatchToProps = dispatch => ({

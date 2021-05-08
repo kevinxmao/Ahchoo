@@ -24,7 +24,7 @@ class Navbar extends React.Component {
                   className="auth-nav-logo"
                   src={window.blackArrow}
                   onMouseOver={(e) =>
-                    (e.currentTarget.src = `${window.greenArrow}`)
+                    (e.currentTarget.src = `${this.props.theme === 'green' ? window.greenArrow : window.redArrow}`)
                   }
                   onMouseLeave={(e) =>
                     (e.currentTarget.src = `${window.blackArrow}`)
