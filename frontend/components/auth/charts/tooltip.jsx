@@ -1,35 +1,42 @@
 import React from "react";
 import ReactDOM from 'react-dom';
-import { formatNumber } from "../../../util/util_functions";
+import { formatNumber, formatPercent } from "../../../util/util_functions";
 
-const CustomToolTip = ({active, payload, label, referenceValue}) => {
-    // const prevSumEle = document.getElementById("_sum");
-    // const prevChangeEle = document.getElementById("_change");
-    // const prevPercentChangeEle = document.getElementById("_percentChange");
-    
+const CustomToolTip = ({ active, payload, label, referenceValue, componentRef }) => {
+    const sum = componentRef.sumRef.current;
+    const sumHover = componentRef.sumHoverRef.current;
+    const changeEle = componentRef.changeRef.current;
+    const changeHoverEle = componentRef.changeHoverRef.current;
+    const percent = componentRef.percentRef.current;
+    const percentHover = componentRef.percentHoverRef.current;
+
     if (active && payload && payload.length) {
+        const change = payload[0].payload.value - referenceValue;
+        const percentChange = change / referenceValue;
 
-        // const change = payload[0].payload.value - referenceValue;
-        // const percentChange = change / referenceValue;
-
-        // ReactDOM.render(<>{formatNumber(payload[0].payload.value)}</>, document.getElementById("_sum"));
+        sum.classList.add('hide');
+        sumHover.innerText = formatNumber(payload[0].payload.value);
+        changeEle.classList.add('hide');
+        changeHoverEle.innerText = change >= 0
+            ? `+${formatNumber(change)}`
+            : `-${formatNumber(change)}`;
+        percent.classList.add('hide');
+        percentHover.innerText = percentChange >= 0
+            ? `(+${formatPercent(percentChange)})`
+            : `(-${formatPercent(percentChange)})`;
 
         return (
             <div className="custom-tooltip">
-                <p>Hello</p>
+                <p>{label}</p>
             </div>
         )
     } else if (!active) {
-        // let prevSum, prevChange, prevPercentChange;
-
-        // prevChange = prevChangeEle.innerHTML || "",
-        // prevPercentChange = prevPercentChangeEle.innerHTML || "";
-        console.log(payload);
-
-        // if (prevSum) {
-        //     prevSum = prevSumEle.innerHTML;
-        //     ReactDOM.render(<>{prevSumEle}</>, document.getElementById("_sum"));
-        // }
+        sum.classList.remove('hide');
+        sumHover.innerText = "";
+        changeEle.classList.remove('hide');
+        changeHoverEle.innerText = "";
+        percent.classList.remove('hide');
+        percentHover.innerText = "";
     }
     return null;
 

@@ -2,8 +2,10 @@ import React from 'react';
 import {LineChart, Line, XAxis, YAxis, ReferenceLine, Tooltip} from 'recharts';
 import CustomToolTip from './tooltip';
 
-const DashboardChart = ({data, change, portfolioValue, referenceValue}) => {
-    if (!data) return null;
+const DashboardChart = ({data, change, componentRef, referenceValue}) => {
+    if (!data || !componentRef.sumRef.current) return null;
+    // debugger
+
     data[0].value = data[0].value || referenceValue;
     const color = change >= 0 ? "#00c807" : "#ff5000";
     return (
@@ -29,7 +31,7 @@ const DashboardChart = ({data, change, portfolioValue, referenceValue}) => {
           isFront={false}
           strokeWidth={2}
         />
-        <Tooltip separator="-" position={{y: -20}} content={<CustomToolTip referenceValue={referenceValue}/>}/>
+        <Tooltip separator="-" position={{y: -40}} content={<CustomToolTip componentRef={componentRef} referenceValue={referenceValue}/>}/>
       </LineChart>
     );
 }

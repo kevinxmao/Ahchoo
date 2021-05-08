@@ -20,6 +20,15 @@ class PortfolioMain extends React.Component {
       referenceValue: null,
       range: "1d",
     };
+    this.ref = {
+      sumRef: React.createRef(),
+      sumHoverRef: React.createRef(),
+      changeRef: React.createRef(),
+      changeHoverRef: React.createRef(),
+      percentRef: React.createRef(),
+      percentHoverRef: React.createRef()
+    }
+
     this.calculatePortfolioValue = this.calculatePortfolioValue.bind(this);
     this.calculateChange = this.calculateChange.bind(this);
     this.calculatePercentChange = this.calculatePercentChange.bind(this);
@@ -112,7 +121,7 @@ class PortfolioMain extends React.Component {
 
       let price;
       datum["intraday-prices"].forEach((intraPrice) => {
-        // const timeKey = [intraPrice.date, intraPrice.label].join(" ");
+
         const timeKey = intraPrice.label;
         price = intraPrice.average ? intraPrice.average : price;
 
@@ -144,12 +153,14 @@ class PortfolioMain extends React.Component {
       const { quantity } = holdings[ticker];
 
       let price;
+      let timeKey;
       datum["chart"].forEach((quote) => {
-        const timeKey = [quote.date, quote.label].join(" ");
         if (["3m", "1y", "all"].includes(key)) {
           price = quote.close ? quote.close : price;
+          timeKey = quote.label;
         } else {
           price = quote.average ? quote.average : price;
+          timeKey = [quote.date, quote.label].join(" ");
         }
 
         if (!chartData[timeKey]) {
@@ -239,29 +250,35 @@ class PortfolioMain extends React.Component {
       chartData,
       referenceValue,
     } = this.state;
-    const { user, holdings, updateUser } = this.props;
+    const { user, updateUser } = this.props;
+
     return (
       <>
         <div className="portfolio-main">
           <div className="portfolio-value-container">
             <header className="portfolio-value">
               <div className="portfolio-number">
-                <h1 id="_sum">{formatNumber(portfolioValue)}</h1>
+                <h1 id="_sum">
+                  <span ref={this.ref.sumRef}>{formatNumber(portfolioValue)}</span>
+                  <span ref={this.ref.sumHoverRef}></span>
+                </h1>
               </div>
               <div className="portfolio-change-container">
                 <div className="portfolio-change">
-                  <span id="_change">
+                  <span id="_change" ref={this.ref.changeRef}>
                     {change >= 0
                       ? `+${formatNumber(change)}`
                       : `-${formatNumber(change)}`}
                   </span>
+                  <span ref={this.ref.changeHoverRef}></span>
                 </div>
                 <div className="portfolio-percent-change">
-                  <span id="_percentChange">
+                  <span id="_percentChange" ref={this.ref.percentRef}>
                     {percentChange >= 0
                       ? `(+${formatPercent(percentChange)})`
                       : `(-${formatPercent(percentChange)})`}
                   </span>
+                  <span ref={this.ref.percentHoverRef}></span>
                 </div>
               </div>
             </header>
@@ -269,8 +286,8 @@ class PortfolioMain extends React.Component {
               <DashboardChart
                 data={chartData}
                 change={change}
-                portfolioValue={portfolioValue}
                 referenceValue={referenceValue}
+                componentRef={this.ref}
               />
             </div>
             {!data && (
@@ -286,7 +303,7 @@ class PortfolioMain extends React.Component {
         </div>
         <div className="dashboard-sidebar">
           <div>
-            <DashboardSidebar holdings={this.props.holdings} apiData={data} />
+            <DashboardSidebar holdings={this.props.holdings} apiData={data}/>
           </div>
         </div>
       </>
