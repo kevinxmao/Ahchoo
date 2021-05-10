@@ -8,7 +8,6 @@ export default function NewsContainer(props) {
         Object.values(props.data).forEach((datum) => {
             allNews = allNews.concat(datum["news"].slice(0,2));
         });
-        // debugger;
         return allNews.map((news, i) => <NewsItem key={i} news={news}/>)
     }
 
