@@ -5,8 +5,12 @@ import LoadingPage from '../../loading_page';
 import { useDispatch } from 'react-redux';
 import { updateWatchlist } from '../../../actions/watchlists_actions';
 import { camalize } from '../../../util/util_functions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleUp, faAngleDown } from '@fortawesome/pro-regular-svg-icons';
 
 export default function WatchlistTable(props) {
+    const angleUp = <FontAwesomeIcon icon={faAngleUp}/>;
+    const angleDown = <FontAwesomeIcon icon={faAngleDown} />
     const initialSortState = {
         name: '',
         symbol: '',
@@ -60,11 +64,23 @@ export default function WatchlistTable(props) {
     function renderColumnHeader(headerName) {
         const key = camalize(headerName);
         const className = sort[key] ? "column-header active" : "column-header";
+        let angle;
+        switch(sort[key]) {
+            case 'ASC':
+                angle = angleUp;
+                break;
+            case 'DSC':
+                angle = angleDown;
+                break;
+            default:
+                angle = "";
+                break;
+        }
         return (
-            <div className={className}>
-                <button onClick={() => handleHeaderClick(key)}>
+            <div className={className} onClick={() => handleHeaderClick(key)}>
+                <button>
                     <div>{headerName}</div>
-                    <div className="header-arrow"></div>
+                    <div className="header-arrow">{angle}</div>
                 </button>
             </div>
         )
