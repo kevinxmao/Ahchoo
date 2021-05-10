@@ -5,6 +5,7 @@ import { fetchAllQuotes, fetchWeekQuotes, fetchMonthQuotes, fetchThreeMonthsQuot
 import DashboardChart from '../charts/dashboard_chart';
 import BuyingPowerButton from './buying_power';
 import LoadingPage from '../../loading_page';
+import NewsContainer from './news';
 
 class PortfolioMain extends React.Component {
   constructor(props) {
@@ -308,6 +309,7 @@ class PortfolioMain extends React.Component {
             <div className="chart-range">{this.renderChartRange()}</div>
           </nav>
           <BuyingPowerButton user={user} updateUser={updateUser} />
+          <NewsContainer data={data}/>
         </div>
         <div className="dashboard-sidebar">
           <div>

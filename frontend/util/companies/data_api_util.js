@@ -34,7 +34,7 @@ export const fetchSingleQuote = (ticker) =>
 export const fetchAllQuotes = (tickerArr) =>
   $.ajax({
     method: "GET",
-    url: `https://${endpoint}.iexapis.com/v1/stock/market/batch?&types=price,intraday-prices&symbols=${tickerArr.join(',')}&token=${apiKey}`,
+    url: `https://${endpoint}.iexapis.com/v1/stock/market/batch?&types=price,intraday-prices,news&symbols=${tickerArr.join(',')}&token=${apiKey}`,
   });
 
 export const fetchWeekQuotes = (tickerArr) => (

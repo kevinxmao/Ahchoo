@@ -1,0 +1,22 @@
+@import "../base/variables.scss";
+
+.news-container {
+    margin-bottom: 60px;
+    transition: background .3s;
+}
+
+.news-section-header {
+    margin-bottom: 0px;
+}
+
+.news-section-header>div {
+    border-bottom: 1px solid $neutral_bg3;
+    padding-bottom: 16px;
+    
+    h2 {
+        font-size: 24px;
+        line-height: 28px;
+        letter-spacing: -.33px;
+        font-weight: 400;
+    }
+}
