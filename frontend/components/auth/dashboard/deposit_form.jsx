@@ -43,7 +43,7 @@ function DepositForm(props) {
                 <span><FontAwesomeIcon icon={faTimes} /></span>
             </button>
             <div className="deposit-form">
-                <header className="modal-title">
+                <header className="modal-title deposit-title">
                     <div>
                         <span>Deposit Funds</span>
                     </div>

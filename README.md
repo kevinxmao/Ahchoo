@@ -26,11 +26,9 @@ Ahchoo is a clone of the popular Robinhood trading webapp. Ahchoo allows users t
 ### User Authentication
 Upon navigating to the splash page, user has the option to login or signup with Ahchoo. If incorrect or insufficient information is provided, errors will be displayed.
 
-#### Login
-
-#### Sign In
 
 ### Dashboard View
+
 
 #### Portfolio Chart
 
