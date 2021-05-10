@@ -26,19 +26,18 @@ Ahchoo is a clone of the popular Robinhood trading webapp. Ahchoo allows users t
 ### User Authentication
 Upon navigating to the splash page, user has the option to login or signup with Ahchoo. If incorrect or insufficient information is provided, errors will be displayed.
 
+#### Login Page
+![Login Demo](https://media.giphy.com/media/pjYxbsdGE7cZLmkWRT/giphy.gif)
 
 ### Dashboard View
+The main feature of Ahchoo is user portfolio dashboard. Users can see their portfolio value as a rendered number or a chart that dynamically changes according to specified date range. Data for all holding stocks is fetched from IEX Cloud API upon rendering.
 
-
-#### Portfolio Chart
-
-#### Date Range
-
-#### Create Watchlist
+#### Chart
+Porfolio value dynamically changes when user hovers over the chart.
+![Chart Demo](https://media.giphy.com/media/xfQGchZSnsyppcS019/giphy.gif)
 
 ### Company View
+Users can see holding information if they own a specific stock. Users can also execute trades (buy/sell) or add stock to created watchlists.
 
-#### Trading Stocks
-
-#### Add to Watchlits
-
+### Watchlists
+Users can view a list of stocks for a watchlist and sort them based on selected criteria.
