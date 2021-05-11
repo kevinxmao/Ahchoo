@@ -34,6 +34,7 @@ The main feature of Ahchoo is user portfolio dashboard. Users can see their port
 
 #### Chart
 Porfolio value dynamically changes when user hovers over the chart.
+
 ![Chart Demo](https://media.giphy.com/media/xfQGchZSnsyppcS019/giphy.gif)
 
 ### Company View
@@ -41,3 +42,32 @@ Users can see holding information if they own a specific stock. Users can also e
 
 ### Watchlists
 Users can view a list of stocks for a watchlist and sort them based on selected criteria.
+
+#### Adding stocks to watchlists
+On form submission, the status of watchlists are checked to see if an update on the backend is needed. An array of asynchronous functions are called to perform watchlist updates, and modal will be closed if all backend API calls are successful.
+
+```javascript
+function handleSubmit() {
+        let reqWatchlists = [];
+        for (let id in fixedStatus) {
+            if (fixedStatus[id] !== status[id]) {
+                const newWatchlist = Object.assign({}, watchlists[id]);
+                const tickersArr = newWatchlist.tickers;
+
+                if (status[id]) {
+                    tickersArr.push({ticker: props.tickerSymbol});
+                } else {
+                    const index = tickersArr.findIndex(ele => ele.ticker === props.tickerSymbol);
+                    tickersArr.splice(index, 1);
+                }
+
+                newWatchlist.tickers = tickersArr;
+                reqWatchlists.push(newWatchlist);
+            }
+        }
+
+        Promise.all(reqWatchlists.map(watchlist => dispatch(updateWatchlist(watchlist)))).then(
+            () => dispatch(closeModal())
+        );
+    }
+```
