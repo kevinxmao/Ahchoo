@@ -67,6 +67,10 @@ class SearchBar extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.setState({dropdownVisible: false})
+  }
+
   handleChange(e) {
     const { name, value } = event.target;
     this.setState({

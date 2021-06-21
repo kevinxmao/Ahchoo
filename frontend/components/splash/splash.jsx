@@ -24,8 +24,7 @@ class Splash extends React.Component {
                   <div className="splash-big-p">
                     <span>
                       Ahchoo is a fullstack clone of Robinhood using Ruby on
-                      Rails and React. In case you are wondering, we won't halt
-                      trading since we have no investor.
+                      Rails and React. You can search for and trade stocks listed on NYSE and NASDAQ as well as adding stocks to your custom watchlists. Have fun!
                     </span>
                   </div>
                   <div className="splash-demo-login"><DemoLogin /></div>
