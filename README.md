@@ -41,6 +41,7 @@ Porfolio value dynamically changes when user hovers over the chart.
 Users can see holding information if they own a specific stock. Users can also execute trades (buy/sell) or add stock to created watchlists.
 
 #### Trade execution logic on Backend
+[See code snippet in file](https://github.com/kevinxmao/Ahchoo/blob/a3d85ef1e9b375a53e8a332b913131ddc077e15c/app/models/user.rb#L60-L73)
 
 ```ruby
 def receive_order(order)
