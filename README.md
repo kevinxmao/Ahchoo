@@ -40,11 +40,42 @@ Porfolio value dynamically changes when user hovers over the chart.
 ### Company View
 Users can see holding information if they own a specific stock. Users can also execute trades (buy/sell) or add stock to created watchlists.
 
+#### Trade execution logic on Backend
+
+```ruby
+def receive_order(order)
+    new_funds = self.funds - order[:quantity].to_f * order[:avg_price].to_f
+    self.update_attribute(:funds, new_funds)
+end
+
+def sell_all(order)
+    new_funds = self.funds + order[:quantity].to_f * order[:avg_price].to_f
+    self.update_attribute(:funds, new_funds)
+end
+
+def buy_new(order)
+    new_funds = self.funds - order[:quantity].to_f * order[:avg_price].to_f
+    self.update_attribute(:funds, new_funds)
+end
+```
+
 ### Watchlists
 Users can view a list of stocks for a watchlist and sort them based on selected criteria.
 
 #### Adding stocks to watchlists
 On form submission, the status of watchlists are checked to see if an update on the backend is needed. An array of asynchronous functions are called to perform watchlist updates, and modal will be closed if all backend API calls are successful.
+
+```javascript
+export const updateWatchlist = watchlist => {
+    watchlist.tickers = JSON.stringify(watchlist.tickers);
+
+    return $.ajax({
+        method: 'PATCH',
+        url: `api/watchlists/${watchlist.id}`,
+        data: { watchlist }
+    })
+}
+```
 
 ```javascript
 function handleSubmit() {
@@ -71,3 +102,7 @@ function handleSubmit() {
         );
     }
 ```
+## Future Feature Implementation:
+- Stock trading based on dollar amount
+- Crypto trading
+- Continuous news update
