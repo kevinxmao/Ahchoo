@@ -41,7 +41,6 @@ Porfolio value dynamically changes when user hovers over the chart.
 Users can see holding information if they own a specific stock. Users can also execute trades (buy/sell) or add stock to created watchlists.
 
 #### Trade execution logic on Backend
-[See code snippet in file](https://github.com/kevinxmao/Ahchoo/blob/a3d85ef1e9b375a53e8a332b913131ddc077e15c/app/models/user.rb#L60-L73)
 
 ```ruby
 def receive_order(order)
@@ -59,6 +58,7 @@ def buy_new(order)
     self.update_attribute(:funds, new_funds)
 end
 ```
+[See code snippet in file](https://github.com/kevinxmao/Ahchoo/blob/a3d85ef1e9b375a53e8a332b913131ddc077e15c/app/models/user.rb#L60-L73)
 
 ### Watchlists
 Users can view a list of stocks for a watchlist and sort them based on selected criteria.
@@ -77,6 +77,7 @@ export const updateWatchlist = watchlist => {
     })
 }
 ```
+[See code snippet in file](https://github.com/kevinxmao/Ahchoo/blob/dad471dd14303bd7e36b4f4cba81ba0651656970/frontend/util/watchlists/watchlists_api_util.js#L23-L31)
 
 ```javascript
 function handleSubmit() {
@@ -103,6 +104,8 @@ function handleSubmit() {
         );
     }
 ```
+[See code snippet in file](https://github.com/kevinxmao/Ahchoo/blob/dad471dd14303bd7e36b4f4cba81ba0651656970/frontend/components/auth/watchlist/watchlist_modal/add_to_lists_form.jsx#L27-L52)
+
 ## Future Feature Implementation:
 - Stock trading based on dollar amount
 - Crypto trading
